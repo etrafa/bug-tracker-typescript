@@ -1,5 +1,6 @@
 //*react
 import { useState } from "react";
+import DashboardHome from "./components/Dashboard/DashboardHome";
 
 //*components
 // import Login from "./components/Login/Login";
@@ -19,6 +20,7 @@ function App() {
         setIsProjectModalOpen={setIsProjectModalOpen}
         setIsTicketModalOpen={setIsTicketModalOpen}
       />
+      <DashboardHome />
     </div>
   );
 }
