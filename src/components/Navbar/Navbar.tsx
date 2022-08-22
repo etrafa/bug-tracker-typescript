@@ -1,5 +1,6 @@
 //react
 import { FC, useState } from "react";
+import { useAuth } from "../../firebase/firebaseConfig";
 
 //interface
 import { INavProps } from "../../Interfaces/NavbarInterface";
