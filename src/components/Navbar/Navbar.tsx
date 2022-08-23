@@ -27,7 +27,7 @@ const Navbar: FC<INavProps> = ({
         <svg
           onClick={() => setIsNavbarOpen(true)}
           xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8 cursor-pointer"
+          className="h-8 w-8 cursor-pointer hover:text-gray-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -41,11 +41,13 @@ const Navbar: FC<INavProps> = ({
         </svg>
       </div>
       {/* NAVBAR MENU FOR SMALL SCREEN */}
+
       {isNavbarOpen && (
         <NavbarSmallScreen
           setIsNavbarOpen={setIsNavbarOpen}
           setIsProjectModalOpen={setIsProjectModalOpen}
           setIsTicketModalOpen={setIsTicketModalOpen}
+          dbData={dbData}
         />
       )}
 
