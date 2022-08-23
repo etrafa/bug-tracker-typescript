@@ -22,6 +22,10 @@ function App() {
     <div>
       <Router>
         <Sidebar />
+        <Navbar
+          setIsProjectModalOpen={setIsProjectModalOpen}
+          setIsTicketModalOpen={setIsTicketModalOpen}
+        />
         <Routes>
           <Route path="/role-assignment" element={<ManageRoleAssignment />} />
           <Route path="/manage-project-user" element={<ManageProjectUsers />} />
@@ -29,11 +33,7 @@ function App() {
         </Routes>
       </Router>
       {/* <Login /> */}
-      {/* <Navbar
-        setIsProjectModalOpen={setIsProjectModalOpen}
-        setIsTicketModalOpen={setIsTicketModalOpen}
-      />
-      <DashboardHome /> */}
+      {/* <DashboardHome /> */}
     </div>
   );
 }

@@ -1,5 +1,6 @@
 //react
 import { FC, useState } from "react";
+import { useGetSingleDoc } from "../../customHooks/useGetSingleDoc";
 import { useAuth } from "../../firebase/firebaseConfig";
 
 //interface
@@ -15,6 +16,10 @@ const Navbar: FC<INavProps> = ({
 }) => {
   //* toggle navbar (for small screen only)
   const [isNavbarOpen, setIsNavbarOpen] = useState<boolean>(false);
+
+  //get current user and role
+  const currentUser = useAuth();
+  const { dbData } = useGetSingleDoc("users", currentUser?.uid);
 
   return (
     <nav className="bg-gray-50 w-full lg:w-[calc(100%_-_16rem)] h-[calc(5rem_-_7px)] ml-auto relative">
@@ -48,6 +53,7 @@ const Navbar: FC<INavProps> = ({
       <NavbarLargeScreen
         setIsProjectModalOpen={setIsProjectModalOpen}
         setIsTicketModalOpen={setIsTicketModalOpen}
+        dbData={dbData}
       />
     </nav>
   );
