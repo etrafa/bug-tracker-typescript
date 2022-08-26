@@ -36,7 +36,6 @@ const TicketByProject = (props: IProps) => {
   for (let i = 0; i < projectLabels.length; i++)
     if (projectLabels[i] in counts) {
       counts[projectLabels[i]]++;
-      console.log(counts);
     } else {
       counts[projectLabels[i]] = 1;
     }

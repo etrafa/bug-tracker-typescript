@@ -3,4 +3,5 @@ export interface IFirebaseUser {
   readonly email?: string;
   readonly role?: string;
   readonly tickets?: [];
+  readonly id?: string;
 }

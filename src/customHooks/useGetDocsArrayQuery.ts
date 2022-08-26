@@ -1,7 +1,6 @@
 import {
   collectionGroup,
   doc,
-  DocumentData,
   getDocs,
   onSnapshot,
   query,
@@ -41,11 +40,6 @@ export const useGetDocsArrayQuery = (
       PARENT_PATH.forEach((path) => {
         const docRef = doc(db, path);
         onSnapshot(docRef, (item) => {
-          // setDbData((prev) =>
-          //   prev
-          //     ? [...prev, { ...item.data(), id: item.id }]
-          //     : [{ id: item.id }]
-          // );
           ALL_DATA_FIRESTORE.push({ ...item.data(), id: item.id });
           setDbData(ALL_DATA_FIRESTORE);
         });

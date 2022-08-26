@@ -1,28 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {
-  addDoc,
-  arrayRemove,
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  getFirestore,
-  query,
-  setDoc,
-  serverTimestamp,
-  updateDoc,
-  where,
-} from "firebase/firestore";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  onAuthStateChanged,
-  signOut,
-  signInWithEmailAndPassword,
-  User,
-} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 // Your web app's Firebase configuration
