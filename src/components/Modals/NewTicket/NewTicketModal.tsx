@@ -34,6 +34,7 @@ interface NewTicketModalProps {
 const NewTicketModal = (props: NewTicketModalProps) => {
   const [state, dispatch] = useReducer(ticketModalReducer, initialState);
   const [isFormValidated, setIsFormValidated] = useState(false); //form validation state
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const currentUser = useAuth(); //current user information
   const { dbData } = useGetDocs("projects"); //get all project list from db
@@ -100,17 +101,22 @@ const NewTicketModal = (props: NewTicketModalProps) => {
 
   const createNewTicket = (e: React.MouseEvent) => {
     e.preventDefault();
-    createTicket(state.selectedProjectID, {
-      projectName: state.projectName,
-      assignedUsers: state.selectedUsers,
-      ticketDescription: state.ticketDescription,
-      ticketOwner: currentUser?.displayName,
-      ticketPriority: state.ticketPriority,
-      ticketStatus: state.ticketStatus,
-      ticketType: state.ticketType,
-      submitTime: SERVER_TIME,
-      userEmails: state.selectedUsers.map((user) => user.email),
-    });
+    createTicket(
+      state.selectedProjectID,
+      {
+        projectName: state.projectName,
+        assignedUsers: state.selectedUsers,
+        ticketDescription: state.ticketDescription,
+        ticketOwner: currentUser?.displayName,
+        ticketPriority: state.ticketPriority,
+        ticketStatus: state.ticketStatus,
+        ticketType: state.ticketType,
+        submitTime: SERVER_TIME,
+        userEmails: state.selectedUsers.map((user) => user.email),
+      },
+      setShowSuccessMessage,
+      props.setIsTicketModalOpen
+    );
   };
 
   //? --------------------------------------------------
@@ -123,8 +129,8 @@ const NewTicketModal = (props: NewTicketModalProps) => {
       clickHandler={() => props.setIsTicketModalOpen(false)}
       handleSubmit={createNewTicket}
       handleChange={handleTicketDescription}
-      successMessage=""
-      showSuccessMessage={true}
+      successMessage="Ticket has been created successfully."
+      showSuccessMessage={showSuccessMessage}
       dropDownChangeHandler={dropDownHandleChange} //*
       dropDownLabel="Select Project"
       dropDownName="a"
