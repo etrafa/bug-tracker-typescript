@@ -5,9 +5,9 @@ import { db } from "../firebaseConfig";
 
 export const createTicket = async (
   docID: string,
-  ticket: {},
-  modal: React.Dispatch<React.SetStateAction<boolean>>,
-  closeModal: React.Dispatch<React.SetStateAction<boolean>>
+  ticket: {}
+  // modal: React.Dispatch<React.SetStateAction<boolean>>,
+  // closeModal: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   try {
     const colRef = collection(db, "projects", docID, "tickets");
@@ -19,12 +19,12 @@ export const createTicket = async (
     await updateDoc(docRef, { id: refID }); //add id field to the document
 
     //*open information modal
-    modal(true);
+    // modal(true);
 
     //* close information modal after 2s later
-    setTimeout(() => {
-      closeModal(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   closeModal(false);
+    // }, 2000);
   } catch (err) {
     console.log(err);
   }

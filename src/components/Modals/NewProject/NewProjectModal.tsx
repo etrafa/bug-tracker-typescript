@@ -74,7 +74,7 @@ const NewProjectModal = (props: NewProjectModalProps) => {
     }
   };
 
-  //? ---------------------------------------------------
+  //? --------------------------------------------------
 
   return (
     //create custom new project modal
@@ -108,7 +108,7 @@ const NewProjectModal = (props: NewProjectModalProps) => {
         }
       }}
       handleChange={handleChange} // input change
-      data={dbData} //checkbox data
+      checkBoxData={dbData} //checkbox data
       checkboxName="assignedUsers" //checkbox name
       checkboxClickHandler={handleSelectedUsers} //checkbox function that adds-removes user when creating a new project
     />

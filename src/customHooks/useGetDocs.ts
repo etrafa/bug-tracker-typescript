@@ -1,12 +1,20 @@
 //*READ FIRESTORE DATABASE
 
-import { collection, onSnapshot } from "firebase/firestore";
+//react
 import { useEffect, useState } from "react";
+
+//firebase
+import { collection, onSnapshot } from "firebase/firestore";
 import { db, useAuth } from "../firebase/firebaseConfig";
+
+//interfaces
+import { IProject } from "../Interfaces/Firebase-Interfaces/ProjectInterface";
 import { IFirebaseUser } from "../Interfaces/Firebase-Interfaces/UserInterface";
 
+type UseGetDocsTypes = IFirebaseUser[] | IProject[] | null;
+
 export const useGetDocs = (colName: string) => {
-  const [dbData, setDbData] = useState<IFirebaseUser[] | null>(null);
+  const [dbData, setDbData] = useState<UseGetDocsTypes>(null);
   const [loading, setLoading] = useState(false);
   const currentUser = useAuth();
 

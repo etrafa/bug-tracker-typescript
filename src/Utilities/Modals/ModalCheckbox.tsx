@@ -1,4 +1,5 @@
 import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
+import { Link } from "react-router-dom";
 
 interface ModalCheckboxProps {
   data: IFirebaseUser[];
@@ -24,6 +25,19 @@ const ModalCheckbox = (props: ModalCheckboxProps) => {
           {item.fullName}
         </label>
       ))}
+
+      {/* IF CHECKBOX IS USED FOR ASSIGNING USER AND THE LIST IS EMPTY SHOW THIS MESSAGE */}
+      {props.checkboxName === "assignedUsers" && props.data.length === 0 && (
+        <p className="font-bold">
+          No user found for this project. Click
+          <Link to="/">
+            <span className="decoration-blue-600 px-1 underline underline-offset-2 hover:text-gray-600 hover:decoration-blue-400">
+              here
+            </span>
+          </Link>
+          to add.
+        </p>
+      )}
     </div>
   );
 };
