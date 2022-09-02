@@ -1,9 +1,20 @@
 import { useGetDocs } from "../../customHooks/useGetDocs";
-import AddUser from "./AddUser";
+import AddUserToProject from "./AddUserToProject";
 import ManageUsersDropdown from "./ManageUsersDropdown";
+import { useState } from "react";
+import ShowProjectUsers from "./ShowProjectUsers";
 
-const ManageProjectUsers = () => {
-  const { dbData, loading } = useGetDocs("projects");
+interface ManageProjectUsersProps {
+  setIsAssignedUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ManageProjectUsers = ({
+  setIsAssignedUserModalOpen,
+}: ManageProjectUsersProps) => {
+  const { dbData, loading } = useGetDocs("projects"); //get all projects from database
+
+  //STATES
+  const [selectedProjectID, setSelectedProjectID] = useState(""); // get current project id to show users in the UI
 
   return (
     <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto mb-6">
@@ -12,8 +23,14 @@ const ManageProjectUsers = () => {
           Manage Users
         </h1>
         <div className="pl-4 pt-12">
-          <ManageUsersDropdown dbData={dbData} />
-          <AddUser />
+          <ManageUsersDropdown
+            dbData={dbData}
+            setSelectedProjectID={setSelectedProjectID}
+          />
+          <AddUserToProject
+            setIsAssignedUserModalOpen={setIsAssignedUserModalOpen}
+          />
+          <ShowProjectUsers selectedProjectID={selectedProjectID} />
         </div>
       </div>
     </div>

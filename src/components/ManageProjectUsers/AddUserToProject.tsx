@@ -1,7 +1,13 @@
-const AddUser = () => {
+interface ManageProjectUsersProps {
+  setIsAssignedUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AddUserToProject = ({
+  setIsAssignedUserModalOpen,
+}: ManageProjectUsersProps) => {
   return (
     <button
-      //   onClick={() => setIsAssignUserModalOpen(true)}
+      onClick={() => setIsAssignedUserModalOpen(true)}
       className="flex mt-6 font-sm text-gray-500 group hover:text-gray-400"
     >
       <svg
@@ -22,4 +28,4 @@ const AddUser = () => {
     </button>
   );
 };
-export default AddUser;
+export default AddUserToProject;

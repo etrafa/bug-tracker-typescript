@@ -60,8 +60,6 @@ const AssignUserModal = (props: AssignUserModalProps) => {
     }
   };
 
-  console.log(selectedProjectID);
-
   //* add new user after clicking submit button
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();

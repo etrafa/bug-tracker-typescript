@@ -22,7 +22,7 @@ function App() {
   const [isTicketModalOpen, setIsTicketModalOpen] = useState<boolean>(false);
 
   //*toggle assign user modal
-  const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(true);
+  const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(false);
 
   return (
     <div>
@@ -46,7 +46,14 @@ function App() {
         <Routes>
           <Route path="/" element={<DashboardHome />} />
           <Route path="/role-assignment" element={<ManageRoleAssignment />} />
-          <Route path="/manage-project-user" element={<ManageProjectUsers />} />
+          <Route
+            path="/manage-project-user"
+            element={
+              <ManageProjectUsers
+                setIsAssignedUserModalOpen={setIsAssignedUserModalOpen}
+              />
+            }
+          />
           <Route path="/my-profile" element={<Profile />} />
         </Routes>
       </Router>
