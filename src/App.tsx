@@ -12,6 +12,7 @@ import ManageProjectUsers from "./components/ManageProjectUsers/ManageProjectUse
 import Profile from "./components/Profile/Profile";
 import NewProjectModal from "./components/Modals/NewProject/NewProjectModal";
 import NewTicketModal from "./components/Modals/NewTicket/NewTicketModal";
+import AssignUserModal from "./components/Modals/AssignUser/AssignUserModal";
 
 function App() {
   //*toggle project modal
@@ -19,6 +20,9 @@ function App() {
 
   //* toggle ticket modal
   const [isTicketModalOpen, setIsTicketModalOpen] = useState<boolean>(false);
+
+  //*toggle assign user modal
+  const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(true);
 
   return (
     <div>
@@ -28,6 +32,11 @@ function App() {
         )}
         {isProjectModalOpen && (
           <NewProjectModal setIsProjectModalOpen={setIsProjectModalOpen} />
+        )}
+        {isAssignedUserModalOpen && (
+          <AssignUserModal
+            setIsAssignedUserModal={setIsAssignedUserModalOpen}
+          />
         )}
         <Sidebar />
         <Navbar

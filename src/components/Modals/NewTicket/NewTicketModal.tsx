@@ -123,22 +123,27 @@ const NewTicketModal = (props: NewTicketModalProps) => {
 
   return (
     <Modal
-      header="Create New Ticket"
-      buttonText="Create"
-      isFormValidated={isFormValidated}
-      clickHandler={() => props.setIsTicketModalOpen(false)}
-      handleSubmit={createNewTicket}
-      handleChange={handleTicketDescription}
-      successMessage="Ticket has been created successfully."
-      showSuccessMessage={showSuccessMessage}
-      dropDownChangeHandler={dropDownHandleChange} //*
+      //*-----SKELETON -----//*
+      header="Create New Ticket" //give modal a header.
+      buttonText="Create" //give button a text.
+      isFormValidated={isFormValidated} //check if form is validated.
+      clickHandler={() => props.setIsTicketModalOpen(false)} //close the modal.
+      handleSubmit={createNewTicket} //create a new ticket when click submit button.
+      handleChange={handleTicketDescription} //it traces ticket description.
+      successMessage="Ticket has been created successfully." //after submitting successfully show a message.
+      showSuccessMessage={showSuccessMessage} // show success message if state is true
+      showTicketOptions={true} //enable ticket options section.
+      //*-----SELECT PROJECT SECTION -----//*
       dropDownLabel="Select Project"
-      dropDownName="a"
+      dropDownName="selectProject"
       dropdownData={dbData} //dropdown data
+      dropDownChangeHandler={dropDownHandleChange}
+      //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Description"
       firstLabelName="ticketDescription"
       firstPlaceholder="A meaningful message that everyone can understand."
-      showTicketOptions={true}
+      //*-----TICKET DETAILS SECTION -----//*
+      //*ticket priority
       firstTicketOptionsLabel="Priority"
       firstTicketOptionsData={ticketPriorityLabels}
       firstTicketOptionChangeHandler={(
@@ -148,7 +153,8 @@ const NewTicketModal = (props: NewTicketModalProps) => {
           type: ACTION_DEF.SET_TICKET_PRIORITY,
           payload: e.target.value,
         })
-      } //! do here
+      }
+      //*ticket status
       secondTicketOptionsLabel="Status"
       secondTicketOptionsData={ticketStatusLabels}
       secondTicketOptionChangeHandler={(
@@ -159,6 +165,7 @@ const NewTicketModal = (props: NewTicketModalProps) => {
           payload: e.target.value,
         })
       }
+      //* ticket type
       thirdTicketOptionsLabel="Type"
       thirdTicketOptionsData={ticketTypesLabels}
       thirdTicketOptionChangeHandler={(
@@ -166,7 +173,9 @@ const NewTicketModal = (props: NewTicketModalProps) => {
       ) =>
         dispatch({ type: ACTION_DEF.SET_TICKET_TYPE, payload: e.target.value })
       }
+      //*-----ASSIGN USER SECTION -----//*
       checkboxName="assignedUsers"
+      checkBoxLabel="Assign User"
       checkBoxData={allUsers}
       checkboxClickHandler={handleSelectedUsers}
     />

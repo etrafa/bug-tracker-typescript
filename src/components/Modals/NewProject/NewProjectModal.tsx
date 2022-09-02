@@ -79,18 +79,12 @@ const NewProjectModal = (props: NewProjectModalProps) => {
   return (
     //create custom new project modal
     <Modal
-      clickHandler={() => props.setIsProjectModalOpen(false)}
-      header="Create New Project"
-      firstLabel="Project Name"
-      firstPlaceholder="Landing Page"
-      firstLabelName="projectName"
-      secondLabel="Project Description"
-      secondPlaceholder="A meaningful message that everyone can understand."
-      secondLabelName="projectDescription"
-      buttonText="Create"
-      successMessage="Project has been created successfully."
-      showSuccessMessage={showSuccessMessage}
-      isFormValidated={isFormValidated}
+      //*-----SKELETON -----//*
+
+      header="Create New Project" //give modal a header.
+      buttonText="Create" //give button a text.
+      isFormValidated={isFormValidated} //check if form is validated.
+      clickHandler={() => props.setIsProjectModalOpen(false)} //close the modal.
       handleSubmit={(e) => {
         //create a new project when clicking create button
         e.preventDefault();
@@ -107,8 +101,20 @@ const NewProjectModal = (props: NewProjectModalProps) => {
           );
         }
       }}
-      handleChange={handleChange} // input change
+      handleChange={handleChange} // track input change
+      successMessage="Project has been created successfully." //after submitting successfully show a message.
+      showSuccessMessage={showSuccessMessage} // show success message if state is true
+      //*-----PROJECT NAME SECTION -----//*
+      firstLabel="Project Name"
+      firstPlaceholder="Landing Page"
+      firstLabelName="projectName"
+      //*-----PROJECT DESCRIPTION SECTION -----//*
+      secondLabel="Project Description"
+      secondPlaceholder="A meaningful message that everyone can understand."
+      secondLabelName="projectDescription"
+      //*-----ASSIGN USER SECTION -----//*
       checkBoxData={dbData} //checkbox data
+      checkBoxLabel={"Assign User (optional)"}
       checkboxName="assignedUsers" //checkbox name
       checkboxClickHandler={handleSelectedUsers} //checkbox function that adds-removes user when creating a new project
     />

@@ -31,6 +31,7 @@ interface ModalProps {
     user: IFirebaseUser
   ) => void;
   checkboxName?: string;
+  checkBoxLabel?: string;
   showSuccessMessage: boolean;
   successMessage: string;
   dropDownLabel?: string;
@@ -100,9 +101,11 @@ const Modal = (props: ModalProps) => {
                 )}
               {props.checkBoxData &&
                 props.checkboxName &&
-                props.checkboxClickHandler && (
+                props.checkboxClickHandler &&
+                props.checkBoxLabel && (
                   <ModalCheckbox
                     data={props.checkBoxData}
+                    checkboxLabel={props.checkBoxLabel}
                     checkboxName={props.checkboxName}
                     checkboxClickHandler={props.checkboxClickHandler}
                   />

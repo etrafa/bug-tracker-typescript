@@ -19,7 +19,6 @@ const Login: FC = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    console.log(loginInformation);
   };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
