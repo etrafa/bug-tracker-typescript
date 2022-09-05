@@ -12,9 +12,16 @@ const ShowProjectUsers = ({ selectedProjectID }: ShowProjectUsersProps) => {
 
   return (
     <div>
-      {singleProject?.length === 0 ? (
+      {/* //*IF THERE IS NO USER SHOW THIS MESSAGE */}
+      {singleProject?.length === 0 && (
         <p className="text-center py-6 font-bold">No user found</p>
-      ) : (
+      )}
+      {/* //*IF THERE IS AN ERROR SHOW NULL  */}
+      {singleProject?.length === null && null}
+
+      {/* //*IF THERE IS USER SHOW PAGINATION AND USER */}
+
+      {singleProject && singleProject?.length > 0 && (
         <TablePagination
           firstThLabel="User Name"
           secondThLabel="Role"
