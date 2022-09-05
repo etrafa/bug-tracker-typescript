@@ -3,7 +3,7 @@ import { useGetDocs } from "../../customHooks/useGetDocs";
 
 //components
 import LoadSpinner from "../../Utilities/LoadSpinner";
-import RoleAssignment from "./RoleAssignment";
+import RoleAssignment from "./RoleAssignment/RoleAssignment";
 
 const ManageRoleAssignment = () => {
   const { dbData, loading } = useGetDocs("users"); // get all the users from database
