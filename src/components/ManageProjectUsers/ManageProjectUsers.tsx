@@ -15,6 +15,7 @@ const ManageProjectUsers = ({
 
   //STATES
   const [selectedProjectID, setSelectedProjectID] = useState(""); // get current project id to show users in the UI
+  const [selectedUserID, setSelectedUserID] = useState("");
 
   return (
     <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto mb-6">
@@ -30,7 +31,11 @@ const ManageProjectUsers = ({
           <AddUserToProject
             setIsAssignedUserModalOpen={setIsAssignedUserModalOpen}
           />
-          <ShowProjectUsers selectedProjectID={selectedProjectID} />
+          <ShowProjectUsers
+            selectedProjectID={selectedProjectID}
+            selectedUserID={selectedUserID}
+            setSelectedUserID={setSelectedUserID}
+          />
         </div>
       </div>
     </div>

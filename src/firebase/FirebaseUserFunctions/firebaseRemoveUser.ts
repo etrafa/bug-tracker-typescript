@@ -14,10 +14,14 @@ import {
 //interfaces
 import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
-export const removeUser = async (colName: string, user: IFirebaseUser) => {
+export const removeUser = async (
+  colName: string,
+  subCol: string,
+  user: IFirebaseUser
+) => {
   //* 1.remove user from selected project
   if (user.id) {
-    const docRef = doc(db, user.id);
+    const docRef = doc(db, colName, subCol, user.id);
     await deleteDoc(docRef);
   }
 
