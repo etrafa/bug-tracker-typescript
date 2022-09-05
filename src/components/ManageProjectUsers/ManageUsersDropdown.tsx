@@ -21,7 +21,7 @@ const ManageUsersDropdown = ({
     <>
       <h2 className="font-bold">Select Project</h2>
       <select onChange={dropDownHandleChange} className="border w-44 h-10">
-        <option defaultChecked defaultValue={"Please Select"}>
+        <option disabled selected defaultValue={"Please Select"}>
           Please Select
         </option>
         {dbData &&
