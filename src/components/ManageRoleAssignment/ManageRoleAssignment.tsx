@@ -4,6 +4,7 @@ import { useGetDocs } from "../../customHooks/useGetDocs";
 //components
 import LoadSpinner from "../../Utilities/LoadSpinner";
 import RoleAssignment from "./RoleAssignment/RoleAssignment";
+import AllUsersInDatabase from "./ShowStaff/AllUsersInDatabase";
 
 const ManageRoleAssignment = () => {
   const { dbData, loading } = useGetDocs("users"); // get all the users from database
@@ -18,7 +19,7 @@ const ManageRoleAssignment = () => {
       {loading && <LoadSpinner />}
       <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto lg:flex lg:gap-12">
         {dbData && <RoleAssignment dbData={dbData} />}
-        {/*{dbData && <YourPersonel dbData={dbData} />} */}
+        {dbData && <AllUsersInDatabase dbData={dbData} />}
       </div>
     </div>
   );
