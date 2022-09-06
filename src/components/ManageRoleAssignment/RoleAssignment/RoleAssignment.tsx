@@ -18,13 +18,14 @@ interface RoleAssignmentProps {
 
 const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
   const [state, dispatch] = useReducer(roleAssignmentReducer, initialState);
-  const [isFormValidated, setIsFormValidated] = useState(false);
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false); //if true show success message
+  const [isSubmitError, setIsSubmitError] = useState(false); //if true show error message
 
   //check if the form is validated properly
   useEffect(() => {
     state.selectedUserID.length > 5 && state.userNewRole !== ""
-      ? setIsFormValidated(true)
-      : setIsFormValidated(false);
+      ? dispatch({ type: ACTION_DEF.SET_IS_FORM_VALIDATED, payload: true })
+      : dispatch({ type: ACTION_DEF.SET_IS_FORM_VALIDATED, payload: false });
   }, [state.selectedUserID.length, state.userNewRole]);
 
   //? FUNCTIONS ----------------------------------------
@@ -47,7 +48,13 @@ const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    updateUserRole(state.selectedUserID, state.userNewRole);
+    updateUserRole(
+      state.selectedUserID,
+      state.userNewRole,
+      //set either success or error TRUE to show a information message.
+      setIsSubmitSuccess,
+      setIsSubmitError
+    );
   };
 
   //? --------------------------------------------------
@@ -89,10 +96,22 @@ const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
         <span>Current Role : {state.userCurrentRole}</span>
         <span>Selected Role : {state.userNewRole}</span>
       </div>
+      {/* //SHOW SUCCESS MESSAGE */}
+      {isSubmitSuccess && (
+        <p className="text-green-400 font-bold my-4 text-center">
+          The user's role has been changed successfully.
+        </p>
+      )}
+      {/* //SHOW ERROR MESSAGE */}
+      {isSubmitError && (
+        <p className="text-red-600 font-bold my-4 text-center">
+          An error happened. Please try again.
+        </p>
+      )}
       <button
         onClick={handleUpdateUserRole}
         className={
-          isFormValidated
+          state.isFormValidated
             ? "bg-fbFillColor hover:bg-blue-500 w-44 h-10 mb-4 mx-auto block text-white font-bold rounded-md"
             : "bg-gray-700 pointer-events-none w-44 h-10 mb-4 mx-auto block text-white font-bold rounded-md"
         }
