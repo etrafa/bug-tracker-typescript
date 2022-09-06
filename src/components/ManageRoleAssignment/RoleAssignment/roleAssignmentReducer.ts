@@ -2,7 +2,6 @@ export const initialState = {
   selectedUserID: "",
   userCurrentRole: "",
   userNewRole: "",
-  isFormValidated: false,
 };
 
 export enum ACTION_DEF {

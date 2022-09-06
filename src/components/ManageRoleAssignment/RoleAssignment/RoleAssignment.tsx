@@ -10,6 +10,7 @@ import { IFirebaseUser } from "../../../Interfaces/Firebase-Interfaces/UserInter
 
 //react
 import { useReducer, useState, useEffect } from "react";
+import { updateUserRole } from "../../../firebase/FirebaseUserFunctions/firebaseUpdateUserRole";
 
 interface RoleAssignmentProps {
   dbData: IFirebaseUser[];
@@ -39,6 +40,14 @@ const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
   //* select new role for user
   const handleSelectNewRole = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch({ type: ACTION_DEF.SET_USER_NEW_ROLE, payload: e.target.value });
+  };
+
+  //* update user role
+  const handleUpdateUserRole = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    updateUserRole(state.selectedUserID, state.userNewRole);
   };
 
   //? --------------------------------------------------
@@ -81,6 +90,7 @@ const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
         <span>Selected Role : {state.userNewRole}</span>
       </div>
       <button
+        onClick={handleUpdateUserRole}
         className={
           isFormValidated
             ? "bg-fbFillColor hover:bg-blue-500 w-44 h-10 mb-4 mx-auto block text-white font-bold rounded-md"
