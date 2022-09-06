@@ -7,7 +7,9 @@ import {
 
 //interfaces
 import { IFirebaseUser } from "../../../Interfaces/Firebase-Interfaces/UserInterface";
-import { useReducer } from "react";
+
+//react
+import { useReducer, useState, useEffect } from "react";
 
 interface RoleAssignmentProps {
   dbData: IFirebaseUser[];
@@ -15,6 +17,14 @@ interface RoleAssignmentProps {
 
 const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
   const [state, dispatch] = useReducer(roleAssignmentReducer, initialState);
+  const [isFormValidated, setIsFormValidated] = useState(false);
+
+  //check if the form is validated properly
+  useEffect(() => {
+    state.selectedUserID.length > 5 && state.userNewRole !== ""
+      ? setIsFormValidated(true)
+      : setIsFormValidated(false);
+  }, [state.selectedUserID.length, state.userNewRole]);
 
   //? FUNCTIONS ----------------------------------------
 
@@ -57,7 +67,9 @@ const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
           onChange={handleSelectNewRole}
           className="w-11/12 border border-black mt-2 mx-auto ml-2"
         >
-          <option selected>Please Select</option>
+          <option selected disabled>
+            Please Select
+          </option>
           <option>Admin</option>
           <option>Developer</option>
           <option>Project Manager</option>
@@ -66,9 +78,15 @@ const RoleAssignment = ({ dbData }: RoleAssignmentProps) => {
       </div>
       <div className="flex flex-col my-8 ml-2">
         <span>Current Role : {state.userCurrentRole}</span>
-        <span>Selected Role : b</span>
+        <span>Selected Role : {state.userNewRole}</span>
       </div>
-      <button className="bg-fbFillColor hover:bg-blue-500 w-44 h-10 mb-4 mx-auto block text-white font-bold rounded-md ">
+      <button
+        className={
+          isFormValidated
+            ? "bg-fbFillColor hover:bg-blue-500 w-44 h-10 mb-4 mx-auto block text-white font-bold rounded-md"
+            : "bg-gray-700 pointer-events-none w-44 h-10 mb-4 mx-auto block text-white font-bold rounded-md"
+        }
+      >
         Submit
       </button>
     </div>
