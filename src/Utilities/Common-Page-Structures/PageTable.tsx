@@ -1,9 +1,14 @@
-export interface PageTableProps {
+import PageTableBodyForProjects, {
+  PageTableBodyForProjectsProps,
+} from "./PageTableBodyForProjects";
+
+export interface PageTableProps extends PageTableBodyForProjectsProps {
   firstTableHeader: string;
   secondTableHeader: string;
   thirdTableHeader: string;
   fourthTableHeader?: string;
   fifthTableHeader?: string;
+  pageType: string;
 }
 
 const PageTable = ({
@@ -12,6 +17,8 @@ const PageTable = ({
   thirdTableHeader,
   fourthTableHeader,
   fifthTableHeader,
+  pageType,
+  data,
 }: PageTableProps) => {
   return (
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-12">
@@ -30,7 +37,8 @@ const PageTable = ({
           )}
         </tr>
       </thead>
-      <tbody></tbody>
+
+      {pageType === "project" && <PageTableBodyForProjects data={data} />}
     </table>
   );
 };

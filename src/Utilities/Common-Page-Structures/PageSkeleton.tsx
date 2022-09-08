@@ -1,11 +1,15 @@
 import PageHeader, { PageHeaderProps } from "./PageHeader";
 import PageSearch, { PageSearchProps } from "./PageSearch";
 import PageTable, { PageTableProps } from "./PageTable";
+import { PageTableBodyForProjectsProps } from "./PageTableBodyForProjects";
 
 interface PageSkeletonProps
   extends PageHeaderProps,
     PageSearchProps,
-    PageTableProps {}
+    PageTableProps,
+    PageTableBodyForProjectsProps {
+  pageType: string;
+}
 
 const PageSkeleton = (props: PageSkeletonProps) => {
   return (
@@ -18,6 +22,10 @@ const PageSkeleton = (props: PageSkeletonProps) => {
             firstTableHeader={props.firstTableHeader}
             secondTableHeader={props.secondTableHeader}
             thirdTableHeader={props.thirdTableHeader}
+            fourthTableHeader={props.fourthTableHeader}
+            fifthTableHeader={props.fifthTableHeader}
+            pageType={props.pageType}
+            data={props.data}
           />
         </div>
       </div>

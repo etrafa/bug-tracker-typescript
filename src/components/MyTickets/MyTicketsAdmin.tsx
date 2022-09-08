@@ -10,6 +10,8 @@ const MyTicketsAdmin = () => {
       thirdTableHeader="Submitter"
       fourthTableHeader="Created"
       fifthTableHeader=""
+      pageType="ticket"
+      data={[]}
     />
   );
 };

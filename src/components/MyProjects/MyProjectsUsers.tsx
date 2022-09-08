@@ -8,6 +8,8 @@ const MyProjectsUsers = () => {
       firstTableHeader="Project Name"
       secondTableHeader="Project Description"
       thirdTableHeader="Actions"
+      pageType="project"
+      data={[]}
     />
   );
 };
