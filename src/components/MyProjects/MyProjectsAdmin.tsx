@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useGetDocs } from "../../customHooks/useGetDocs";
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 
 const MyProjectsAdmin = () => {
   const { dbData, loading } = useGetDocs("projects");
+  const [pageNumber, setPageNumber] = useState(0);
 
   return (
     <PageSkeleton
@@ -13,6 +15,9 @@ const MyProjectsAdmin = () => {
       thirdTableHeader="Actions"
       pageType="project"
       data={dbData}
+      pageNumber={pageNumber}
+      setPageNumber={setPageNumber}
+      ITEM_PER_PAGE={5}
     />
   );
 };

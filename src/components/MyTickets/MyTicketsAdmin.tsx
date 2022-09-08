@@ -1,6 +1,9 @@
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
+import { useState } from "react";
 
 const MyTicketsAdmin = () => {
+  const [pageNumber, setPageNumber] = useState(0);
+
   return (
     <PageSkeleton
       pageHeader="All Tickets in your database"
@@ -12,6 +15,9 @@ const MyTicketsAdmin = () => {
       fifthTableHeader=""
       pageType="ticket"
       data={[]}
+      pageNumber={pageNumber}
+      setPageNumber={setPageNumber}
+      ITEM_PER_PAGE={5}
     />
   );
 };

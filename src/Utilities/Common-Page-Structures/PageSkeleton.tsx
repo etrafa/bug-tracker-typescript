@@ -1,4 +1,5 @@
 import PageHeader, { PageHeaderProps } from "./PageHeader";
+import PagePagination, { PagePaginationProps } from "./PagePagination";
 import PageSearch, { PageSearchProps } from "./PageSearch";
 import PageTable, { PageTableProps } from "./PageTable";
 import { PageTableBodyForProjectsProps } from "./PageTableBodyForProjects";
@@ -7,7 +8,8 @@ interface PageSkeletonProps
   extends PageHeaderProps,
     PageSearchProps,
     PageTableProps,
-    PageTableBodyForProjectsProps {
+    PageTableBodyForProjectsProps,
+    PagePaginationProps {
   pageType: string;
 }
 
@@ -27,6 +29,16 @@ const PageSkeleton = (props: PageSkeletonProps) => {
             pageType={props.pageType}
             data={props.data}
           />
+
+          {/* //*IF DATA LENGTH IS LARGER THAN ITEM-PER-PAGE SHOW PAGINATION OPTIONS */}
+          {props.data && props.data.length > props.ITEM_PER_PAGE && (
+            <PagePagination
+              ITEM_PER_PAGE={props.ITEM_PER_PAGE}
+              data={props?.data}
+              pageNumber={props.pageNumber}
+              setPageNumber={props.setPageNumber}
+            />
+          )}
         </div>
       </div>
     </div>
