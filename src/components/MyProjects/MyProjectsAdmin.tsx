@@ -27,6 +27,7 @@ const MyProjectsAdmin = () => {
       ITEM_PER_PAGE={5}
       searchTerm={searchTerm}
       searchInputChangeHandler={(e) => changeHandler(e)}
+      NO_DATA_MESSAGE="No project found."
     />
   );
 };
