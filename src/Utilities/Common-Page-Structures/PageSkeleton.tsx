@@ -18,7 +18,10 @@ const PageSkeleton = (props: PageSkeletonProps) => {
       <div className="w-11/12 mx-auto mt-24 relative border border-black">
         <PageHeader pageHeader={props.pageHeader} />
         <div className="pl-4 pt-12">
-          <PageSearch searchInputPlaceHolder={props.searchInputPlaceHolder} />
+          <PageSearch
+            searchInputPlaceHolder={props.searchInputPlaceHolder}
+            searchInputChangeHandler={props.searchInputChangeHandler}
+          />
           <PageTable
             firstTableHeader={props.firstTableHeader}
             secondTableHeader={props.secondTableHeader}

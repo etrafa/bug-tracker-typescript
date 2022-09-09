@@ -7,6 +7,12 @@ const MyProjectsAdmin = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
+  //? FUNCTIONS ----------------------------------------
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+  //? --------------------------------------------------
+
   return (
     <PageSkeleton
       pageHeader="All Projects in the database"
@@ -20,6 +26,7 @@ const MyProjectsAdmin = () => {
       setPageNumber={setPageNumber}
       ITEM_PER_PAGE={5}
       searchTerm={searchTerm}
+      searchInputChangeHandler={(e) => changeHandler(e)}
     />
   );
 };
