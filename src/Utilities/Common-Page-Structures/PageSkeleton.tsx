@@ -19,7 +19,7 @@ interface PageSkeletonProps
 const PageSkeleton = (props: PageSkeletonProps) => {
   return (
     <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto mb-6">
-      <div className="w-11/12 mx-auto mt-24 relative border border-black min-h-[10rem]">
+      <div className="w-11/12 mx-auto mt-24 relative border border-black lg:min-h-[20rem]">
         <PageHeader pageHeader={props.pageHeader} />
         <div className="pl-4 pt-12">
           {/* {//* WHILE LOADING SHOW THIS MESSAGE */}
@@ -27,12 +27,11 @@ const PageSkeleton = (props: PageSkeletonProps) => {
 
           {/* //*IF DATA LENGTH IS 0 OR FETCHING DATA FAILS SHOW THIS MESSAGE */}
 
-          {(props.data && props.data.length === 0) ||
-            (typeof props.data === "undefined" && (
-              <p className="mt-36 text-center font-bold">
-                {props.NO_DATA_MESSAGE}
-              </p>
-            ))}
+          {props.data && props.data.length === 0 && (
+            <p className="mt-36 text-center font-bold">
+              {props.NO_DATA_MESSAGE}
+            </p>
+          )}
 
           {/* //*IF DATA LENGTH IS LARGER THAN 1 SHOW THIS MESSAGE */}
 
