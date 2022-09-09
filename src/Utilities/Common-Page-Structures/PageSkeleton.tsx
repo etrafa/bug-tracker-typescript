@@ -1,3 +1,5 @@
+//components && interfaces
+import LoadSpinner from "../LoadSpinner";
 import PageHeader, { PageHeaderProps } from "./PageHeader";
 import PagePagination from "./PagePagination";
 import PageSearch, { PageSearchProps } from "./PageSearch";
@@ -11,6 +13,7 @@ interface PageSkeletonProps
     PageTableBodyForProjectsProps {
   pageType: string;
   NO_DATA_MESSAGE: string;
+  loading: boolean;
 }
 
 const PageSkeleton = (props: PageSkeletonProps) => {
@@ -19,6 +22,9 @@ const PageSkeleton = (props: PageSkeletonProps) => {
       <div className="w-11/12 mx-auto mt-24 relative border border-black min-h-[10rem]">
         <PageHeader pageHeader={props.pageHeader} />
         <div className="pl-4 pt-12">
+          {/* {//* WHILE LOADING SHOW THIS MESSAGE */}
+          {props.loading && <LoadSpinner />}
+
           {/* //*IF DATA LENGTH IS 0 OR FETCHING DATA FAILS SHOW THIS MESSAGE */}
 
           {(props.data && props.data.length === 0) ||

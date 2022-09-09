@@ -1,7 +1,13 @@
 import { useState } from "react";
+import { useGetDocsWithQuery } from "../../customHooks/useGetDocsWithQuery";
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 
 const MyTicketsUsers = () => {
+  const { dbData, loading } = useGetDocsWithQuery(
+    "tickets",
+    "userEmails",
+    "testdeveloper@gmail.com"
+  );
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -30,8 +36,9 @@ const MyTicketsUsers = () => {
       //*PAGE ERROR
       NO_DATA_MESSAGE="No ticket found." //when there is no data OR and error show this message
       //*PAGE DATA
-      data={[]} // data fetched from database.
+      data={dbData} // data fetched from database.
       //*OTHER
+      loading={loading}
       searchInputPlaceHolder="Search Ticket" //search input placeholder
       pageType="ticket" //page type
       ITEM_PER_PAGE={5} //how many items to show on the UI per page.

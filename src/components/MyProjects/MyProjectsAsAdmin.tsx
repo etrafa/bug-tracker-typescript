@@ -1,7 +1,9 @@
-import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 import { useState } from "react";
+import { useGetDocs } from "../../customHooks/useGetDocs";
+import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 
-const MyProjectsUsers = () => {
+const MyProjectsAdmin = () => {
+  const { dbData, loading } = useGetDocs("projects"); //fetch the data
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -14,7 +16,7 @@ const MyProjectsUsers = () => {
   return (
     <PageSkeleton
       //*PAGE HEADER
-      pageHeader="My Projects" //page header
+      pageHeader="All Projects in the database" //page header
       //*PAGE TABLE
       firstTableHeader="Project Name" //table header
       secondTableHeader="Project Description" //table header
@@ -28,12 +30,13 @@ const MyProjectsUsers = () => {
       //*PAGE ERROR
       NO_DATA_MESSAGE="No project found." //when there is no data OR and error show this message
       //*PAGE DATA
-      data={[]} // data fetched from database.
+      data={dbData} // data fetched from database.
       //*OTHER
+      loading={loading}
       searchInputPlaceHolder="Search Project" //search input placeholder
       pageType="project" //page type
       ITEM_PER_PAGE={5} //how many items to show on the UI per page.
     />
   );
 };
-export default MyProjectsUsers;
+export default MyProjectsAdmin;

@@ -13,8 +13,8 @@ import Profile from "./components/Profile/Profile";
 import NewProjectModal from "./components/Modals/NewProject/NewProjectModal";
 import NewTicketModal from "./components/Modals/NewTicket/NewTicketModal";
 import AssignUserModal from "./components/Modals/AssignUser/AssignUserModal";
-import MyProjectsUsers from "./components/MyProjects/MyProjectsUsers";
-import MyProjectsAdmin from "./components/MyProjects/MyProjectsAdmin";
+import MyProjectsAsAdmin from "./components/MyProjects/MyProjectsAsAdmin";
+import MyProjectsAsUsers from "./components/MyProjects/MyProjectsAsUsers";
 import MyTicketsUsers from "./components/MyTickets/MyTicketsUsers";
 import MyTicketsAdmin from "./components/MyTickets/MyTicketsAdmin";
 
@@ -59,8 +59,8 @@ function App() {
             }
           />
           <Route path="/my-profile" element={<Profile />} />
-          <Route path="/my-projects" element={<MyProjectsUsers />} />
-          <Route path="/all-projects" element={<MyProjectsAdmin />} />
+          <Route path="/my-projects" element={<MyProjectsAsUsers />} />
+          <Route path="/all-projects" element={<MyProjectsAsAdmin />} />
           <Route path="/my-tickets" element={<MyTicketsUsers />} />
           <Route path="/all-tickets" element={<MyTicketsAdmin />} />
         </Routes>

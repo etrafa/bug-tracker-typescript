@@ -1,9 +1,15 @@
-import { useState } from "react";
-import { useGetDocs } from "../../customHooks/useGetDocs";
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
+import { useState } from "react";
+import { useGetDocsWithQuery } from "../../customHooks/useGetDocsWithQuery";
+import { useAuth } from "../../firebase/firebaseConfig";
 
-const MyProjectsAdmin = () => {
-  const { dbData, loading } = useGetDocs("projects");
+const MyProjectsUsers = () => {
+  const { dbData, loading } = useGetDocsWithQuery(
+    "users",
+    "email",
+    "testdeveloper@gmailc.om"
+  );
+
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -16,7 +22,7 @@ const MyProjectsAdmin = () => {
   return (
     <PageSkeleton
       //*PAGE HEADER
-      pageHeader="All Projects in the database" //page header
+      pageHeader="My Projects" //page header
       //*PAGE TABLE
       firstTableHeader="Project Name" //table header
       secondTableHeader="Project Description" //table header
@@ -32,10 +38,11 @@ const MyProjectsAdmin = () => {
       //*PAGE DATA
       data={dbData} // data fetched from database.
       //*OTHER
+      loading={loading}
       searchInputPlaceHolder="Search Project" //search input placeholder
       pageType="project" //page type
       ITEM_PER_PAGE={5} //how many items to show on the UI per page.
     />
   );
 };
-export default MyProjectsAdmin;
+export default MyProjectsUsers;
