@@ -17,6 +17,7 @@ import MyProjectsAsAdmin from "./components/MyProjects/MyProjectsAsAdmin";
 import MyProjectsAsUsers from "./components/MyProjects/MyProjectsAsUsers";
 import MyTicketsUsers from "./components/MyTickets/MyTicketsUsers";
 import MyTicketsAdmin from "./components/MyTickets/MyTicketsAdmin";
+import SingleTicket from "./components/SinglePages/SingleTicket/SingleTicket";
 
 function App() {
   //*toggle project modal
@@ -63,6 +64,7 @@ function App() {
           <Route path="/all-projects" element={<MyProjectsAsAdmin />} />
           <Route path="/my-tickets" element={<MyTicketsUsers />} />
           <Route path="/all-tickets" element={<MyTicketsAdmin />} />
+          <Route path="/tickets/:ticketId" element={<SingleTicket />} />
         </Routes>
       </Router>
       {/* <Login /> */}
