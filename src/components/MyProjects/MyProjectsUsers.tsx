@@ -13,19 +13,26 @@ const MyProjectsUsers = () => {
 
   return (
     <PageSkeleton
-      pageHeader="My Projects"
-      searchInputPlaceHolder="Search Project"
-      firstTableHeader="Project Name"
-      secondTableHeader="Project Description"
-      thirdTableHeader="Actions"
-      pageType="project"
-      data={[]}
-      pageNumber={pageNumber}
-      setPageNumber={setPageNumber}
-      ITEM_PER_PAGE={5}
-      searchTerm={searchTerm}
-      searchInputChangeHandler={(e) => changeHandler(e)}
-      NO_DATA_MESSAGE="No project found."
+      //*PAGE HEADER
+      pageHeader="My Projects" //page header
+      //*PAGE TABLE
+      firstTableHeader="Project Name" //table header
+      secondTableHeader="Project Description" //table header
+      thirdTableHeader="Actions" //table header
+      //*PAGE FUNCTIONS
+      searchInputChangeHandler={(e) => changeHandler(e)} // filter the search function
+      //*PAGE STATES
+      searchTerm={searchTerm} //whatever user inputs filter the search.
+      pageNumber={pageNumber} //change page.
+      setPageNumber={setPageNumber} // change page number for pagination.
+      //*PAGE ERROR
+      NO_DATA_MESSAGE="No project found." //when there is no data OR and error show this message
+      //*PAGE DATA
+      data={[]} // data fetched from database.
+      //*OTHER
+      searchInputPlaceHolder="Search Project" //search input placeholder
+      pageType="project" //page type
+      ITEM_PER_PAGE={5} //how many items to show on the UI per page.
     />
   );
 };

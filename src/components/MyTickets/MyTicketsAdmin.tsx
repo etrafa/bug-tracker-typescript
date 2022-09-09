@@ -13,21 +13,28 @@ const MyTicketsAdmin = () => {
 
   return (
     <PageSkeleton
-      pageHeader="All Tickets in your database"
-      searchInputPlaceHolder="Search Ticket"
-      firstTableHeader="Title"
-      secondTableHeader="Project"
-      thirdTableHeader="Submitter"
-      fourthTableHeader="Created"
-      fifthTableHeader=""
-      pageType="ticket"
-      data={[]}
-      pageNumber={pageNumber}
-      setPageNumber={setPageNumber}
-      ITEM_PER_PAGE={5}
-      searchTerm={searchTerm}
-      searchInputChangeHandler={(e) => changeHandler(e)}
-      NO_DATA_MESSAGE="No project found."
+      //*PAGE HEADER
+      pageHeader="All Tickets in your database" //page header
+      //*PAGE TABLE
+      firstTableHeader="Title" //table header
+      secondTableHeader="Project" //table header
+      thirdTableHeader="Submitter" //table header
+      fourthTableHeader="Created" //table header
+      fifthTableHeader="" //table header
+      //*PAGE FUNCTIONS
+      searchInputChangeHandler={(e) => changeHandler(e)} // filter the search function
+      //*PAGE STATES
+      searchTerm={searchTerm} //whatever user inputs filter the search.
+      pageNumber={pageNumber} //change page.
+      setPageNumber={setPageNumber} // change page number for pagination.
+      //*PAGE ERROR
+      NO_DATA_MESSAGE="No ticket found." //when there is no data OR and error show this message
+      //*PAGE DATA
+      data={[]} // data fetched from database.
+      //*OTHER
+      searchInputPlaceHolder="Search Ticket" //search input placeholder
+      pageType="ticket" //page type
+      ITEM_PER_PAGE={5} //how many items to show on the UI per page.
     />
   );
 };
