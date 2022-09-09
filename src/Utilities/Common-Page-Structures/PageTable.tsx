@@ -1,6 +1,7 @@
 import PageTableBodyForProjects, {
   PageTableBodyForProjectsProps,
 } from "./PageTableBodyForProjects";
+import PageTableBodyForTickets from "./PageTableBodyForTickets";
 
 export interface PageTableProps extends PageTableBodyForProjectsProps {
   firstTableHeader: string;
@@ -44,6 +45,16 @@ const PageTable = ({
 
       {pageType === "project" && (
         <PageTableBodyForProjects
+          data={data}
+          ITEM_PER_PAGE={ITEM_PER_PAGE}
+          pageNumber={pageNumber}
+          searchTerm={searchTerm}
+          setPageNumber={setPageNumber}
+        />
+      )}
+
+      {pageType === "ticket" && (
+        <PageTableBodyForTickets
           data={data}
           ITEM_PER_PAGE={ITEM_PER_PAGE}
           pageNumber={pageNumber}
