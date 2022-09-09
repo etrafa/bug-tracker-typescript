@@ -1,13 +1,7 @@
 import ReactPaginate from "react-paginate";
 import { PageTableBodyForProjectsProps } from "./PageTableBodyForProjects";
 
-export interface PagePaginationProps extends PageTableBodyForProjectsProps {
-  pageNumber: number;
-  setPageNumber: React.Dispatch<React.SetStateAction<number>>;
-  ITEM_PER_PAGE: number;
-}
-
-const PagePagination = (props: PagePaginationProps) => {
+const PagePagination = (props: PageTableBodyForProjectsProps) => {
   let pageCount: number = 0;
   if (props.data) {
     pageCount = Math.ceil(props?.data?.length / props.ITEM_PER_PAGE);

@@ -3,6 +3,7 @@ import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 
 const MyTicketsUsers = () => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <PageSkeleton
@@ -18,6 +19,7 @@ const MyTicketsUsers = () => {
       pageNumber={pageNumber}
       setPageNumber={setPageNumber}
       ITEM_PER_PAGE={5}
+      searchTerm={searchTerm}
     />
   );
 };

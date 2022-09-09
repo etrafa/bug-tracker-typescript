@@ -5,6 +5,7 @@ import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 const MyProjectsAdmin = () => {
   const { dbData, loading } = useGetDocs("projects");
   const [pageNumber, setPageNumber] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <PageSkeleton
@@ -18,6 +19,7 @@ const MyProjectsAdmin = () => {
       pageNumber={pageNumber}
       setPageNumber={setPageNumber}
       ITEM_PER_PAGE={5}
+      searchTerm={searchTerm}
     />
   );
 };

@@ -18,7 +18,11 @@ const PageTable = ({
   fourthTableHeader,
   fifthTableHeader,
   pageType,
+  ITEM_PER_PAGE,
+  pageNumber,
+  searchTerm,
   data,
+  setPageNumber,
 }: PageTableProps) => {
   return (
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-12">
@@ -38,7 +42,15 @@ const PageTable = ({
         </tr>
       </thead>
 
-      {pageType === "project" && <PageTableBodyForProjects data={data} />}
+      {pageType === "project" && (
+        <PageTableBodyForProjects
+          data={data}
+          ITEM_PER_PAGE={ITEM_PER_PAGE}
+          pageNumber={pageNumber}
+          searchTerm={searchTerm}
+          setPageNumber={setPageNumber}
+        />
+      )}
     </table>
   );
 };
