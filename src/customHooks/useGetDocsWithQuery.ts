@@ -11,10 +11,11 @@ import {
 import { useEffect, useState } from "react";
 import { db, useAuth } from "../firebase/firebaseConfig";
 import { IProject } from "../Interfaces/Firebase-Interfaces/ProjectInterface";
+import { ITicketsRoot } from "../Interfaces/Firebase-Interfaces/TicketsInterface";
 import { IFirebaseUser } from "../Interfaces/Firebase-Interfaces/UserInterface";
 
 type UseGetDocsTypesArray = IFirebaseUser[] | IProject[] | null;
-type UseGetDocsTypeSingle = IFirebaseUser | IProject | null;
+type UseGetDocsTypeSingle = IFirebaseUser | IProject | ITicketsRoot | null;
 
 export const useGetDocsWithQuery = (
   colName: string,
