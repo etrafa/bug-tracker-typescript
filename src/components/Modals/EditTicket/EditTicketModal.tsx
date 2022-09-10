@@ -1,4 +1,5 @@
 //components
+import { useGetDocs } from "../../../customHooks/useGetDocs";
 import Modal from "../../../Utilities/Modals/Modal";
 
 //ticket labels
@@ -15,6 +16,8 @@ interface EditTicketModalProps {
 const EditTicketModal = ({
   setIsEditTicketModalOpen,
 }: EditTicketModalProps) => {
+  const { dbData } = useGetDocs("users");
+
   return (
     <Modal
       //*-----SKELETON -----//*
@@ -52,8 +55,8 @@ const EditTicketModal = ({
       ) => console.log(e)}
       //*-----ASSIGN USER SECTION -----//*
       checkboxName="assignedUsers"
-      checkBoxLabel="Assign User"
-      checkBoxData={[]}
+      checkBoxLabel="Assign User (optional)"
+      checkBoxData={dbData}
       checkboxClickHandler={() => console.log("hey")}
     />
   );
