@@ -1,5 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetDocsWithQuery } from "../../../customHooks/useGetDocsWithQuery";
+import SingleTicketInformations from "./SingleTicketInformations";
+import TicketComments from "./TicketComments";
 
 const SingleTicket = () => {
   const { ticketId } = useParams(); //get the ticket id
@@ -31,6 +33,10 @@ const SingleTicket = () => {
               Edit Ticket
             </p>
           </div>
+        </div>
+        <div className="flex mx-auto gap-4 flex-col lg:flex-row my-12">
+          <SingleTicketInformations />
+          <TicketComments />
         </div>
       </div>
     </div>
