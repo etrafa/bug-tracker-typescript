@@ -17,6 +17,7 @@ import MyProjectsAsAdmin from "./components/MyProjects/MyProjectsAsAdmin";
 import MyProjectsAsUsers from "./components/MyProjects/MyProjectsAsUsers";
 import MyTicketsUsers from "./components/MyTickets/MyTicketsUsers";
 import MyTicketsAdmin from "./components/MyTickets/MyTicketsAdmin";
+import EditTicketModal from "./components/Modals/EditTicket/EditTicketModal";
 
 function App() {
   //*toggle project modal
@@ -24,6 +25,9 @@ function App() {
 
   //* toggle ticket modal
   const [isTicketModalOpen, setIsTicketModalOpen] = useState<boolean>(false);
+
+  //* toggle edit ticket modal */
+  const [isEditTicketModalOpen, setIsEditTicketModalOpen] = useState(false);
 
   //*toggle assign user modal
   const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(false);
@@ -37,6 +41,9 @@ function App() {
         {isProjectModalOpen && (
           <NewProjectModal setIsProjectModalOpen={setIsProjectModalOpen} />
         )}
+
+        {isEditTicketModalOpen && <EditTicketModal />}
+
         {isAssignedUserModalOpen && (
           <AssignUserModal
             setIsAssignedUserModal={setIsAssignedUserModalOpen}
