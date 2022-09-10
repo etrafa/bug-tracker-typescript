@@ -27,7 +27,7 @@ function App() {
   const [isTicketModalOpen, setIsTicketModalOpen] = useState<boolean>(false);
 
   //* toggle edit ticket modal */
-  const [isEditTicketModalOpen, setIsEditTicketModalOpen] = useState(false);
+  const [isEditTicketModalOpen, setIsEditTicketModalOpen] = useState(true);
 
   //*toggle assign user modal
   const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(false);
@@ -42,7 +42,11 @@ function App() {
           <NewProjectModal setIsProjectModalOpen={setIsProjectModalOpen} />
         )}
 
-        {isEditTicketModalOpen && <EditTicketModal />}
+        {isEditTicketModalOpen && (
+          <EditTicketModal
+            setIsEditTicketModalOpen={setIsEditTicketModalOpen}
+          />
+        )}
 
         {isAssignedUserModalOpen && (
           <AssignUserModal
