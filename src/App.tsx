@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     if (currentUser) navigate("/");
     else navigate("/log-in");
-  }, [currentUser, navigate]);
+  }, [currentUser]);
 
   return (
     <>

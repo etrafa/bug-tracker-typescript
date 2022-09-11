@@ -74,7 +74,7 @@ const Sidebar = () => {
             svg={profile}
           />
           <SidebarElements
-            directTo=""
+            directTo="/my-profile"
             elementName="Logout"
             svg={logout}
             clickHandler={firebaseLogout}
