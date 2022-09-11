@@ -58,7 +58,7 @@ const Login = () => {
           onChange={changeHandler}
         />
         {errorMessage && (
-          <p className="font-bold text-strongRed mx-auto mt-3">
+          <p className="w-10/12 h-4 lg:w-6/12 pl-1 my-1 text-strongRed font-bold">
             {errorMessage}
           </p>
         )}
