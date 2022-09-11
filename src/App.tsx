@@ -40,6 +40,7 @@ function App() {
 
   return (
     <>
+      {/* //* MODALS // */}
       {isTicketModalOpen && (
         <NewTicketModal setIsTicketModalOpen={setIsTicketModalOpen} />
       )}
@@ -49,11 +50,16 @@ function App() {
       {isAssignedUserModalOpen && (
         <AssignUserModal setIsAssignedUserModal={setIsAssignedUserModalOpen} />
       )}
-      <Sidebar />
-      <Navbar
-        setIsProjectModalOpen={setIsProjectModalOpen}
-        setIsTicketModalOpen={setIsTicketModalOpen}
-      />
+      {/* //* ------------------------ // */}
+      {/* //* ONLY SHOW IF USER LOGGED IN // */}
+      {currentUser && <Sidebar />}
+      {currentUser && (
+        <Navbar
+          setIsProjectModalOpen={setIsProjectModalOpen}
+          setIsTicketModalOpen={setIsTicketModalOpen}
+        />
+      )}
+      {/* //* ------------------------ // */}
       <Routes>
         <Route path="/log-in" element={<Login />} />
         <Route path="/" element={<DashboardHome />} />
