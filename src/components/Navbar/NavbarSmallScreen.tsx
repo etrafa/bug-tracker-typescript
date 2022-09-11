@@ -17,9 +17,8 @@ import {
   logout,
 } from "../Sidebar/SidebarIcons";
 
-enum UserType {
-  ADMIN = "admin",
-}
+//logout function
+import { firebaseLogout } from "../../firebase/FirebaseAuthFunctions/firebaseLogout";
 
 const NavbarSmallScreen: FC<INavProps> = ({
   setIsNavbarOpen,
@@ -79,6 +78,12 @@ const NavbarSmallScreen: FC<INavProps> = ({
           directTo="/my-profile"
           elementName="Profile"
           svg={profile}
+        />
+        <SidebarElements
+          directTo="no-direction"
+          elementName="Logout"
+          svg={logout}
+          clickHandler={firebaseLogout}
         />
       </ul>
     </div>
