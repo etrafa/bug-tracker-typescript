@@ -23,4 +23,4 @@ export const profile: string =
   require("../../Utilities/icons/profile.svg").default;
 
 export const logout: string =
-  require("../../Utilities/icons/logout.svg").default;
+  require("../../Utilities/icons/logout-outline.svg").default;
