@@ -17,6 +17,7 @@ import MyProjectsAsAdmin from "./components/MyProjects/MyProjectsAsAdmin";
 import MyProjectsAsUsers from "./components/MyProjects/MyProjectsAsUsers";
 import MyTicketsUsers from "./components/MyTickets/MyTicketsUsers";
 import MyTicketsAdmin from "./components/MyTickets/MyTicketsAdmin";
+import { useAuth } from "./firebase/firebaseConfig";
 
 function App() {
   //*toggle project modal
@@ -27,6 +28,8 @@ function App() {
 
   //*toggle assign user modal
   const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(false);
+
+  const currentUser = useAuth();
 
   return (
     <div>

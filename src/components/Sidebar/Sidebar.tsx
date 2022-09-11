@@ -67,6 +67,12 @@ const Sidebar = () => {
             elementName="Profile"
             svg={profile}
           />
+          <SidebarElements
+            directTo="//"
+            elementName="Logout"
+            svg={logout}
+            clickHandler={() => console.log("hey")}
+          />
         </ul>
       </div>
     </aside>

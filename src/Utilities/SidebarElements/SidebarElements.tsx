@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import SVG from "react-inlinesvg";
 
 interface SidebarElementsProps {
-  clickHandler?: () => {};
+  clickHandler?: () => void;
   directTo: string;
   elementName: string;
   svg: string;
