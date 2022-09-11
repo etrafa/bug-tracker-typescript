@@ -79,13 +79,15 @@ const Login = () => {
           .
         </p>
         <p
-          // onClick={() => signIn("testdeveloper@gmail.com", 123456789)}
+          onClick={() => firebaseSignIn("testdeveloper@gmail.com", "123456789")}
           className="mt-2 underline cursor-pointer hover:text-gray-600"
         >
           Sign in as a Demo User
         </p>
         <p
-          // onClick={() => signIn("kayhankayhan@hotmail.com", 123456789)}
+          onClick={() =>
+            firebaseSignIn("kayhankayhan@hotmail.com", "123456789")
+          }
           className="mt-2 underline cursor-pointer hover:text-gray-600"
         >
           Sign in as a Admin
