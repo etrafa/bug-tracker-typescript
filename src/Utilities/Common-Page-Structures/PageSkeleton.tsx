@@ -27,7 +27,13 @@ const PageSkeleton = (props: PageSkeletonProps) => {
 
           {/* //*IF DATA LENGTH IS 0 OR FETCHING DATA FAILS SHOW THIS MESSAGE */}
 
-          {props.data && props.data.length === 0 && (
+          {/* {props.data && props.data.length === 0 && (
+            <p className="mt-36 text-center font-bold">
+              {props.NO_DATA_MESSAGE}
+            </p>
+          )} */}
+
+          {props.loading === false && props.data?.length === 0 && (
             <p className="mt-36 text-center font-bold">
               {props.NO_DATA_MESSAGE}
             </p>
