@@ -1,18 +1,18 @@
-import { FC } from "react";
-
 //react
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
-// import { signIn } from "../../firebase/firebaseConfig";
+//sign-in function
+import { firebaseSignIn } from "../../firebase/FirebaseAuthFunctions/firebaseSignIn";
 
-//typescript
+//interfaces
 import { ILoginProps } from "../../Interfaces/LoginInterface";
 
-const Login: FC = () => {
+const Login = () => {
   const [loginInformation, setLoginInformation] = useState<ILoginProps | null>(
     null
   );
+
+  const [errorMessage, setErrorMessage] = useState(""); //if there is an error while user try to login show the error.
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInformation((prevState) => ({
@@ -23,7 +23,13 @@ const Login: FC = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(loginInformation);
+    if (loginInformation?.email && loginInformation.password) {
+      firebaseSignIn(
+        loginInformation?.email,
+        loginInformation?.password,
+        setErrorMessage
+      );
+    }
   };
 
   return (
@@ -51,10 +57,16 @@ const Login: FC = () => {
           placeholder="Password"
           onChange={changeHandler}
         />
+        {errorMessage && (
+          <p className="font-bold text-strongRed mx-auto mt-3">
+            {errorMessage}
+          </p>
+        )}
         <button className="bg-fbFillColor hover:bg-blue-500 my-6 w-7/12 h-12 lg:w-4/12 text-white font-bold">
           Sign In
         </button>
       </form>
+
       <div>
         <p>
           Don't have an account?
