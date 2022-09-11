@@ -4,10 +4,13 @@ import { useGetDocsWithQuery } from "../../customHooks/useGetDocsWithQuery";
 import { useAuth } from "../../firebase/firebaseConfig";
 
 const MyProjectsUsers = () => {
+  const currentUser = useAuth();
+
+  //GET EVERY PROJECT BELONGS TO CURRENT USER
   const { dbData, loading } = useGetDocsWithQuery(
     "users",
     "email",
-    "testdeveloper@gmailc.om"
+    currentUser?.email || "undefined"
   );
 
   const [pageNumber, setPageNumber] = useState(0);
