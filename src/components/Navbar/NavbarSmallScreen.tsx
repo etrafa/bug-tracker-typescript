@@ -35,7 +35,7 @@ const NavbarSmallScreen: FC<INavProps> = ({
   const { dbData } = useGetSingleDoc("users", currentUser?.uid); //get current user
 
   return (
-    <div className="w-full lg:hidden min-h-screen bg-gray-200 fixed top-0 bottom-0 z-50 overflow-y-auto">
+    <nav className="w-full lg:hidden min-h-screen bg-gray-200 fixed top-0 bottom-0 z-50 overflow-y-auto">
       {typeof setIsNavbarOpen !== "undefined" && (
         <CloseButton
           clickHandler={() => {
@@ -99,7 +99,30 @@ const NavbarSmallScreen: FC<INavProps> = ({
           clickHandler={firebaseLogout}
         />
       </ul>
-    </div>
+      <div className="flex flex-col gap-y-6 mt-6 items-center">
+        <button
+          onClick={() => {
+            if (setIsNavbarOpen) setIsNavbarOpen(false); //close navbar first and open ticket modal
+            setIsTicketModalOpen(true);
+          }}
+          className="bg-fbFillColor hover:bg-blue-400 w-64 lg:mx-6 h-12 rounded-md text-white font-bold"
+        >
+          CREATE NEW TICKET
+        </button>
+
+        {dbData?.role === USER_TYPES.admin && (
+          <button
+            onClick={() => {
+              if (setIsNavbarOpen) setIsNavbarOpen(false); //close navbar first and open project modal
+              setIsProjectModalOpen(true);
+            }}
+            className="bg-white hover:bg-slate-100 w-64 lg:mx-6 h-12 rounded-md text-black font-bold border"
+          >
+            CREATE NEW PROJECT
+          </button>
+        )}
+      </div>
+    </nav>
   );
 };
 export default NavbarSmallScreen;
