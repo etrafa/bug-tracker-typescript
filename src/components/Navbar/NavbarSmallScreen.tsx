@@ -27,7 +27,7 @@ const NavbarSmallScreen: FC<INavProps> = ({
 }) => {
   const currentUser = useAuth();
 
-  const { dbData } = useGetSingleDoc("users", currentUser?.uid);
+  const { dbData } = useGetSingleDoc("users", currentUser?.uid); //get current user
 
   return (
     <div className="w-full lg:hidden min-h-screen bg-gray-200 fixed top-0 bottom-0 z-50 overflow-y-auto">

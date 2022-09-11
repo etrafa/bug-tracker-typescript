@@ -16,8 +16,18 @@ import {
 
 //logout function
 import { firebaseLogout } from "../../firebase/FirebaseAuthFunctions/firebaseLogout";
+import { useGetSingleDoc } from "../../customHooks/useGetSingleDoc";
+import { useAuth } from "../../firebase/firebaseConfig";
 
 const Sidebar = () => {
+  const currentUser = useAuth();
+  const { dbData } = useGetSingleDoc("users", currentUser?.uid); //get current user
+
+  enum USER_TYPES {
+    admin = "admin",
+    user = "user",
+  }
+
   return (
     <aside
       className="w-64 min-h-screen bg-gray-50 fixed top-0 left-0 hidden lg:block"
@@ -26,28 +36,33 @@ const Sidebar = () => {
       <div className="overflow-y-auto py-4 px-3 rounded ">
         <h1 className="text-center">
           Welcome, <br />
-          {/* <span className="font-bold">{currentUser?.displayName}</span> */}
-          {/* <span className="font-bold block">Role:{dbData?.role}</span> */}
-          <span className="font-bold">Kayhan Senel</span>
-          <span className="font-bold block">Admin</span>
+          <span className="font-bold">{dbData?.fullName}</span>
+          <span className="font-bold block">Role:{dbData?.role}</span>
         </h1>
         <hr className="mt-2" />
         <ul className="space-y-2 mt-10">
+          {/* //* SHOW SOME ELEMENTS ONLY ROLE OF ADMIN */}
           <SidebarElements
             directTo="/"
             elementName="Dashboard Home"
             svg={dashboardHome}
           />
-          <SidebarElements
-            directTo="/role-assignment"
-            elementName="Manage Role Assignment"
-            svg={manageRoleAssignment}
-          />
-          <SidebarElements
-            directTo="/manage-project-user"
-            elementName="Manage Project Users"
-            svg={manageProjectUsers}
-          />
+          {dbData?.role === USER_TYPES.admin && (
+            <SidebarElements
+              directTo="/role-assignment"
+              elementName="Manage Role Assignment"
+              svg={manageRoleAssignment}
+            />
+          )}
+
+          {dbData?.role === USER_TYPES.admin && (
+            <SidebarElements
+              directTo="/manage-project-user"
+              elementName="Manage Project Users"
+              svg={manageProjectUsers}
+            />
+          )}
+
           <SidebarElements
             directTo="/my-projects"
             elementName="My Projects"
@@ -58,16 +73,21 @@ const Sidebar = () => {
             elementName="My Tickets"
             svg={myTickets}
           />
-          <SidebarElements
-            directTo="/all-projects"
-            elementName="All Projects"
-            svg={allProjects}
-          />
-          <SidebarElements
-            directTo="/all-tickets"
-            elementName="All Tickets"
-            svg={allTickets}
-          />
+          {dbData?.role === USER_TYPES.admin && (
+            <SidebarElements
+              directTo="/all-projects"
+              elementName="All Projects"
+              svg={allProjects}
+            />
+          )}
+          {dbData?.role === USER_TYPES.admin && (
+            <SidebarElements
+              directTo="/all-tickets"
+              elementName="All Tickets"
+              svg={allTickets}
+            />
+          )}
+
           <SidebarElements
             directTo="/my-profile"
             elementName="Profile"
