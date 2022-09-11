@@ -5,12 +5,16 @@ import TicketByType from "./TicketByType";
 import TicketByProject from "./TicketByProject";
 
 import { useGetDocsArrayQuery } from "../../customHooks/useGetDocsArrayQuery";
+import { useAuth } from "../../firebase/firebaseConfig";
 
 const DashboardHome = () => {
+  const currentUser = useAuth();
+
+  //GET EVERY TICKET BELONGS TO CURRENT USER
   const { dbData } = useGetDocsArrayQuery(
     "tickets",
     "userEmails",
-    "testdeveloper@gmail.com"
+    currentUser?.email || "undefined"
   );
 
   return (

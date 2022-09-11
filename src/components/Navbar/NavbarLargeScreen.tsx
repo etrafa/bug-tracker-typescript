@@ -6,8 +6,6 @@ const NavbarLargeScreen: FC<INavProps> = ({
   setIsProjectModalOpen,
   dbData,
 }) => {
-  console.log(dbData);
-
   return (
     <div className="hidden lg:flex lg:w-[calc(100%_-_16rem)] lg:h-[calc(5rem_-_7px)] lg:items-center lg:ml-auto lg:justify-end lg:mx-8">
       {/* //* if user role is admin show create new project button, otherwise hide it. */}
