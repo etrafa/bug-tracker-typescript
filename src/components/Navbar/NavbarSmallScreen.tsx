@@ -20,6 +20,11 @@ import {
 //logout function
 import { firebaseLogout } from "../../firebase/FirebaseAuthFunctions/firebaseLogout";
 
+enum USER_TYPES {
+  admin = "admin",
+  user = "user",
+}
+
 const NavbarSmallScreen: FC<INavProps> = ({
   setIsNavbarOpen,
   setIsTicketModalOpen,
@@ -44,16 +49,20 @@ const NavbarSmallScreen: FC<INavProps> = ({
           elementName="Dashboard Home"
           svg={dashboardHome}
         />
-        <SidebarElements
-          directTo="/role-assignment"
-          elementName="Manage Role Assignment"
-          svg={manageRoleAssignment}
-        />
-        <SidebarElements
-          directTo="/manage-project-user"
-          elementName="Manage Project Users"
-          svg={manageProjectUsers}
-        />
+        {dbData?.role === USER_TYPES.admin && (
+          <SidebarElements
+            directTo="/role-assignment"
+            elementName="Manage Role Assignment"
+            svg={manageRoleAssignment}
+          />
+        )}
+        {dbData?.role === USER_TYPES.admin && (
+          <SidebarElements
+            directTo="/manage-project-user"
+            elementName="Manage Project Users"
+            svg={manageProjectUsers}
+          />
+        )}
         <SidebarElements
           directTo="/my-projects"
           elementName="My Projects"
@@ -64,16 +73,20 @@ const NavbarSmallScreen: FC<INavProps> = ({
           elementName="My Tickets"
           svg={myTickets}
         />
-        <SidebarElements
-          directTo="/all-projects"
-          elementName="All Projects"
-          svg={allProjects}
-        />
-        <SidebarElements
-          directTo="/all-tickets"
-          elementName="All Tickets"
-          svg={allTickets}
-        />
+        {dbData?.role === USER_TYPES.admin && (
+          <SidebarElements
+            directTo="/all-projects"
+            elementName="All Projects"
+            svg={allProjects}
+          />
+        )}
+        {dbData?.role === USER_TYPES.admin && (
+          <SidebarElements
+            directTo="/all-tickets"
+            elementName="All Tickets"
+            svg={allTickets}
+          />
+        )}
         <SidebarElements
           directTo="/my-profile"
           elementName="Profile"
