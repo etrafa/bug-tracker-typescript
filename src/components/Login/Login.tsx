@@ -12,6 +12,7 @@ const Login = () => {
     null
   );
 
+  const [displayErrorMessage, setDisplayErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(""); //if there is an error while user try to login show the error.
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +20,7 @@ const Login = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+    setDisplayErrorMessage(false);
   };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,6 +29,7 @@ const Login = () => {
       firebaseSignIn(
         loginInformation?.email,
         loginInformation?.password,
+        setDisplayErrorMessage,
         setErrorMessage
       );
     }
@@ -57,7 +60,7 @@ const Login = () => {
           placeholder="Password"
           onChange={changeHandler}
         />
-        {errorMessage && (
+        {displayErrorMessage && (
           <p className="w-10/12 h-4 lg:w-6/12 pl-1 my-1 text-strongRed font-bold">
             {errorMessage}
           </p>
