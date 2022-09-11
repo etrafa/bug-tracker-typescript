@@ -1,12 +1,21 @@
+//react
 import { useState } from "react";
-import { useGetDocsWithQuery } from "../../customHooks/useGetDocsWithQuery";
+
+//components
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 
+//firebase
+import { useAuth } from "../../firebase/firebaseConfig";
+import { useGetDocsArrayQuery } from "../../customHooks/useGetDocsArrayQuery";
+
 const MyTicketsUsers = () => {
-  const { dbData, loading } = useGetDocsWithQuery(
+  const currentUser = useAuth();
+
+  //GET EVERY TICKET BELONGS TO CURRENT USER
+  const { dbData, loading } = useGetDocsArrayQuery(
     "tickets",
     "userEmails",
-    "testdeveloper@gmail.com"
+    currentUser?.email || "undefined"
   );
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
