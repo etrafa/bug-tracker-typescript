@@ -1,9 +1,9 @@
 //*react
-import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 //*components
-// import Login from "./components/Login/Login";
+import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import DashboardHome from "./components/Dashboard/DashboardHome";
@@ -29,47 +29,50 @@ function App() {
   //*toggle assign user modal
   const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(false);
 
-  const currentUser = useAuth();
+  const currentUser = useAuth(); //get current user
+  const navigate = useNavigate();
+
+  //* NAVIGATE USER TO LOGIN PAGE IF NOT LOGGED IN YET, OTHERWISE SHOW HOME PAGE
+  useEffect(() => {
+    if (currentUser) navigate("/");
+    else navigate("/log-in");
+  }, [currentUser, navigate]);
 
   return (
-    <div>
-      <Router>
-        {isTicketModalOpen && (
-          <NewTicketModal setIsTicketModalOpen={setIsTicketModalOpen} />
-        )}
-        {isProjectModalOpen && (
-          <NewProjectModal setIsProjectModalOpen={setIsProjectModalOpen} />
-        )}
-        {isAssignedUserModalOpen && (
-          <AssignUserModal
-            setIsAssignedUserModal={setIsAssignedUserModalOpen}
-          />
-        )}
-        <Sidebar />
-        <Navbar
-          setIsProjectModalOpen={setIsProjectModalOpen}
-          setIsTicketModalOpen={setIsTicketModalOpen}
+    <>
+      {isTicketModalOpen && (
+        <NewTicketModal setIsTicketModalOpen={setIsTicketModalOpen} />
+      )}
+      {isProjectModalOpen && (
+        <NewProjectModal setIsProjectModalOpen={setIsProjectModalOpen} />
+      )}
+      {isAssignedUserModalOpen && (
+        <AssignUserModal setIsAssignedUserModal={setIsAssignedUserModalOpen} />
+      )}
+      <Sidebar />
+      <Navbar
+        setIsProjectModalOpen={setIsProjectModalOpen}
+        setIsTicketModalOpen={setIsTicketModalOpen}
+      />
+      <Routes>
+        <Route path="/log-in" element={<Login />} />
+        <Route path="/" element={<DashboardHome />} />
+        <Route path="/role-assignment" element={<ManageRoleAssignment />} />
+        <Route
+          path="/manage-project-user"
+          element={
+            <ManageProjectUsers
+              setIsAssignedUserModalOpen={setIsAssignedUserModalOpen}
+            />
+          }
         />
-        <Routes>
-          <Route path="/" element={<DashboardHome />} />
-          <Route path="/role-assignment" element={<ManageRoleAssignment />} />
-          <Route
-            path="/manage-project-user"
-            element={
-              <ManageProjectUsers
-                setIsAssignedUserModalOpen={setIsAssignedUserModalOpen}
-              />
-            }
-          />
-          <Route path="/my-profile" element={<Profile />} />
-          <Route path="/my-projects" element={<MyProjectsAsUsers />} />
-          <Route path="/all-projects" element={<MyProjectsAsAdmin />} />
-          <Route path="/my-tickets" element={<MyTicketsUsers />} />
-          <Route path="/all-tickets" element={<MyTicketsAdmin />} />
-        </Routes>
-      </Router>
-      {/* <Login /> */}
-    </div>
+        <Route path="/my-profile" element={<Profile />} />
+        <Route path="/my-projects" element={<MyProjectsAsUsers />} />
+        <Route path="/all-projects" element={<MyProjectsAsAdmin />} />
+        <Route path="/my-tickets" element={<MyTicketsUsers />} />
+        <Route path="/all-tickets" element={<MyTicketsAdmin />} />
+      </Routes>
+    </>
   );
 }
 

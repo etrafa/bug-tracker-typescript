@@ -1,4 +1,7 @@
+//components
 import SidebarElements from "../../Utilities/SidebarElements/SidebarElements";
+
+//icons
 import {
   dashboardHome,
   manageRoleAssignment,
@@ -10,6 +13,9 @@ import {
   profile,
   logout,
 } from "./SidebarIcons";
+
+//logout function
+import { firebaseLogout } from "../../firebase/FirebaseAuthFunctions/firebaseLogout";
 
 const Sidebar = () => {
   return (
@@ -68,10 +74,10 @@ const Sidebar = () => {
             svg={profile}
           />
           <SidebarElements
-            directTo="//"
+            directTo=""
             elementName="Logout"
             svg={logout}
-            clickHandler={() => console.log("hey")}
+            clickHandler={firebaseLogout}
           />
         </ul>
       </div>
