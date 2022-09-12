@@ -4,6 +4,7 @@ import { useGetSingleDoc } from "../../../customHooks/useGetSingleDoc";
 import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
 import AssignedUsersForSingleProject from "./AssignedUsersForSingleProject";
 import SingleProjectHeader from "./SingleProjectHeader";
+import TicketForSingleProject from "./TicketForSingleProject";
 
 const SingleProject = () => {
   const { projectID } = useParams();
@@ -25,6 +26,7 @@ const SingleProject = () => {
         )}
         <div className="w-full mt-36 flex flex-col lg:flex-row lg:justify-between">
           <AssignedUsersForSingleProject />
+          {projectID && <TicketForSingleProject projectID={projectID} />}
         </div>
       </div>
     </div>
