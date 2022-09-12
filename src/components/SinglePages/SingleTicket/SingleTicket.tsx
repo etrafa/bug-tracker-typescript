@@ -50,7 +50,7 @@ const SingleTicket = () => {
         <div className="flex mx-auto gap-4 flex-col lg:flex-row my-12">
           {loading && <LoadSpinner />}
           {/* //*display ticket details * */}
-          {/* <SingleTicketInformation {...singleTicket} /> */}
+          {singleTicket && <SingleTicketInformation {...singleTicket} />}
           {/* //*display ticket comments  */}
           {/* {ticketCommentsData && <TicketComments {...ticketCommentsData} />} */}
         </div>
