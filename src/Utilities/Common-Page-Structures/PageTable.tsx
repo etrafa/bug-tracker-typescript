@@ -1,15 +1,29 @@
+//components
+import PageTableBodyForTickets, {
+  PageTableBodyForTicketsProps,
+} from "./PageTableBodyForTickets";
 import PageTableBodyForProjects, {
   PageTableBodyForProjectsProps,
 } from "./PageTableBodyForProjects";
-import PageTableBodyForTickets from "./PageTableBodyForTickets";
 
-export interface PageTableProps extends PageTableBodyForProjectsProps {
+//interfaces
+import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
+import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
+
+export interface PageTableProps
+  extends PageTableBodyForProjectsProps,
+    PageTableBodyForTicketsProps {
   firstTableHeader: string;
   secondTableHeader: string;
   thirdTableHeader: string;
   fourthTableHeader?: string;
   fifthTableHeader?: string;
   pageType: string;
+  data: IProject[] | ITicketsRoot[] | null;
+  searchTerm: string;
+  ITEM_PER_PAGE: number;
+  pageNumber: number;
+  setPageNumber: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const PageTable = ({
@@ -19,10 +33,12 @@ const PageTable = ({
   fourthTableHeader,
   fifthTableHeader,
   pageType,
+
+  searchTerm,
   ITEM_PER_PAGE,
   pageNumber,
-  searchTerm,
-  data,
+  projectData,
+  ticketData,
   setPageNumber,
 }: PageTableProps) => {
   return (
@@ -43,9 +59,9 @@ const PageTable = ({
         </tr>
       </thead>
 
-      {pageType === "project" && (
+      {projectData && pageType === "project" && (
         <PageTableBodyForProjects
-          data={data}
+          projectData={projectData}
           ITEM_PER_PAGE={ITEM_PER_PAGE}
           pageNumber={pageNumber}
           searchTerm={searchTerm}
@@ -53,9 +69,9 @@ const PageTable = ({
         />
       )}
 
-      {pageType === "ticket" && (
+      {ticketData && pageType === "ticket" && (
         <PageTableBodyForTickets
-          data={data}
+          ticketData={ticketData}
           ITEM_PER_PAGE={ITEM_PER_PAGE}
           pageNumber={pageNumber}
           searchTerm={searchTerm}

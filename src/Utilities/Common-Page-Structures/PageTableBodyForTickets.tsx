@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
 
 export interface PageTableBodyForTicketsProps {
-  ticketData: ITicketsRoot[] | null;
+  ticketData?: ITicketsRoot[] | null;
   pageNumber: number;
   searchTerm: string;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;

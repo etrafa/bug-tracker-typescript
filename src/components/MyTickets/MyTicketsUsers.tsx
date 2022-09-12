@@ -7,13 +7,13 @@ import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 //firebase
 import { useAuth } from "../../firebase/firebaseConfig";
 import { useGetDocsArrayQuery } from "../../customHooks/useGetDocsArrayQuery";
-import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
+import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
 
 const MyTicketsUsers = () => {
   const currentUser = useAuth();
 
   //GET EVERY TICKET BELONGS TO CURRENT USER
-  const { dbData, loading } = useGetDocsArrayQuery<IProject>(
+  const { dbData, loading } = useGetDocsArrayQuery<ITicketsRoot>(
     "tickets",
     "userEmails",
     currentUser?.email || "undefined"
@@ -49,6 +49,7 @@ const MyTicketsUsers = () => {
       NO_DATA_MESSAGE="No ticket found." //when there is no data OR and error show this message
       //*PAGE DATA
       data={dbData} // data fetched from database.
+      ticketData={dbData}
       //*OTHER
       loading={loading}
       searchInputPlaceHolder="Search Ticket" //search input placeholder

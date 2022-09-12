@@ -1,10 +1,15 @@
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 import { useState } from "react";
 import { useGetDocsNested } from "../../customHooks/useGetDocsNested";
-import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
+import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
 
 const MyTicketsAdmin = () => {
-  const { dbData, loading } = useGetDocsNested<IProject>("projects", "tickets");
+  const { dbData, loading } = useGetDocsNested<ITicketsRoot>(
+    "projects",
+    "tickets"
+  );
+
+  console.log(dbData);
 
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,6 +40,7 @@ const MyTicketsAdmin = () => {
       NO_DATA_MESSAGE="No ticket found." //when there is no data OR and error show this message
       //*PAGE DATA
       data={dbData} // data fetched from database.
+      ticketData={dbData}
       //*OTHER
       loading={loading}
       searchInputPlaceHolder="Search Ticket" //search input placeholder

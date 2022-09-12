@@ -3,8 +3,8 @@ import { PageTableBodyForProjectsProps } from "./PageTableBodyForProjects";
 
 const PagePagination = (props: PageTableBodyForProjectsProps) => {
   let pageCount: number = 0;
-  if (props.data) {
-    pageCount = Math.ceil(props?.data?.length / props.ITEM_PER_PAGE);
+  if (props.projectData) {
+    pageCount = Math.ceil(props?.projectData?.length / props.ITEM_PER_PAGE);
   }
 
   return (

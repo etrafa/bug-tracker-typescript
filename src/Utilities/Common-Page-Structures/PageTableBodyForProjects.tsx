@@ -2,7 +2,7 @@ import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface"
 import { Link } from "react-router-dom";
 
 export interface PageTableBodyForProjectsProps {
-  data: IProject[] | null;
+  projectData?: IProject[] | null;
   pageNumber: number;
   searchTerm: string;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -12,7 +12,7 @@ export interface PageTableBodyForProjectsProps {
 const PageTableBodyForProjects = (props: PageTableBodyForProjectsProps) => {
   const pagesVisited = props.pageNumber * props.ITEM_PER_PAGE;
 
-  const showProjects = props?.data
+  const showProjects = props?.projectData
     ?.filter((val) => {
       if (props.searchTerm === "") return val;
       else if (
