@@ -29,6 +29,8 @@ const SingleTicket = ({
   const { singleData: singleTicket, loading } =
     useGetDocsWithQuery<ITicketsRoot>("tickets", "id", ticketID || "undefined");
 
+  console.log(singleTicket);
+
   //*GET TICKET COMMENTS
   const { singleData: ticketCommentsData } = useGetDocsWithQuery<IComment>(
     "comments",
@@ -61,14 +63,13 @@ const SingleTicket = ({
           </div>
         </div>
         {loading && <LoadSpinner />}
-        {singleTicket && ticketCommentsData && (
-          <div className="flex mx-auto gap-4 flex-col lg:flex-row my-12">
-            {/* //*display ticket details * */}
-            {singleTicket && <SingleTicketInformation {...singleTicket} />}
-            {/* //*display ticket comments  */}
-            {ticketCommentsData && <TicketComments {...ticketCommentsData} />}
-          </div>
-        )}
+
+        <div className="flex mx-auto gap-4 flex-col lg:flex-row my-12">
+          {/* //*display ticket details * */}
+          {singleTicket && <SingleTicketInformation {...singleTicket} />}
+          {/* //*display ticket comments  */}
+          {ticketCommentsData && <TicketComments {...ticketCommentsData} />}
+        </div>
       </div>
     </div>
   );

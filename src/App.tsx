@@ -19,6 +19,7 @@ import MyTicketsUsers from "./components/MyTickets/MyTicketsUsers";
 import MyTicketsAdmin from "./components/MyTickets/MyTicketsAdmin";
 import { useAuth } from "./firebase/firebaseConfig";
 import SingleTicket from "./components/SinglePages/SingleTicket/SingleTicket";
+import SingleProject from "./components/SinglePages/SingleProject/SingleProject";
 
 function App() {
   //*toggle project modal
@@ -93,6 +94,7 @@ function App() {
             />
           }
         />
+        <Route path="projects:/:projectID" element={<SingleProject />} />
       </Routes>
     </>
   );

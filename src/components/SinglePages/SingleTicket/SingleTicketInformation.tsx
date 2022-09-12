@@ -6,22 +6,22 @@ const SingleTicketInformations = (props: SingleTicketInformationsProps) => {
   const ticketElementsForHTML = [
     {
       element: "Ticket Title",
-      value: props && props?.ticketDescription,
+      value: props && props.ticketDescription,
     },
-    { element: "Project", value: props && props?.projectName },
+    { element: "Project", value: props && props.projectName },
 
-    { element: "Author", value: props && props?.ticketOwner },
+    { element: "Author", value: props && props.ticketOwner },
     {
       element: "Ticket Priority",
-      value: props && props?.ticketPriority,
+      value: props && props.ticketPriority,
     },
     {
       element: "Ticket Status",
-      value: props && props?.ticketStatus,
+      value: props && props.ticketStatus,
     },
-    { element: "Ticket Type", value: props && props?.ticketType },
+    { element: "Ticket Type", value: props && props.ticketType },
 
-    { element: "Date", value: props && props?.submitTime },
+    { element: "Date", value: props && props.submitTime },
   ];
 
   //* change element background color based on TICKET PRIORITY

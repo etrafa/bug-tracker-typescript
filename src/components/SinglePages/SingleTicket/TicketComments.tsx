@@ -3,7 +3,6 @@ import { IComment } from "../../../Interfaces/Firebase-Interfaces/CommentInterfa
 interface TicketCommentsProps extends IComment {}
 
 const TicketComments = ({
-  belongedTicketID,
   comment,
   commentOwner,
   createdAt,
@@ -14,6 +13,7 @@ const TicketComments = ({
 
   return (
     <div className="w-full lg:w-6/12 max-w-2xl text-center overflow-auto mt-12 mx-auto lg:border-l-2">
+      <h2 className="text-center font-bold text-lg">Comments</h2>
       <section className="w-full lg:w-11/12 min-h-[5rem] bg-gray-50 mx-auto my-4">
         <header className="flex justify-end">
           <p className="mx-6 mt-2 text-gray-400 text-sm">{commentOwner}</p>
