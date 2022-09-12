@@ -3,6 +3,7 @@
 import {
   collectionGroup,
   doc,
+  DocumentData,
   getDocs,
   onSnapshot,
   query,
@@ -13,19 +14,16 @@ import { db, useAuth } from "../firebase/firebaseConfig";
 import { IProject } from "../Interfaces/Firebase-Interfaces/ProjectInterface";
 import { IFirebaseUser } from "../Interfaces/Firebase-Interfaces/UserInterface";
 
-type UseGetDocsTypesArray = IFirebaseUser[] | IProject[] | null;
-type UseGetDocsTypeSingle = IFirebaseUser | IProject | null;
-
-export const useGetDocsWithQuery = (
+export function useGetDocsWithQuery<T>(
   colName: string,
   qu: string,
   endPoint: string
-) => {
-  const [dbData, setDbData] = useState<UseGetDocsTypesArray>(null);
-  const [singleData, setSingleData] = useState<UseGetDocsTypeSingle>(null);
+) {
+  const [dbData, setDbData] = useState<T[] | null>(null);
+  const [singleData, setSingleData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   let GRAND_PARENT_PATH: string[] = [];
-  let ALL_DATA_FIRESTORE: IFirebaseUser[] | IProject[] = [];
+  let ALL_DATA_FIRESTORE: T[] = [];
   const currentUser = useAuth();
 
   useEffect(() => {
@@ -35,7 +33,7 @@ export const useGetDocsWithQuery = (
       const q = query(docRef, where(qu, "==", endPoint));
       const querySnapShot = await getDocs(q);
       //GET THE ID OF PARENT ELEMENTS
-      querySnapShot.forEach((doc) => {
+      querySnapShot.forEach((doc: DocumentData) => {
         if (doc.exists()) {
           setSingleData(doc.data());
           const documentRef = doc.ref;
@@ -49,7 +47,7 @@ export const useGetDocsWithQuery = (
 
       GRAND_PARENT_PATH.forEach(async (id) => {
         const documentRef = doc(db, "projects", id);
-        onSnapshot(documentRef, (item) =>
+        onSnapshot(documentRef, (item: DocumentData) =>
           setDbData((prev) =>
             prev ? [...prev, { ...item.data(), id: item.id }] : null
           )
@@ -62,4 +60,4 @@ export const useGetDocsWithQuery = (
     fetchData();
   }, [currentUser, colName, qu, endPoint]);
   return { dbData, loading, singleData };
-};
+}
