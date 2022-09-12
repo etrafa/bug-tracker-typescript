@@ -1,10 +1,17 @@
 //react
 import { useNavigate, useParams } from "react-router-dom";
+
+//firebase
 import { useGetDocsWithQuery } from "../../../customHooks/useGetDocsWithQuery";
-import { IComment } from "../../../Interfaces/Firebase-Interfaces/CommentInterface";
-import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
+
+//components
 import LoadSpinner from "../../../Utilities/LoadSpinner";
 import SingleTicketInformation from "./SingleTicketInformation";
+
+//interfaces
+import { IComment } from "../../../Interfaces/Firebase-Interfaces/CommentInterface";
+import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
+import TicketComments from "./TicketComments";
 
 interface SingleTicketProps {
   setIsEditTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,8 +35,6 @@ const SingleTicket = ({
     "belongedTicketID",
     ticketID || "undefined"
   );
-
-  console.log(ticketCommentsData);
 
   return (
     <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto mb-6">
@@ -55,13 +60,15 @@ const SingleTicket = ({
             </p>
           </div>
         </div>
-        <div className="flex mx-auto gap-4 flex-col lg:flex-row my-12">
-          {loading && <LoadSpinner />}
-          {/* //*display ticket details * */}
-          {singleTicket && <SingleTicketInformation {...singleTicket} />}
-          {/* //*display ticket comments  */}
-          {/* {ticketCommentsData && <TicketComments {...ticketCommentsData} />} */}
-        </div>
+        {loading && <LoadSpinner />}
+        {singleTicket && ticketCommentsData && (
+          <div className="flex mx-auto gap-4 flex-col lg:flex-row my-12">
+            {/* //*display ticket details * */}
+            {singleTicket && <SingleTicketInformation {...singleTicket} />}
+            {/* //*display ticket comments  */}
+            {ticketCommentsData && <TicketComments {...ticketCommentsData} />}
+          </div>
+        )}
       </div>
     </div>
   );
