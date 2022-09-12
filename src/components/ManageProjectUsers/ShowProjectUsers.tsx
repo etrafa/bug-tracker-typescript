@@ -19,7 +19,7 @@ const ShowProjectUsers = ({
   setSelectedUserID,
   selectedUserID,
 }: ShowProjectUsersProps) => {
-  const { dbData: singleProject } = useGetDocs(
+  const { dbData: singleProject } = useGetDocs<IFirebaseUser>(
     `projects/${selectedProjectID}/users`
   );
 

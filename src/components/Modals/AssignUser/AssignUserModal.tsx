@@ -17,8 +17,8 @@ interface AssignUserModalProps {
 }
 
 const AssignUserModal = (props: AssignUserModalProps) => {
-  const { dbData } = useGetDocs("projects"); //get all project list from db
-  const { dbData: allUsers } = useGetDocs(
+  const { dbData } = useGetDocs<IProject>("projects"); //get all project list from db
+  const { dbData: allUsers } = useGetDocs<IFirebaseUser>(
     // get all users assigned to selected project
     "users"
   );

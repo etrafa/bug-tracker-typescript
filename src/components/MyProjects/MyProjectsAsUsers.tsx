@@ -1,13 +1,21 @@
-import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
+//react
 import { useState } from "react";
+
+//firebase
 import { useGetDocsWithQuery } from "../../customHooks/useGetDocsWithQuery";
 import { useAuth } from "../../firebase/firebaseConfig";
+
+//components
+import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
+
+//interfaces
+import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
 
 const MyProjectsUsers = () => {
   const currentUser = useAuth();
 
   //GET EVERY PROJECT BELONGS TO CURRENT USER
-  const { dbData, loading } = useGetDocsWithQuery(
+  const { dbData, loading } = useGetDocsWithQuery<IProject>(
     "users",
     "email",
     currentUser?.email || "undefined"

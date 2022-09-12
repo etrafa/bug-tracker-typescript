@@ -1,9 +1,10 @@
 import { useGetSingleDoc } from "../../customHooks/useGetSingleDoc";
 import { useAuth } from "../../firebase/firebaseConfig";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 const UserInformation = () => {
   const currentUser = useAuth();
-  const { dbData } = useGetSingleDoc("users", currentUser?.uid);
+  const { dbData } = useGetSingleDoc<IFirebaseUser>("users", currentUser?.uid);
 
   return (
     <div className="text-center mx-auto w-full max-w-3xl">

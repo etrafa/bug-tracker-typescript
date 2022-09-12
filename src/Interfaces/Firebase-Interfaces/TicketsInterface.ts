@@ -7,14 +7,14 @@ interface AssignedUsers {
 }
 
 export interface ITicketsRoot {
-  assignedUsers?: AssignedUsers[];
-  id?: string;
-  projectName?: string;
-  submitTime?: string;
-  ticketDescription?: string;
-  ticketOwner?: string;
-  ticketPriority?: string;
-  ticketStatus?: string;
-  ticketType?: string;
-  userEmails?: string[];
+  assignedUsers: AssignedUsers[];
+  id: string;
+  projectName: string;
+  submitTime: string;
+  ticketDescription: string;
+  ticketOwner: string;
+  ticketPriority: string;
+  ticketStatus: string;
+  ticketType: string;
+  userEmails: string[];
 }

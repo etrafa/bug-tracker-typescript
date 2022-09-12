@@ -7,12 +7,13 @@ import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 //firebase
 import { useAuth } from "../../firebase/firebaseConfig";
 import { useGetDocsArrayQuery } from "../../customHooks/useGetDocsArrayQuery";
+import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
 
 const MyTicketsUsers = () => {
   const currentUser = useAuth();
 
   //GET EVERY TICKET BELONGS TO CURRENT USER
-  const { dbData, loading } = useGetDocsArrayQuery(
+  const { dbData, loading } = useGetDocsArrayQuery<IProject>(
     "tickets",
     "userEmails",
     currentUser?.email || "undefined"

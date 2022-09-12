@@ -1,5 +1,6 @@
 //firebase
 import { useGetDocs } from "../../customHooks/useGetDocs";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 //components
 import LoadSpinner from "../../Utilities/LoadSpinner";
@@ -7,7 +8,7 @@ import RoleAssignment from "./RoleAssignment/RoleAssignment";
 import AllUsersInDatabase from "./ShowStaff/AllUsersInDatabase";
 
 const ManageRoleAssignment = () => {
-  const { dbData, loading } = useGetDocs("users"); // get all the users from database
+  const { dbData, loading } = useGetDocs<IFirebaseUser>("users"); // get all the users from database
 
   return (
     <div>

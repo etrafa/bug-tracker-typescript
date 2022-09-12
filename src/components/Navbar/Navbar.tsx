@@ -1,10 +1,13 @@
 //react
 import { FC, useState } from "react";
+
+//firebase
 import { useGetSingleDoc } from "../../customHooks/useGetSingleDoc";
 import { useAuth } from "../../firebase/firebaseConfig";
 
 //interface
 import { INavProps } from "../../Interfaces/NavbarInterface";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 //components
 import NavbarLargeScreen from "./NavbarLargeScreen";
@@ -19,7 +22,7 @@ const Navbar: FC<INavProps> = ({
 
   //get current user and role
   const currentUser = useAuth();
-  const { dbData } = useGetSingleDoc("users", currentUser?.uid);
+  const { dbData } = useGetSingleDoc<IFirebaseUser>("users", currentUser?.uid);
 
   return (
     <nav className="bg-gray-50 w-full lg:w-[calc(100%_-_16rem)] h-[calc(5rem_-_7px)] ml-auto relative">

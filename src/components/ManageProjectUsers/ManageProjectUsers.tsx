@@ -3,6 +3,7 @@ import AddUserToProject from "./AddUserToProject";
 import ManageUsersDropdown from "./ManageUsersDropdown";
 import { useState } from "react";
 import ShowProjectUsers from "./ShowProjectUsers";
+import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
 
 interface ManageProjectUsersProps {
   setIsAssignedUserModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,7 +12,7 @@ interface ManageProjectUsersProps {
 const ManageProjectUsers = ({
   setIsAssignedUserModalOpen,
 }: ManageProjectUsersProps) => {
-  const { dbData, loading } = useGetDocs("projects"); //get all projects from database
+  const { dbData, loading } = useGetDocs<IProject>("projects"); //get all projects from database
 
   //STATES
   const [selectedProjectID, setSelectedProjectID] = useState(""); // get current project id to show users in the UI

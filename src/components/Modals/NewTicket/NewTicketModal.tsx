@@ -37,8 +37,8 @@ const NewTicketModal = (props: NewTicketModalProps) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const currentUser = useAuth(); //current user information
-  const { dbData } = useGetDocs("projects"); //get all project list from db
-  const { dbData: allUsers } = useGetDocs(
+  const { dbData } = useGetDocs<IProject>("projects"); //get all project list from db
+  const { dbData: allUsers } = useGetDocs<IFirebaseUser>(
     // get all users assigned to selected project
     `projects/${state.selectedProjectID}/users`
   );

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
 
 export interface PageTableBodyForTicketsProps {
-  data: ITicketsRoot[] | null;
+  ticketData: ITicketsRoot[] | null;
   pageNumber: number;
   searchTerm: string;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -12,7 +12,7 @@ export interface PageTableBodyForTicketsProps {
 const PageTableBodyForTickets = (props: PageTableBodyForTicketsProps) => {
   const pagesVisited = props.pageNumber * props.ITEM_PER_PAGE;
 
-  const showTickets = props?.data
+  const showTickets = props?.ticketData
     ?.filter((val) => {
       if (props.searchTerm === "") return val;
       else if (

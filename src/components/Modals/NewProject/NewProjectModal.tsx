@@ -22,7 +22,7 @@ interface ICreateProject {
 
 const NewProjectModal = (props: NewProjectModalProps) => {
   //get the all user list from the database
-  const { dbData } = useGetDocs("users");
+  const { dbData } = useGetDocs<IFirebaseUser>("users");
 
   //collect project information from user
   const [createProjectInformation, setCreateProjectInformation] =

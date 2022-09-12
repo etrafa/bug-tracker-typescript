@@ -1,9 +1,10 @@
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 import { useState } from "react";
 import { useGetDocsNested } from "../../customHooks/useGetDocsNested";
+import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
 
 const MyTicketsAdmin = () => {
-  const { dbData, loading } = useGetDocsNested("projects", "tickets");
+  const { dbData, loading } = useGetDocsNested<IProject>("projects", "tickets");
 
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");

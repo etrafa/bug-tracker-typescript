@@ -6,12 +6,13 @@ import TicketByProject from "./TicketByProject";
 
 import { useGetDocsArrayQuery } from "../../customHooks/useGetDocsArrayQuery";
 import { useAuth } from "../../firebase/firebaseConfig";
+import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
 
 const DashboardHome = () => {
   const currentUser = useAuth();
 
   //GET EVERY TICKET BELONGS TO CURRENT USER
-  const { dbData } = useGetDocsArrayQuery(
+  const { dbData } = useGetDocsArrayQuery<ITicketsRoot>(
     "tickets",
     "userEmails",
     currentUser?.email || "undefined"
@@ -23,10 +24,10 @@ const DashboardHome = () => {
         Dashboard
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 mb-6">
-        <TicketByPriority dbData={dbData} />
-        <TicketByType dbData={dbData} />
-        <TicketByStatus dbData={dbData} />
-        <TicketByProject dbData={dbData} />
+        {dbData && <TicketByPriority dbData={dbData} />}
+        {dbData && <TicketByType dbData={dbData} />}
+        {dbData && <TicketByStatus dbData={dbData} />}
+        {dbData && <TicketByProject dbData={dbData} />}
       </div>
     </div>
   );

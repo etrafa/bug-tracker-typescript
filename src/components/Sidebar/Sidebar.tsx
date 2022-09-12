@@ -18,10 +18,11 @@ import {
 import { firebaseLogout } from "../../firebase/FirebaseAuthFunctions/firebaseLogout";
 import { useGetSingleDoc } from "../../customHooks/useGetSingleDoc";
 import { useAuth } from "../../firebase/firebaseConfig";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 const Sidebar = () => {
   const currentUser = useAuth();
-  const { dbData } = useGetSingleDoc("users", currentUser?.uid); //get current user
+  const { dbData } = useGetSingleDoc<IFirebaseUser>("users", currentUser?.uid); //get current user
 
   enum USER_TYPES {
     admin = "admin",

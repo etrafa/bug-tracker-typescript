@@ -19,6 +19,7 @@ import {
 
 //logout function
 import { firebaseLogout } from "../../firebase/FirebaseAuthFunctions/firebaseLogout";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 enum USER_TYPES {
   admin = "admin",
@@ -32,7 +33,7 @@ const NavbarSmallScreen: FC<INavProps> = ({
 }) => {
   const currentUser = useAuth();
 
-  const { dbData } = useGetSingleDoc("users", currentUser?.uid); //get current user
+  const { dbData } = useGetSingleDoc<IFirebaseUser>("users", currentUser?.uid); //get current user
 
   return (
     <nav className="w-full lg:hidden min-h-screen bg-gray-200 fixed top-0 bottom-0 z-50 overflow-y-auto">

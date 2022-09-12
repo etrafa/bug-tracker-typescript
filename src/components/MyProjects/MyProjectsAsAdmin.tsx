@@ -1,9 +1,17 @@
+//react
 import { useState } from "react";
+
+//firebase
 import { useGetDocs } from "../../customHooks/useGetDocs";
+
+//components
 import PageSkeleton from "../../Utilities/Common-Page-Structures/PageSkeleton";
 
+//interfaces
+import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
+
 const MyProjectsAdmin = () => {
-  const { dbData, loading } = useGetDocs("projects"); //fetch the data
+  const { dbData, loading } = useGetDocs<IProject>("projects"); //fetch the data
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
