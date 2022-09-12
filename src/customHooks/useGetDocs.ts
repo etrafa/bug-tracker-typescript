@@ -4,17 +4,11 @@
 import { useEffect, useState } from "react";
 
 //firebase
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, DocumentData, onSnapshot } from "firebase/firestore";
 import { db, useAuth } from "../firebase/firebaseConfig";
 
-//interfaces
-import { IProject } from "../Interfaces/Firebase-Interfaces/ProjectInterface";
-import { IFirebaseUser } from "../Interfaces/Firebase-Interfaces/UserInterface";
-
-type UseGetDocsTypes = IFirebaseUser[] | IProject[] | null;
-
-export const useGetDocs = (colName: string) => {
-  const [dbData, setDbData] = useState<UseGetDocsTypes>(null);
+export function useGetDocs<T>(colName: string) {
+  const [dbData, setDbData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   const currentUser = useAuth();
 
@@ -23,9 +17,9 @@ export const useGetDocs = (colName: string) => {
       setLoading(true);
       const docRef = collection(db, colName);
       if (typeof colName === "string") {
-        onSnapshot(docRef, (item) => {
+        onSnapshot(docRef, (item: DocumentData) => {
           setDbData(
-            item.docs.map((i) => {
+            item.docs.map((i: DocumentData) => {
               return { ...i.data(), id: i.id };
             })
           );
@@ -36,4 +30,4 @@ export const useGetDocs = (colName: string) => {
     fetchData();
   }, [currentUser, colName]);
   return { dbData, loading };
-};
+}

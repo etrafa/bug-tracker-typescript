@@ -11,8 +11,6 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db, useAuth } from "../firebase/firebaseConfig";
-import { IProject } from "../Interfaces/Firebase-Interfaces/ProjectInterface";
-import { IFirebaseUser } from "../Interfaces/Firebase-Interfaces/UserInterface";
 
 export function useGetDocsWithQuery<T>(
   colName: string,
