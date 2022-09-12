@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useGetDocs } from "../../../customHooks/useGetDocs";
 import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
 import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
+import PagePagination from "../../../Utilities/Common-Page-Structures/PagePagination";
 import PageSearch from "../../../Utilities/Common-Page-Structures/PageSearch";
 import PageTable from "../../../Utilities/Common-Page-Structures/PageTable";
 import PageTableBodyForProjects from "../../../Utilities/Common-Page-Structures/PageTableBodyForProjects";
@@ -13,16 +14,21 @@ interface TicketForSingleProjectProps {
 
 const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
   const { dbData } = useGetDocs<ITicketsRoot>(
     `projects/${props.projectID}/tickets`
   );
-  console.log(dbData);
 
   return (
     <div className="w-full lg:w-6/12 text-center overflow-auto mr-16">
+      <header>
+        <h1 className="text-3xl text-black mb-10 font-bold">
+          All tickets for this Project
+        </h1>
+      </header>
       <PageSearch
         searchInputPlaceHolder="Search ticket"
-        searchInputChangeHandler={() => console.log("hey")}
+        searchInputChangeHandler={(e) => setSearchTerm(e.target.value)}
       />
       <PageTable
         ITEM_PER_PAGE={5}
@@ -31,7 +37,7 @@ const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
         data={dbData}
         firstTableHeader="Title"
         pageType="ticket"
-        searchTerm=""
+        searchTerm={searchTerm}
         secondTableHeader="Submitter"
         thirdTableHeader="Status"
         fourthTableHeader="Created"
