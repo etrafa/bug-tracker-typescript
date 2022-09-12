@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useGetSingleDoc } from "../../../customHooks/useGetSingleDoc";
 import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
+import AssignedUsersForSingleProject from "./AssignedUsersForSingleProject";
 import SingleProjectHeader from "./SingleProjectHeader";
 
 const SingleProject = () => {
@@ -22,6 +23,9 @@ const SingleProject = () => {
             projectDescription={dbData.projectDescription}
           />
         )}
+        <div className="w-full mt-36 flex flex-col lg:flex-row lg:justify-between">
+          <AssignedUsersForSingleProject />
+        </div>
       </div>
     </div>
   );
