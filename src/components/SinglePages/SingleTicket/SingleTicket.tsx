@@ -6,7 +6,15 @@ import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInt
 import LoadSpinner from "../../../Utilities/LoadSpinner";
 import SingleTicketInformation from "./SingleTicketInformation";
 
-const SingleTicket = () => {
+interface SingleTicketProps {
+  setIsEditTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentTicketID: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SingleTicket = ({
+  setCurrentTicketID,
+  setIsEditTicketModalOpen,
+}: SingleTicketProps) => {
   const { ticketID } = useParams(); //get the ticket id
   const navigate = useNavigate();
 
@@ -38,8 +46,8 @@ const SingleTicket = () => {
 
             <p
               onClick={() => {
-                // setIsEditTicketModalOpen(true);
-                // setTicketID(ticketId || "undefined");
+                setIsEditTicketModalOpen(true);
+                setCurrentTicketID(ticketID || "undefined");
               }}
               className="text-base underline text-center py-4 cursor-pointer hover:text-gray-300"
             >

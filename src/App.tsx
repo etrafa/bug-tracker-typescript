@@ -30,6 +30,12 @@ function App() {
   //*toggle assign user modal
   const [isAssignedUserModalOpen, setIsAssignedUserModalOpen] = useState(false);
 
+  //*toggle edit ticket modal
+  const [isEditTicketModalOpen, setIsEditTicketModalOpen] = useState(false);
+
+  //* get current ticket ID
+  const [currentTicketID, setCurrentTicketID] = useState("");
+
   const currentUser = useAuth(); //get current user
   const navigate = useNavigate();
 
@@ -78,7 +84,15 @@ function App() {
         <Route path="/all-projects" element={<MyProjectsAsAdmin />} />
         <Route path="/my-tickets" element={<MyTicketsUsers />} />
         <Route path="/all-tickets" element={<MyTicketsAdmin />} />
-        <Route path="tickets/:ticketID" element={<SingleTicket />} />
+        <Route
+          path="tickets/:ticketID"
+          element={
+            <SingleTicket
+              setIsEditTicketModalOpen={setIsEditTicketModalOpen}
+              setCurrentTicketID={setCurrentTicketID}
+            />
+          }
+        />
       </Routes>
     </>
   );
