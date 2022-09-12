@@ -38,7 +38,7 @@ const PageTableBodyForTickets = (props: PageTableBodyForTicketsProps) => {
           <td className="px-6 py-4">{ticket.projectName}</td>
           <td className="px-6 py-4">{ticket.ticketOwner}</td>
           <td className="px-6 py-4">{ticket.submitTime}</td>
-          <Link to={`/my-tickets/${ticket.id}`}>
+          <Link to={`/tickets/${ticket.id}`}>
             <td className="px-6 py-4 text-fbFillColor cursor-pointer underline hover:text-blue-700">
               More details
             </td>
