@@ -1,25 +1,25 @@
 import {
   collectionGroup,
   doc,
+  DocumentData,
   getDocs,
   onSnapshot,
   query,
   where,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { ITicketsRoot } from "../Interfaces/Firebase-Interfaces/TicketsInterface";
 import { db, useAuth } from "../firebase/firebaseConfig";
 
-export const useGetDocsArrayQuery = (
+export function useGetDocsArrayQuery<T>(
   colName: string,
   qu: string,
   endPoint: string
-) => {
-  const [dbData, setDbData] = useState<ITicketsRoot[]>([]);
+) {
+  const [dbData, setDbData] = useState<T[] | null>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   let PARENT_PATH: string[] = [];
-  let ALL_DATA_FIRESTORE: ITicketsRoot[] = [];
+  let ALL_DATA_FIRESTORE: T[] = [];
 
   const currentUser = useAuth();
 
@@ -39,7 +39,7 @@ export const useGetDocsArrayQuery = (
 
       PARENT_PATH.forEach((path) => {
         const docRef = doc(db, path);
-        onSnapshot(docRef, (item) => {
+        onSnapshot(docRef, (item: DocumentData) => {
           ALL_DATA_FIRESTORE.push({ ...item.data(), id: item.id });
           setDbData(ALL_DATA_FIRESTORE);
         });
@@ -50,4 +50,4 @@ export const useGetDocsArrayQuery = (
     fetchData();
   }, [currentUser, colName, qu, endPoint]);
   return { dbData, loading };
-};
+}

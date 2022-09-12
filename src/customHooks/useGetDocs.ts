@@ -8,7 +8,7 @@ import { collection, DocumentData, onSnapshot } from "firebase/firestore";
 import { db, useAuth } from "../firebase/firebaseConfig";
 
 export function useGetDocs<T>(colName: string) {
-  const [dbData, setDbData] = useState<T | null>(null);
+  const [dbData, setDbData] = useState<T[] | null>(null);
   const [loading, setLoading] = useState(false);
   const currentUser = useAuth();
 
