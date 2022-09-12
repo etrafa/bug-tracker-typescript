@@ -94,7 +94,7 @@ function App() {
             />
           }
         />
-        <Route path="projects:/:projectID" element={<SingleProject />} />
+        <Route path="projects/:projectID" element={<SingleProject />} />
       </Routes>
     </>
   );

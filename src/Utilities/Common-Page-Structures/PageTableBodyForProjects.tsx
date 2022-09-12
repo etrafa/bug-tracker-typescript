@@ -41,7 +41,7 @@ const PageTableBodyForProjects = (props: PageTableBodyForProjectsProps) => {
                   Manage Users
                 </li>
               </Link>
-              <Link to={`/my-projects/${project.id}`}>
+              <Link to={`/projects/${project.id}`}>
                 <li className="text-fbFillColor cursor-pointer underline hover:text-black mt-3">
                   Details
                 </li>
