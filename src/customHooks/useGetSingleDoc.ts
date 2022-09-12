@@ -5,16 +5,13 @@ import { useEffect, useState } from "react";
 
 //firebase
 import { db, useAuth } from "../firebase/firebaseConfig";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, DocumentData, onSnapshot } from "firebase/firestore";
 
-//interfaces
-import { IFirebaseUser } from "../Interfaces/Firebase-Interfaces/UserInterface";
-
-export const useGetSingleDoc = (
+export function useGetSingleDoc<T>(
   docName: string,
   docURL: string | undefined
-) => {
-  const [dbData, setDbData] = useState<IFirebaseUser | null>(null);
+) {
+  const [dbData, setDbData] = useState<T | null>(null);
   const [loading, setLoading] = useState(false);
   const currentUser = useAuth();
 
@@ -24,7 +21,7 @@ export const useGetSingleDoc = (
         setLoading(true);
         if (typeof docURL === "string") {
           const docRef = doc(db, docName, docURL);
-          onSnapshot(docRef, (item) => {
+          onSnapshot(docRef, (item: DocumentData) => {
             setDbData({ ...item.data() });
           });
         }
@@ -35,4 +32,4 @@ export const useGetSingleDoc = (
     }
   }, [currentUser, docURL, docName]);
   return { dbData, loading };
-};
+}
