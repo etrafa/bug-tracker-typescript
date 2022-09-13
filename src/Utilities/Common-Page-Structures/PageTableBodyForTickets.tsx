@@ -12,6 +12,8 @@ export interface PageTableBodyForTicketsProps {
 const PageTableBodyForTickets = (props: PageTableBodyForTicketsProps) => {
   const pagesVisited = props.pageNumber * props.ITEM_PER_PAGE;
 
+  const currentUrl = window.location.href; // get current url from the browser.
+
   const showTickets = props?.ticketData
     ?.filter((val) => {
       if (props.searchTerm === "") return val;
@@ -35,7 +37,14 @@ const PageTableBodyForTickets = (props: PageTableBodyForTicketsProps) => {
           >
             {ticket.ticketDescription}
           </th>
-          <td className="px-6 py-4">{ticket.projectName}</td>
+
+          {/* IF CURRENT URL INCLUDES PROJECT SHOW PROJECT STATUS
+          ELSE SHOW PROJECT NAME */}
+          {currentUrl.includes("projects") ? (
+            <td className="px-6 py-4">{ticket.ticketStatus}</td>
+          ) : (
+            <td className="px-6 py-4">{ticket.projectName}</td>
+          )}
           <td className="px-6 py-4">{ticket.ticketOwner}</td>
           <td className="px-6 py-4">{ticket.submitTime}</td>
           <Link to={`/tickets/${ticket.id}`}>

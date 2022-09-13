@@ -19,6 +19,8 @@ const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
     `projects/${props.projectID}/tickets`
   );
 
+  const url = window.location.href;
+
   return (
     <div className="w-full lg:w-6/12 text-center overflow-auto mr-16">
       <header>
@@ -38,8 +40,8 @@ const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
         firstTableHeader="Title"
         pageType="ticket"
         searchTerm={searchTerm}
-        secondTableHeader="Submitter"
-        thirdTableHeader="Status"
+        secondTableHeader="Status"
+        thirdTableHeader="Submitter"
         fourthTableHeader="Created"
         fifthTableHeader=""
         ticketData={dbData}
