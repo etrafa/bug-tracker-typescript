@@ -44,6 +44,13 @@ const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
         fifthTableHeader=""
         ticketData={dbData}
       />
+      <PagePagination
+        ITEM_PER_PAGE={5}
+        pageNumber={pageNumber}
+        searchTerm=""
+        setPageNumber={setPageNumber}
+        ticketData={dbData}
+      />
     </div>
   );
 };
