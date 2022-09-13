@@ -4,10 +4,12 @@ interface AddCommentProps {
 
 const AddComments = ({ setIsAddCommentModalOpen }: AddCommentProps) => {
   return (
-    <div className="flex gap-x-4 underline cursor-pointer justify-end px-4 py-2 hover:text-gray-500">
+    <div
+      onClick={() => setIsAddCommentModalOpen(true)} //if true open add comment modal.
+      className="flex gap-x-4 underline cursor-pointer justify-end px-4 py-2 hover:text-gray-500"
+    >
       <span>Add Comment</span>
       <svg
-        onClick={() => setIsAddCommentModalOpen(true)} //if true open add comment modal.
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
