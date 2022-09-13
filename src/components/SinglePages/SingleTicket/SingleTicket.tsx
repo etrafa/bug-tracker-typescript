@@ -9,7 +9,6 @@ import LoadSpinner from "../../../Utilities/LoadSpinner";
 import SingleTicketInformation from "./SingleTicketInformation";
 
 //interfaces
-import { IComment } from "../../../Interfaces/Firebase-Interfaces/CommentInterface";
 import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
 import TicketComments from "./TicketComments";
 
@@ -28,15 +27,6 @@ const SingleTicket = ({
   //*GET SINGLE TICKET INFORMATION
   const { singleData: singleTicket, loading } =
     useGetDocsWithQuery<ITicketsRoot>("tickets", "id", ticketID || "undefined");
-
-  console.log(singleTicket);
-
-  //*GET TICKET COMMENTS
-  const { singleData: ticketCommentsData } = useGetDocsWithQuery<IComment>(
-    "comments",
-    "belongedTicketID",
-    ticketID || "undefined"
-  );
 
   return (
     <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto mb-6">
@@ -68,7 +58,7 @@ const SingleTicket = ({
           {/* //*display ticket details * */}
           {singleTicket && <SingleTicketInformation {...singleTicket} />}
           {/* //*display ticket comments  */}
-          {ticketCommentsData && <TicketComments {...ticketCommentsData} />}
+          {ticketID && <TicketComments ticketID={ticketID} />}
         </div>
       </div>
     </div>
