@@ -19,8 +19,6 @@ const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
     `projects/${props.projectID}/tickets`
   );
 
-  const url = window.location.href;
-
   return (
     <div className="w-full lg:w-6/12 text-center overflow-auto mr-16">
       <header>
@@ -46,13 +44,17 @@ const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
         fifthTableHeader=""
         ticketData={dbData}
       />
-      <PagePagination
-        ITEM_PER_PAGE={5}
-        pageNumber={pageNumber}
-        searchTerm=""
-        setPageNumber={setPageNumber}
-        ticketData={dbData}
-      />
+
+      {/* //*SHOW PAGINATION ONLY IF THERE IS MORE ITEM THAN ITEM_PER_PAGE */}
+      {dbData && dbData?.length > 5 && (
+        <PagePagination
+          ITEM_PER_PAGE={5}
+          pageNumber={pageNumber}
+          searchTerm=""
+          setPageNumber={setPageNumber}
+          ticketData={dbData}
+        />
+      )}
     </div>
   );
 };
