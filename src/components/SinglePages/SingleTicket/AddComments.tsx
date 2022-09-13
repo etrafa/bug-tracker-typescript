@@ -1,8 +1,13 @@
-const AddComments = () => {
+interface AddCommentProps {
+  setIsAddCommentModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AddComments = ({ setIsAddCommentModalOpen }: AddCommentProps) => {
   return (
     <div className="flex gap-x-4 underline cursor-pointer justify-end px-4 py-2 hover:text-gray-500">
       <span>Add Comment</span>
       <svg
+        onClick={() => setIsAddCommentModalOpen(true)} //if true open add comment modal.
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -21,8 +26,8 @@ const AddComments = () => {
 };
 export default AddComments;
 
-{
-  /* <div>
+// {
+/* <div>
 <textarea
   className="border w-11/12 h-12 pl-2 pt-2 text-sm mt-6"
   typeof="text"
@@ -42,4 +47,4 @@ export default AddComments;
   Submit
 </button>
 </div> */
-}
+// }

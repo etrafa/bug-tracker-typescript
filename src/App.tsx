@@ -20,6 +20,7 @@ import MyTicketsAdmin from "./components/MyTickets/MyTicketsAdmin";
 import { useAuth } from "./firebase/firebaseConfig";
 import SingleTicket from "./components/SinglePages/SingleTicket/SingleTicket";
 import SingleProject from "./components/SinglePages/SingleProject/SingleProject";
+import AddCommentModal from "./components/Modals/AddComment/AddCommentModal";
 
 function App() {
   //*toggle project modal
@@ -33,6 +34,9 @@ function App() {
 
   //*toggle edit ticket modal
   const [isEditTicketModalOpen, setIsEditTicketModalOpen] = useState(false);
+
+  //*toggle add comment modal
+  const [isAddCommentModalOpen, setIsAddCommentModalOpen] = useState(false);
 
   //* get current ticket ID
   const [currentTicketID, setCurrentTicketID] = useState("");
@@ -58,6 +62,11 @@ function App() {
       {isAssignedUserModalOpen && (
         <AssignUserModal setIsAssignedUserModal={setIsAssignedUserModalOpen} />
       )}
+      {isAddCommentModalOpen && (
+        <AddCommentModal setIsAddCommentModalOpen={setIsAddCommentModalOpen} />
+      )}
+      {/* //* MODALS ENDS // */}
+
       {/* //* ------------------------ // */}
       {/* //* ONLY SHOW IF USER LOGGED IN // */}
       {currentUser && <Sidebar />}
@@ -91,6 +100,7 @@ function App() {
             <SingleTicket
               setIsEditTicketModalOpen={setIsEditTicketModalOpen}
               setCurrentTicketID={setCurrentTicketID}
+              setIsAddCommentModalOpen={setIsAddCommentModalOpen}
             />
           }
         />

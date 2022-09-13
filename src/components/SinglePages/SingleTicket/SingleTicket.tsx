@@ -15,11 +15,13 @@ import TicketComments from "./TicketComments";
 interface SingleTicketProps {
   setIsEditTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentTicketID: React.Dispatch<React.SetStateAction<string>>;
+  setIsAddCommentModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SingleTicket = ({
   setCurrentTicketID,
   setIsEditTicketModalOpen,
+  setIsAddCommentModalOpen,
 }: SingleTicketProps) => {
   const { ticketID } = useParams(); //get the ticket id
   const navigate = useNavigate();
@@ -58,7 +60,12 @@ const SingleTicket = ({
           {/* //*display ticket details * */}
           {singleTicket && <SingleTicketInformation {...singleTicket} />}
           {/* //*display ticket comments  */}
-          {ticketID && <TicketComments ticketID={ticketID} />}
+          {ticketID && (
+            <TicketComments
+              ticketID={ticketID}
+              setIsAddCommentModalOpen={setIsAddCommentModalOpen}
+            />
+          )}
         </div>
       </div>
     </div>
