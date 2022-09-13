@@ -26,40 +26,48 @@ const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
   );
 
   return (
-    <div className="w-full lg:w-6/12 text-center overflow-auto mr-16">
+    <div className="w-full lg:w-7/12 text-center overflow-auto">
       <header>
         <h1 className="text-3xl text-black mb-10 font-bold">
           All tickets for this Project
         </h1>
       </header>
-      <PageSearch
-        searchInputPlaceHolder="Search ticket"
-        searchInputChangeHandler={(e) => setSearchTerm(e.target.value)}
-      />
-      <PageTable
-        ITEM_PER_PAGE={5}
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        data={dbData}
-        firstTableHeader="Title"
-        pageType="ticket"
-        searchTerm={searchTerm}
-        secondTableHeader="Status"
-        thirdTableHeader="Submitter"
-        fourthTableHeader="Created"
-        fifthTableHeader=""
-        ticketData={dbData}
-      />
 
-      {/* //*SHOW PAGINATION ONLY IF THERE IS MORE ITEM THAN ITEM_PER_PAGE */}
-      {dbData && dbData?.length > 5 && (
-        <PagePagination
-          ITEM_PER_PAGE={5}
-          pageNumber={pageNumber}
-          searchTerm=""
-          setPageNumber={setPageNumber}
-          ticketData={dbData}
-        />
+      {/* //*SHOW DATA IF EXIST ELSE SHOW NO FOUND MESSAGE */}
+      {dbData && dbData.length >= 1 ? (
+        <>
+          <PageSearch
+            searchInputPlaceHolder="Search ticket"
+            searchInputChangeHandler={(e) => setSearchTerm(e.target.value)}
+          />
+          <PageTable
+            ITEM_PER_PAGE={5}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            data={dbData}
+            firstTableHeader="Title"
+            pageType="ticket"
+            searchTerm={searchTerm}
+            secondTableHeader="Status"
+            thirdTableHeader="Submitter"
+            fourthTableHeader="Created"
+            fifthTableHeader=""
+            ticketData={dbData}
+          />
+
+          {/* //*SHOW PAGINATION ONLY IF THERE IS MORE ITEM THAN ITEM_PER_PAGE */}
+          {dbData && dbData?.length > 5 && (
+            <PagePagination
+              ITEM_PER_PAGE={5}
+              pageNumber={pageNumber}
+              searchTerm=""
+              setPageNumber={setPageNumber}
+              ticketData={dbData}
+            />
+          )}
+        </>
+      ) : (
+        <p className="lg:mt-24 font-bold">No ticket found.</p>
       )}
     </div>
   );

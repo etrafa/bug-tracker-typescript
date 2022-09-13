@@ -24,8 +24,10 @@ const SingleProject = () => {
             projectDescription={dbData.projectDescription}
           />
         )}
+
         <div className="w-full mt-36 flex flex-col lg:flex-row lg:justify-between">
           {projectID && <AssignedUsersForSingleProject projectID={projectID} />}
+          <div className="hidden lg:block border border-black"></div>
           {projectID && <TicketForSingleProject projectID={projectID} />}
         </div>
       </div>

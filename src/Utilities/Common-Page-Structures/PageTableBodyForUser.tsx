@@ -32,7 +32,6 @@ const PageTableBodyForUser = (props: PageTableBodyForUserProps) => {
           >
             {user.fullName}
           </th>
-          <td className="px-6 py-4">{user.email}</td>
           <td className="px-6 py-4">{user.role}</td>
         </tr>
       );

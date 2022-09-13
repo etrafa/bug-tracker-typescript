@@ -20,7 +20,7 @@ export interface PageTableProps
     PageTableBodyForUserProps {
   firstTableHeader: string;
   secondTableHeader: string;
-  thirdTableHeader: string;
+  thirdTableHeader?: string;
   fourthTableHeader?: string;
   fifthTableHeader?: string;
   pageType: string;
