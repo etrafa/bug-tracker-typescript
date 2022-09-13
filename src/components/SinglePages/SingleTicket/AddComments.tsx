@@ -1,11 +1,20 @@
 interface AddCommentProps {
+  ticketID: string;
   setIsAddCommentModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentTicketID: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AddComments = ({ setIsAddCommentModalOpen }: AddCommentProps) => {
+const AddComments = ({
+  setIsAddCommentModalOpen,
+  ticketID,
+  setCurrentTicketID,
+}: AddCommentProps) => {
   return (
     <div
-      onClick={() => setIsAddCommentModalOpen(true)} //if true open add comment modal.
+      onClick={() => {
+        setIsAddCommentModalOpen(true); //if true open add comment modal.
+        setCurrentTicketID(ticketID); //get current ticket ID
+      }}
       className="flex gap-x-4 underline cursor-pointer justify-end px-4 py-2 hover:text-gray-500"
     >
       <span>Add Comment</span>
@@ -27,26 +36,3 @@ const AddComments = ({ setIsAddCommentModalOpen }: AddCommentProps) => {
   );
 };
 export default AddComments;
-
-// {
-/* <div>
-<textarea
-  className="border w-11/12 h-12 pl-2 pt-2 text-sm mt-6"
-  typeof="text"
-  // value={commentInput}
-  placeholder="Write a comment."
-  // onChange={(e) => setCommentInput(e.target.value)} // save user's comment to state to send database
-/>
-<button
-  // onClick={(e) => submitHandler(e)}
-  type="submit"
-  // className={
-  //   isFormValidated
-  //     ? "bg-fbFillColor text-white font-bold w-28 h-8 mx-auto hover:bg-blue-400"
-  //     : "bg-gray-700 pointer-events-none text-white font-bold w-28 h-8 mx-auto hover:bg-blue-400"
-  // }
->
-  Submit
-</button>
-</div> */
-// }

@@ -46,7 +46,7 @@ const SingleTicket = ({
             <p
               onClick={() => {
                 setIsEditTicketModalOpen(true);
-                setCurrentTicketID(ticketID || "undefined");
+                setCurrentTicketID(ticketID || "undefined"); //ticket ID is needed for edit ticket modal.
               }}
               className="text-base underline text-center py-4 cursor-pointer hover:text-gray-300"
             >
@@ -63,6 +63,7 @@ const SingleTicket = ({
           {ticketID && (
             <TicketComments
               ticketID={ticketID}
+              setCurrentTicketID={setCurrentTicketID} //ticked ID is needed for add comment modal.
               setIsAddCommentModalOpen={setIsAddCommentModalOpen}
             />
           )}

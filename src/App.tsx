@@ -63,7 +63,10 @@ function App() {
         <AssignUserModal setIsAssignedUserModal={setIsAssignedUserModalOpen} />
       )}
       {isAddCommentModalOpen && (
-        <AddCommentModal setIsAddCommentModalOpen={setIsAddCommentModalOpen} />
+        <AddCommentModal
+          currentTicketID={currentTicketID}
+          setIsAddCommentModalOpen={setIsAddCommentModalOpen}
+        />
       )}
       {/* //* MODALS ENDS // */}
 
