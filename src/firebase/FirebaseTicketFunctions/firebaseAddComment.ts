@@ -12,7 +12,8 @@ export const firebaseAddTicketComment = async (
   docID: string,
   comment: string,
   commentOwner: string,
-  belongedTicketID: string
+  showSuccessMessage: React.Dispatch<React.SetStateAction<boolean>>,
+  isModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const colRef = collection(db, "projects");
   const res = await getDocs(colRef);
@@ -29,12 +30,21 @@ export const firebaseAddTicketComment = async (
 
       if (grandParentPath) {
         const collectionReference = collection(db, grandParentPath, "comments");
-        await addDoc(collectionReference, {
-          comment: comment,
-          commentOwner: commentOwner,
-          createdAt: serverTimestamp(),
-          belongedTicketID: belongedTicketID,
-        });
+        try {
+          await addDoc(collectionReference, {
+            comment: comment,
+            commentOwner: commentOwner,
+            createdAt: serverTimestamp(),
+            belongedTicketID: docID,
+          });
+          showSuccessMessage(true); //if true show success message on modal.
+          //3 secs later close the modal.
+          setTimeout(() => {
+            isModalOpen(false);
+          }, 3000);
+        } catch (err) {
+          console.log(err);
+        }
       }
     });
   });
