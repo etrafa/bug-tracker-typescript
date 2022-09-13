@@ -1,8 +1,16 @@
-import PageTable from "../../../Utilities/Common-Page-Structures/PageTable";
+//react
 import { useState } from "react";
-import PagePagination from "../../../Utilities/Common-Page-Structures/PagePagination";
+
+//firebase
 import { useGetDocs } from "../../../customHooks/useGetDocs";
+
+//components
+import PageTable from "../../../Utilities/Common-Page-Structures/PageTable";
+import PagePagination from "../../../Utilities/Common-Page-Structures/PagePagination";
+
+//interfaces
 import { IFirebaseUser } from "../../../Interfaces/Firebase-Interfaces/UserInterface";
+import PageSearch from "../../../Utilities/Common-Page-Structures/PageSearch";
 
 interface AssignedUsersForSingleProjectProps {
   projectID: string;
@@ -19,23 +27,27 @@ const AssignedUsersForSingleProject = (
   );
 
   return (
-    <div className="w-full lg:w-4/12 text-center overflow-auto lg:ml-6">
-      <PageTable
-        ITEM_PER_PAGE={5}
-        pageNumber={0}
-        searchTerm="a"
-        firstTableHeader="User"
-        data={[]}
-        setPageNumber={setPageNumber}
-        pageType="t"
-        secondTableHeader="Role"
-        thirdTableHeader=""
+    <div className="w-full lg:w-5/12 text-center overflow-auto lg:ml-6">
+      <header>
+        <h1 className="text-3xl text-black mb-10 font-bold">Assigned Users</h1>
+      </header>
+
+      <PageSearch
+        searchInputPlaceHolder="Search User"
+        searchInputChangeHandler={() => console.log("hey")}
       />
-      <PagePagination
+
+      <PageTable
         ITEM_PER_PAGE={5}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
-        searchTerm="a"
+        data={dbData}
+        firstTableHeader="User"
+        pageType="user"
+        userDataForTable={dbData}
+        secondTableHeader="Email"
+        thirdTableHeader="Role"
+        searchTerm=""
       />
     </div>
   );

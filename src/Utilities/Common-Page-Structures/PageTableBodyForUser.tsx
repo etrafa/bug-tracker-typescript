@@ -1,8 +1,7 @@
-import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
-import { Link } from "react-router-dom";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 export interface PageTableBodyForUserProps {
-  projectData?: IProject[] | null;
+  userDataForTable?: IFirebaseUser[] | null;
   pageNumber: number;
   searchTerm: string;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
@@ -12,46 +11,33 @@ export interface PageTableBodyForUserProps {
 const PageTableBodyForUser = (props: PageTableBodyForUserProps) => {
   const pagesVisited = props.pageNumber * props.ITEM_PER_PAGE;
 
-  const showProjects = props?.projectData
+  const showUsers = props?.userDataForTable
     ?.filter((val) => {
       if (props.searchTerm === "") return val;
       else if (
-        val.projectName?.toLowerCase().includes(props.searchTerm.toLowerCase())
+        val.fullName?.toLowerCase().includes(props.searchTerm.toLowerCase())
       )
         return val;
     })
     .slice(pagesVisited, pagesVisited + props.ITEM_PER_PAGE)
-    .map((project) => {
+    .map((user) => {
       return (
         <tr
-          key={project?.id}
+          key={user.id}
           className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <th
             scope="row"
             className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
           >
-            {project.projectName}
+            {user.fullName}
           </th>
-          <td className="px-6 py-4">{project.projectDescription}</td>
-          <td className="px-6 py-4">
-            <ul className="list-disc">
-              <Link to={`/manage-project-user`}>
-                <li className="text-fbFillColor cursor-pointer underline hover:text-black">
-                  Manage Users
-                </li>
-              </Link>
-              <Link to={`/projects/${project.id}`}>
-                <li className="text-fbFillColor cursor-pointer underline hover:text-black mt-3">
-                  Details
-                </li>
-              </Link>
-            </ul>
-          </td>
+          <td className="px-6 py-4">{user.email}</td>
+          <td className="px-6 py-4">{user.role}</td>
         </tr>
       );
     });
 
-  return <tbody>{showProjects}</tbody>;
+  return <tbody>{showUsers}</tbody>;
 };
 export default PageTableBodyForUser;

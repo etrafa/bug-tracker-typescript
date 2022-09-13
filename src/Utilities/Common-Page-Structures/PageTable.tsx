@@ -9,17 +9,22 @@ import PageTableBodyForProjects, {
 //interfaces
 import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
 import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
+import PageTableBodyForUser, {
+  PageTableBodyForUserProps,
+} from "./PageTableBodyForUser";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 export interface PageTableProps
   extends PageTableBodyForProjectsProps,
-    PageTableBodyForTicketsProps {
+    PageTableBodyForTicketsProps,
+    PageTableBodyForUserProps {
   firstTableHeader: string;
   secondTableHeader: string;
   thirdTableHeader: string;
   fourthTableHeader?: string;
   fifthTableHeader?: string;
   pageType: string;
-  data: IProject[] | ITicketsRoot[] | null;
+  data: IProject[] | ITicketsRoot[] | IFirebaseUser[] | null;
   searchTerm: string;
   ITEM_PER_PAGE: number;
   pageNumber: number;
@@ -33,13 +38,13 @@ const PageTable = ({
   fourthTableHeader,
   fifthTableHeader,
   pageType,
-
   searchTerm,
   ITEM_PER_PAGE,
   pageNumber,
   projectData,
   ticketData,
   setPageNumber,
+  userDataForTable,
 }: PageTableProps) => {
   return (
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-12">
@@ -72,6 +77,16 @@ const PageTable = ({
       {ticketData && pageType === "ticket" && (
         <PageTableBodyForTickets
           ticketData={ticketData}
+          ITEM_PER_PAGE={ITEM_PER_PAGE}
+          pageNumber={pageNumber}
+          searchTerm={searchTerm}
+          setPageNumber={setPageNumber}
+        />
+      )}
+
+      {userDataForTable && pageType === "user" && (
+        <PageTableBodyForUser
+          userDataForTable={userDataForTable}
           ITEM_PER_PAGE={ITEM_PER_PAGE}
           pageNumber={pageNumber}
           searchTerm={searchTerm}
