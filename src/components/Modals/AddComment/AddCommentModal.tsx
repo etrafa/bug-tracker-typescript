@@ -49,17 +49,20 @@ const AddCommentModal = ({
 
   return (
     <Modal
-      buttonText="Add Comment"
+      //*-----SKELETON -----//*
+      header="Add New Comment" //modal header
       clickHandler={() => setIsAddCommentModalOpen(false)} //close comment modal.
-      header="Add New Comment"
+      //*-----YOUR MESSAGE SECTION -----//*
       firstLabel="Your Message"
       firstLabelName="userMessage"
       firstPlaceholder=" "
       handleChange={(e) => setCommentTextInput(e.target.value)} //comment text input value
-      handleSubmit={addTicketToDB}
-      isFormValidated={isFormValidated}
-      showSuccessMessage={showSuccessMessage}
-      successMessage="Your comment has been saved."
+      //*-----ADD COMMENT BUTTON SECTION -----//*
+      buttonText="Add Comment" //button text
+      handleSubmit={addTicketToDB} //save comment to database.
+      isFormValidated={isFormValidated} //check if form is validated.
+      showSuccessMessage={showSuccessMessage} //if true show success message
+      successMessage="Your comment has been saved." //success message.
     />
   );
 };
