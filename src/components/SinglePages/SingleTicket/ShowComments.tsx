@@ -16,11 +16,12 @@ const ShowComments = ({ ticketCommentsData }: ShowCommentsProps) => {
 
         return (
           <div>
-            <header className="flex justify-end">
+            <header className="flex justify-end mt">
               <p className="mx-6 mt-2 text-gray-400 text-sm">{commentOwner}</p>
               <p className="mx-6 mt-2 text-gray-400 text-sm">{createdAtJSON}</p>
             </header>
             <p className="text-left m-4 font-bold text-sm">{comment}</p>
+            <hr />
           </div>
         );
       })}

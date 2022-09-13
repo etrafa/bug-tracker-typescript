@@ -20,10 +20,10 @@ const TicketComments = (props: TicketCommentsProps) => {
   return (
     <div className="w-full lg:w-6/12 max-w-2xl text-center overflow-auto mt-12 mx-auto lg:border-l-2">
       <h2 className="text-center font-bold text-lg">Comments</h2>
+      <AddComments />
       {ticketCommentsData && (
         <ShowComments ticketCommentsData={ticketCommentsData} />
       )}
-      {/* <AddComments /> */}
     </div>
   );
 };
