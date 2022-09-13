@@ -1,12 +1,16 @@
+//react
 import { useState } from "react";
+
+//firebase
 import { useGetDocs } from "../../../customHooks/useGetDocs";
-import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
-import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
+
+//components
 import PagePagination from "../../../Utilities/Common-Page-Structures/PagePagination";
 import PageSearch from "../../../Utilities/Common-Page-Structures/PageSearch";
 import PageTable from "../../../Utilities/Common-Page-Structures/PageTable";
-import PageTableBodyForProjects from "../../../Utilities/Common-Page-Structures/PageTableBodyForProjects";
-import PageTableBodyForTickets from "../../../Utilities/Common-Page-Structures/PageTableBodyForTickets";
+
+//interfaces
+import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
 
 interface TicketForSingleProjectProps {
   projectID: string;
@@ -15,6 +19,8 @@ interface TicketForSingleProjectProps {
 const TicketForSingleProject = (props: TicketForSingleProjectProps) => {
   const [pageNumber, setPageNumber] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
+
+  //GET ALL THE TICKETS FOR SELECTED PROJECTS
   const { dbData } = useGetDocs<ITicketsRoot>(
     `projects/${props.projectID}/tickets`
   );

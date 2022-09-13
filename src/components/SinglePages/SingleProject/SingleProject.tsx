@@ -25,7 +25,7 @@ const SingleProject = () => {
           />
         )}
         <div className="w-full mt-36 flex flex-col lg:flex-row lg:justify-between">
-          <AssignedUsersForSingleProject />
+          {projectID && <AssignedUsersForSingleProject projectID={projectID} />}
           {projectID && <TicketForSingleProject projectID={projectID} />}
         </div>
       </div>
