@@ -16,6 +16,7 @@ const MyTicketsUsers = () => {
   const { dbData, loading } = useGetDocsArrayQuery<ITicketsRoot>(
     "tickets",
     "userEmails",
+    "array-contains",
     currentUser?.email || "undefined"
   );
   const [pageNumber, setPageNumber] = useState(0);

@@ -15,6 +15,7 @@ const DashboardHome = () => {
   const { dbData } = useGetDocsArrayQuery<ITicketsRoot>(
     "tickets",
     "userEmails",
+    "array-contains",
     currentUser?.email || "undefined"
   );
 
