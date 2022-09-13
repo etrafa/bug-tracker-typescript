@@ -68,6 +68,7 @@ const PageSkeleton = (props: PageSkeletonProps) => {
                 <PagePagination
                   ITEM_PER_PAGE={props.ITEM_PER_PAGE}
                   projectData={props.projectData}
+                  ticketData={props.ticketData}
                   pageNumber={props.pageNumber}
                   setPageNumber={props.setPageNumber}
                   searchTerm={props.searchTerm}

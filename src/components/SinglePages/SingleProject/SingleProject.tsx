@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useGetSingleDoc } from "../../../customHooks/useGetSingleDoc";
 import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
+import LoadSpinner from "../../../Utilities/LoadSpinner";
 import AssignedUsersForSingleProject from "./AssignedUsersForSingleProject";
 import SingleProjectHeader from "./SingleProjectHeader";
 import TicketForSingleProject from "./TicketForSingleProject";
@@ -18,6 +19,7 @@ const SingleProject = () => {
   return (
     <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto mb-6">
       <div className="w-11/12 mx-auto mt-24 relative border border-black lg:min-h-[20rem]">
+        {loading && <LoadSpinner />}
         {dbData && (
           <SingleProjectHeader
             projectName={dbData.projectName}
