@@ -6,6 +6,7 @@ import {
   onSnapshot,
   query,
   where,
+  WhereFilterOp,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db, useAuth } from "../firebase/firebaseConfig";
@@ -13,6 +14,7 @@ import { db, useAuth } from "../firebase/firebaseConfig";
 export function useGetDocsArrayQuery<T>(
   colName: string,
   qu: string,
+  queryType: WhereFilterOp,
   endPoint: string
 ) {
   const [dbData, setDbData] = useState<T[] | null>([]);
@@ -27,7 +29,7 @@ export function useGetDocsArrayQuery<T>(
     const fetchData = async () => {
       setLoading(true);
       const docRef = collectionGroup(db, colName);
-      const q = query(docRef, where(qu, "array-contains", endPoint));
+      const q = query(docRef, where(qu, queryType, endPoint));
       const querySnapShot = await getDocs(q);
 
       //GET THE ID OF PARENT ELEMENTS
