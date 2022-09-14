@@ -27,8 +27,10 @@ const TicketComments = (props: TicketCommentsProps) => {
         ticketID={props.ticketID}
         setCurrentTicketID={props.setCurrentTicketID}
       />
-      {ticketCommentsData && (
+      {ticketCommentsData && ticketCommentsData.length >= 1 ? (
         <ShowComments ticketCommentsData={ticketCommentsData} />
+      ) : (
+        <p className="mt-24 font-bold">No comments yet.</p>
       )}
     </div>
   );
