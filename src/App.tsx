@@ -21,6 +21,7 @@ import { useAuth } from "./firebase/firebaseConfig";
 import SingleTicket from "./components/SinglePages/SingleTicket/SingleTicket";
 import SingleProject from "./components/SinglePages/SingleProject/SingleProject";
 import AddCommentModal from "./components/Modals/AddComment/AddCommentModal";
+import EditTicketModal from "./components/Modals/EditTicket/EditTicketModal";
 
 function App() {
   //*toggle project modal
@@ -68,6 +69,9 @@ function App() {
           setIsAddCommentModalOpen={setIsAddCommentModalOpen}
         />
       )}
+
+      {isEditTicketModalOpen && <EditTicketModal />}
+
       {/* //* MODALS ENDS // */}
 
       {/* //* ------------------------ // */}
