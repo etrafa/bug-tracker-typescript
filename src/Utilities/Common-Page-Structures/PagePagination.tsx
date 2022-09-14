@@ -1,10 +1,13 @@
 import ReactPaginate from "react-paginate";
+import { IComment } from "../../Interfaces/Firebase-Interfaces/CommentInterface";
 import { PageTableBodyForProjectsProps } from "./PageTableBodyForProjects";
 import { PageTableBodyForTicketsProps } from "./PageTableBodyForTickets";
 
 interface PagePaginationProps
   extends PageTableBodyForProjectsProps,
-    PageTableBodyForTicketsProps {}
+    PageTableBodyForTicketsProps {
+  commentData?: IComment[];
+}
 
 const PagePagination = (props: PagePaginationProps) => {
   let pageCount: number = 0;
@@ -12,6 +15,8 @@ const PagePagination = (props: PagePaginationProps) => {
     pageCount = Math.ceil(props?.projectData?.length / props.ITEM_PER_PAGE);
   } else if (props.ticketData) {
     pageCount = Math.ceil(props?.ticketData?.length / props.ITEM_PER_PAGE);
+  } else if (props.commentData) {
+    pageCount = Math.ceil(props?.commentData?.length / props.ITEM_PER_PAGE);
   }
 
   return (
