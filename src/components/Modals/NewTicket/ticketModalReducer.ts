@@ -7,9 +7,9 @@ export const initialState = {
   // selectedUsers: [{}],
   selectedUsers: <IFirebaseUser[]>[],
   selectedUsersID: <string[]>[],
-  ticketPriority: "",
-  ticketStatus: "",
-  ticketType: "",
+  ticketPriority: "Low",
+  ticketStatus: "Open",
+  ticketType: "Server Issues",
 };
 
 export enum ACTION_DEF {
