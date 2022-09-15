@@ -56,6 +56,10 @@ const EditTicketModal = ({
       handleSubmit={() => console.log("hey")}
       showSuccessMessage={true}
       successMessage=""
+      //*-----TICKET DESCRIPTION SECTION -----//*
+      firstLabel="Ticket Title"
+      firstLabelName="ticketTitle"
+      firstPlaceholder="A meaningful message that everyone can understand."
       //*-----ASSIGN USER SECTION -----//*
       checkBoxLabel="Assign User"
       checkboxName="assignedUsers"
