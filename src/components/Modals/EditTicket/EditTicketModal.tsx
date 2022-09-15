@@ -8,7 +8,7 @@ import Modal from "../../../Utilities/Modals/Modal";
 
 //interfaces
 import { IFirebaseUser } from "../../../Interfaces/Firebase-Interfaces/UserInterface";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import {
   initialState,
   ticketModalReducer,
@@ -31,14 +31,22 @@ const EditTicketModal = ({
   currentTicketID,
 }: EditTicketModalProps) => {
   const { dbData: allUsers } = useGetDocs<IFirebaseUser>("users");
-  const { singleData: singleTicket, loading } =
-    useGetDocsWithQuery<ITicketsRoot>(
-      "tickets",
-      "id",
-      currentTicketID || "undefined"
-    );
+  const { singleData: singleTicket } = useGetDocsWithQuery<ITicketsRoot>(
+    "tickets",
+    "id",
+    currentTicketID || "undefined"
+  );
 
   const [state, dispatch] = useReducer(ticketModalReducer, initialState);
+
+  useEffect(() => {
+    if (singleTicket) {
+      dispatch({
+        type: ACTION_DEF.SET_TICKET_DESCRIPTION,
+        payload: singleTicket.ticketDescription,
+      });
+    }
+  }, [singleTicket]);
 
   //* add-remove user when creating new project
   const handleSelectedUsers = (
@@ -61,21 +69,34 @@ const EditTicketModal = ({
     }
   };
 
+  //*ticket description
+  const handleTicketDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: ACTION_DEF.SET_TICKET_DESCRIPTION,
+      payload: e.target.value,
+    });
+  };
+
+  const editTicket = (e: React.MouseEvent) => {
+    e.preventDefault();
+    console.log(state);
+  };
+
   return (
     <Modal
       clickHandler={() => setIsEditTicketModalOpen(false)} //close the modal.
       buttonText="Edit"
-      handleChange={() => console.log("hey")}
       header="Edit your ticket"
       isFormValidated={true}
-      handleSubmit={() => console.log(state)}
+      handleSubmit={editTicket}
       showSuccessMessage={true}
       successMessage=""
       showTicketOptions={true}
       //*-----TICKET DESCRIPTION SECTION -----//*
-      firstLabel="Ticket Title"
-      firstLabelName="ticketTitle"
-      firstPlaceholder="A meaningful message that everyone can understand."
+      firstLabel="Ticket Description"
+      firstLabelName="ticketDescription"
+      firstPlaceholder={singleTicket?.ticketDescription}
+      handleChange={handleTicketDescription}
       //*-----ASSIGN USER SECTION -----//*
       checkBoxLabel="Assign User"
       checkboxName="assignedUsers"
