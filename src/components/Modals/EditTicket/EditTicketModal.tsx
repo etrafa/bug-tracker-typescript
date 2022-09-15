@@ -14,6 +14,11 @@ import {
   ticketModalReducer,
   ACTION_DEF,
 } from "../NewTicket/ticketModalReducer";
+import {
+  ticketPriorityLabels,
+  ticketStatusLabels,
+  ticketTypesLabels,
+} from "../NewTicket/ticketModalLabels";
 interface EditTicketModalProps {
   setIsEditTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -53,9 +58,10 @@ const EditTicketModal = ({
       handleChange={() => console.log("hey")}
       header="Edit your ticket"
       isFormValidated={true}
-      handleSubmit={() => console.log("hey")}
+      handleSubmit={() => console.log(state)}
       showSuccessMessage={true}
       successMessage=""
+      showTicketOptions={true}
       //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Title"
       firstLabelName="ticketTitle"
@@ -65,6 +71,37 @@ const EditTicketModal = ({
       checkboxName="assignedUsers"
       checkBoxData={allUsers}
       checkboxClickHandler={handleSelectedUsers}
+      //*-----TICKET DETAILS SECTION -----//*
+      //*ticket priority
+      firstTicketOptionsLabel="Priority"
+      firstTicketOptionsData={ticketPriorityLabels}
+      firstTicketOptionChangeHandler={(
+        e: React.ChangeEvent<HTMLSelectElement>
+      ) =>
+        dispatch({
+          type: ACTION_DEF.SET_TICKET_PRIORITY,
+          payload: e.target.value,
+        })
+      }
+      //*ticket status
+      secondTicketOptionsLabel="Status"
+      secondTicketOptionsData={ticketStatusLabels}
+      secondTicketOptionChangeHandler={(
+        e: React.ChangeEvent<HTMLSelectElement>
+      ) =>
+        dispatch({
+          type: ACTION_DEF.SET_TICKET_STATUS,
+          payload: e.target.value,
+        })
+      }
+      //* ticket type
+      thirdTicketOptionsLabel="Type"
+      thirdTicketOptionsData={ticketTypesLabels}
+      thirdTicketOptionChangeHandler={(
+        e: React.ChangeEvent<HTMLSelectElement>
+      ) =>
+        dispatch({ type: ACTION_DEF.SET_TICKET_TYPE, payload: e.target.value })
+      }
     />
   );
 };
