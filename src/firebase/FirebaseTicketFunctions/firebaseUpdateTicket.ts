@@ -1,44 +1,26 @@
-//*UPDATE EXISTING TICKET IN FIREBASE
-
 import {
-  collection,
+  collectionGroup,
   getDocs,
   query,
   updateDoc,
   where,
 } from "firebase/firestore";
+import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
 import { db } from "../firebaseConfig";
 
-export const updateTicket = async (
-  ticketDescription: string,
-  updatedTicket: {},
-  successMessage: React.Dispatch<React.SetStateAction<boolean>>,
-  isModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+export const firebaseTest = async (
+  ticketID: string,
+  updatedTicket: ITicketsRoot
 ) => {
-  //find selected ticket in the database
-  try {
-    const colRef = collection(db, "projects");
-    const res = await getDocs(colRef);
-    res.forEach(async (item) => {
-      const qRef = collection(db, "projects", item.ref.id, "tickets");
-      const q = query(
-        colRef,
-        where("ticketDescription", "==", ticketDescription)
-      );
-      const result = await getDocs(q);
-      //after finding the ticket, change the ticket with new value(s)
-      result.docs.forEach(async (data) => {
-        await updateDoc(data.ref, updatedTicket);
-      });
-    });
-    //open the modal
-    successMessage(true);
+  const colRef = collectionGroup(db, "tickets");
 
-    //close the modal after 3s later
-    setTimeout(() => {
-      isModalOpen(false);
-    }, 3000);
-  } catch (err) {
-    console.log(err);
+  const q = query(colRef, where("id", "==", ticketID));
+
+  const res = await getDocs(q);
+
+  if (res) {
+    res.docs.forEach(async (item) => {
+      await updateDoc(item.ref, { ...updatedTicket });
+    });
   }
 };
