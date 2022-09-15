@@ -19,14 +19,24 @@ import {
   ticketStatusLabels,
   ticketTypesLabels,
 } from "../NewTicket/ticketModalLabels";
+import { useGetDocsWithQuery } from "../../../customHooks/useGetDocsWithQuery";
+import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
 interface EditTicketModalProps {
+  currentTicketID: string;
   setIsEditTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EditTicketModal = ({
   setIsEditTicketModalOpen,
+  currentTicketID,
 }: EditTicketModalProps) => {
   const { dbData: allUsers } = useGetDocs<IFirebaseUser>("users");
+  const { singleData: singleTicket, loading } =
+    useGetDocsWithQuery<ITicketsRoot>(
+      "tickets",
+      "id",
+      currentTicketID || "undefined"
+    );
 
   const [state, dispatch] = useReducer(ticketModalReducer, initialState);
 

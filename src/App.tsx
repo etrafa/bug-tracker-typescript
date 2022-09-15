@@ -71,7 +71,10 @@ function App() {
       )}
 
       {isEditTicketModalOpen && (
-        <EditTicketModal setIsEditTicketModalOpen={setIsEditTicketModalOpen} />
+        <EditTicketModal
+          currentTicketID={currentTicketID}
+          setIsEditTicketModalOpen={setIsEditTicketModalOpen}
+        />
       )}
 
       {/* //* MODALS ENDS // */}
