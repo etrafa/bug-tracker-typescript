@@ -16,6 +16,7 @@ export enum ACTION_DEF {
   SET_PROJECT_NAME = "projectName",
   SET_PROJECT_ID = "setProjectID",
   SET_TICKET_DESCRIPTION = "setTicketDescription",
+  SHOW_INITIAL_USERS = "showInitialUsers", //show initial users on page load.
   ADD_SELECTED_USERS = "addSelectedUsers", //add selected user to array
   REMOVE_SELECTED_USERS = "removeSelectedUsers", //remove selected user from array
   SET_USERS_ID = "setUsersID",
@@ -30,6 +31,7 @@ type ACTIONTYPES =
   | { type: ACTION_DEF.SET_PROJECT_ID; payload: string }
   | { type: ACTION_DEF.SET_TICKET_DESCRIPTION; payload: string }
   | { type: ACTION_DEF.ADD_SELECTED_USERS; payload: IFirebaseUser }
+  | { type: ACTION_DEF.SHOW_INITIAL_USERS; payload: IFirebaseUser[] }
   | { type: ACTION_DEF.REMOVE_SELECTED_USERS; payload: IFirebaseUser }
   | { type: ACTION_DEF.SET_USERS_ID; payload: string }
   | { type: ACTION_DEF.REMOVE_USER_ID; payload: string }
@@ -54,6 +56,13 @@ export const ticketModalReducer = (
         ...state,
         selectedUsers: [...state.selectedUsers, action.payload],
       };
+
+    case ACTION_DEF.SHOW_INITIAL_USERS:
+      return {
+        ...state,
+        selectedUsers: action.payload.map((item) => item),
+      };
+
     case ACTION_DEF.REMOVE_SELECTED_USERS:
       return {
         ...state,
