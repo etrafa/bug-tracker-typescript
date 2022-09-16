@@ -1,13 +1,7 @@
-interface AssignedUsers {
-  email: string;
-  fullName: string;
-  id: string;
-  role: string;
-  tickets: string[];
-}
+import { IFirebaseUser } from "./UserInterface";
 
 export interface ITicketsRoot {
-  assignedUsers: AssignedUsers[];
+  assignedUsers: IFirebaseUser[];
   id: string;
   projectName: string;
   submitTime: string;
