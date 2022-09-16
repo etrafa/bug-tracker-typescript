@@ -17,11 +17,14 @@ import MyProjectsAsAdmin from "./components/MyProjects/MyProjectsAsAdmin";
 import MyProjectsAsUsers from "./components/MyProjects/MyProjectsAsUsers";
 import MyTicketsUsers from "./components/MyTickets/MyTicketsUsers";
 import MyTicketsAdmin from "./components/MyTickets/MyTicketsAdmin";
-import { useAuth } from "./firebase/firebaseConfig";
 import SingleTicket from "./components/SinglePages/SingleTicket/SingleTicket";
 import SingleProject from "./components/SinglePages/SingleProject/SingleProject";
 import AddCommentModal from "./components/Modals/AddComment/AddCommentModal";
 import EditTicketModal from "./components/Modals/EditTicket/EditTicketModal";
+import SignUp from "./components/SignUp/SignUp";
+
+//firebase
+import { useAuth } from "./firebase/firebaseConfig";
 
 function App() {
   //*toggle project modal
@@ -91,6 +94,7 @@ function App() {
       {/* //* ------------------------ // */}
       <Routes>
         <Route path="/log-in" element={<Login />} />
+        <Route path="sign-up" element={<SignUp />} />
         <Route path="/" element={<DashboardHome />} />
         <Route path="/role-assignment" element={<ManageRoleAssignment />} />
         <Route

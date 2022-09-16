@@ -1,5 +1,6 @@
 //react
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 //sign-in function
 import { firebaseSignIn } from "../../firebase/FirebaseAuthFunctions/firebaseSignIn";
@@ -71,13 +72,15 @@ const Login = () => {
       </form>
 
       <div>
-        <p>
-          Don't have an account?
-          <span className="underline cursor-pointer pl-1 hover:text-gray-600">
-            Sign up here
-          </span>
-          .
-        </p>
+        <Link to="/sign-up">
+          <p>
+            Don't have an account?
+            <span className="underline cursor-pointer pl-1 hover:text-gray-600">
+              Sign up here
+            </span>
+            .
+          </p>
+        </Link>
         <p
           onClick={() => firebaseSignIn("testdeveloper@gmail.com", "123456789")}
           className="mt-2 underline cursor-pointer hover:text-gray-600"
