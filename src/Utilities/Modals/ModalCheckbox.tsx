@@ -24,6 +24,7 @@ const ModalCheckbox = (props: ModalCheckboxProps) => {
               value={item.fullName}
               name={props.checkboxName}
               type="checkbox"
+              defaultChecked={item.isChecked}
             />
             {item.fullName}
           </label>
