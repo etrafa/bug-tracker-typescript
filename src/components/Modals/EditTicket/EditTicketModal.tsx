@@ -44,11 +44,40 @@ const EditTicketModal = ({
     IFirebaseUser[] | null
   >(null);
 
+  console.log(singleTicket);
+
   useEffect(() => {
     if (singleTicket) {
+      //*STORE PREVIOUS TICKET DETAILS UNLESS USER OVERWRITES ANY OF THE VALUE.
+
+      //*default ticket description
       dispatch({
         type: ACTION_DEF.SET_TICKET_DESCRIPTION,
         payload: singleTicket.ticketDescription,
+      });
+
+      //*default assigned users
+      dispatch({
+        type: ACTION_DEF.SHOW_INITIAL_USERS,
+        payload: singleTicket.assignedUsers.map((user) => user),
+      });
+
+      //* default ticket priority
+      dispatch({
+        type: ACTION_DEF.SET_TICKET_PRIORITY,
+        payload: singleTicket.ticketPriority,
+      });
+
+      //* default ticket status
+      dispatch({
+        type: ACTION_DEF.SET_TICKET_STATUS,
+        payload: singleTicket.ticketStatus,
+      });
+
+      //* default ticket type
+      dispatch({
+        type: ACTION_DEF.SET_TICKET_TYPE,
+        payload: singleTicket.ticketType,
       });
     }
 
