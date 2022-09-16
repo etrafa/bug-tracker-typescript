@@ -1,14 +1,7 @@
 //react
-
-//firebase
-
-//components
-import { useGetDocs } from "../../../customHooks/useGetDocs";
-import Modal from "../../../Utilities/Modals/Modal";
-
-//interfaces
-import { IFirebaseUser } from "../../../Interfaces/Firebase-Interfaces/UserInterface";
 import { useEffect, useReducer, useState } from "react";
+
+//reducer
 import {
   initialState,
   ticketModalReducer,
@@ -19,9 +12,19 @@ import {
   ticketStatusLabels,
   ticketTypesLabels,
 } from "../NewTicket/ticketModalLabels";
+
+//firebase
+import { useGetDocs } from "../../../customHooks/useGetDocs";
 import { useGetDocsWithQuery } from "../../../customHooks/useGetDocsWithQuery";
-import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
 import { firebaseUpdateTicket } from "../../../firebase/FirebaseTicketFunctions/firebaseUpdateTicket";
+
+//components
+import Modal from "../../../Utilities/Modals/Modal";
+
+//interfaces
+import { IFirebaseUser } from "../../../Interfaces/Firebase-Interfaces/UserInterface";
+import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
+
 interface EditTicketModalProps {
   currentTicketID: string;
   setIsEditTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,23 +34,26 @@ const EditTicketModal = ({
   setIsEditTicketModalOpen,
   currentTicketID,
 }: EditTicketModalProps) => {
-  const { dbData: allUsers } = useGetDocs<IFirebaseUser>("users");
-  const { singleData: singleTicket } = useGetDocsWithQuery<ITicketsRoot>(
+  //*DATABASE//*
+  const { dbData: allUsers } = useGetDocs<IFirebaseUser>("users"); //get all the users from db.
+  const { singleData: singleTicket } = useGetDocsWithQuery<ITicketsRoot>( //get the selected ticket.
     "tickets",
     "id",
     currentTicketID || "undefined"
   );
+  //*--------------- */
 
-  const [state, dispatch] = useReducer(ticketModalReducer, initialState);
+  //*STATES//*
+  const [state, dispatch] = useReducer(ticketModalReducer, initialState); //usereducer
 
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); //if true show success message
 
   //after filtering isChecked props for every user, store them in this state.
   const [filteredCheckBoxData, setFilteredCheckBoxData] = useState<
     IFirebaseUser[] | null
   >(null);
 
-  console.log(singleTicket);
+  //*--------------- */
 
   useEffect(() => {
     if (singleTicket) {
@@ -116,6 +122,8 @@ const EditTicketModal = ({
     setFilteredCheckBoxData([...STORE_CHECKED_USERS, ...STORE_UNCHECKED_USERS]);
   }, [singleTicket]);
 
+  //? FUNCTIONS ----------------------------------------
+
   //* add-remove user when creating new project
   const handleSelectedUsers = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -172,16 +180,18 @@ const EditTicketModal = ({
     }
   };
 
+  //? --------------------------------------------------
+
   return (
     <Modal
+      header="Edit your ticket" //modal header
       clickHandler={() => setIsEditTicketModalOpen(false)} //close the modal.
-      buttonText="Edit"
-      header="Edit your ticket"
-      isFormValidated={true}
-      handleSubmit={editTicket}
-      showSuccessMessage={showSuccessMessage}
-      successMessage="Ticket has been updated successfully."
-      showTicketOptions={true}
+      buttonText="Edit" //button text
+      isFormValidated={true} //check if the form is validated but here we don't need it.
+      handleSubmit={editTicket} //on submit send the updated ticket to database.
+      showSuccessMessage={showSuccessMessage} //if true show success message
+      successMessage="Ticket has been updated successfully." //success message
+      showTicketOptions={true} //if true show ticket option section on modal.
       //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Description"
       firstLabelName="ticketDescription"
@@ -192,7 +202,7 @@ const EditTicketModal = ({
       checkboxName="assignedUsers"
       checkBoxData={filteredCheckBoxData}
       checkboxClickHandler={handleSelectedUsers}
-      //*-----TICKET DETAILS SECTION -----//*
+      //*-----TICKET OPTIONS SECTION -----//*
       //*ticket priority
       firstTicketOptionsLabel="Priority"
       firstTicketOptionsData={ticketPriorityLabels}
