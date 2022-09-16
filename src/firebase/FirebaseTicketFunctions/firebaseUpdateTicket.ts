@@ -8,7 +8,7 @@ import {
 import { ITicketsRoot } from "../../Interfaces/Firebase-Interfaces/TicketsInterface";
 import { db } from "../firebaseConfig";
 
-export const firebaseTest = async (
+export const firebaseUpdateTicket = async (
   ticketID: string,
   updatedTicket: ITicketsRoot
 ) => {

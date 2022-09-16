@@ -21,6 +21,7 @@ import {
 } from "../NewTicket/ticketModalLabels";
 import { useGetDocsWithQuery } from "../../../customHooks/useGetDocsWithQuery";
 import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
+import { firebaseUpdateTicket } from "../../../firebase/FirebaseTicketFunctions/firebaseUpdateTicket";
 interface EditTicketModalProps {
   currentTicketID: string;
   setIsEditTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -142,9 +143,26 @@ const EditTicketModal = ({
     });
   };
 
+  //ON SUBMIT SEND THE UPDATED TICKET TO DATABASE.
   const editTicket = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log(state);
+    if (singleTicket) {
+      firebaseUpdateTicket(singleTicket?.id, {
+        //*these part won't change.
+        id: singleTicket?.id,
+        submitTime: singleTicket?.submitTime,
+        ticketOwner: singleTicket?.ticketOwner,
+        projectName: singleTicket?.projectName,
+
+        //* these part might be changed.
+        ticketDescription: state.ticketDescription,
+        ticketPriority: state.ticketPriority,
+        ticketType: state.ticketType,
+        ticketStatus: state.ticketStatus,
+        assignedUsers: state.selectedUsers,
+        userEmails: state.selectedUsersID,
+      });
+    }
   };
 
   return (
