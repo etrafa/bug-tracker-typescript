@@ -40,6 +40,8 @@ const EditTicketModal = ({
 
   const [state, dispatch] = useReducer(ticketModalReducer, initialState);
 
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
   //after filtering isChecked props for every user, store them in this state.
   const [filteredCheckBoxData, setFilteredCheckBoxData] = useState<
     IFirebaseUser[] | null
@@ -147,21 +149,26 @@ const EditTicketModal = ({
   const editTicket = (e: React.MouseEvent) => {
     e.preventDefault();
     if (singleTicket) {
-      firebaseUpdateTicket(singleTicket?.id, {
-        //*these part won't change.
-        id: singleTicket?.id,
-        submitTime: singleTicket?.submitTime,
-        ticketOwner: singleTicket?.ticketOwner,
-        projectName: singleTicket?.projectName,
+      firebaseUpdateTicket(
+        singleTicket?.id,
+        {
+          //*these part won't change.
+          id: singleTicket?.id,
+          submitTime: singleTicket?.submitTime,
+          ticketOwner: singleTicket?.ticketOwner,
+          projectName: singleTicket?.projectName,
 
-        //* these part might be changed.
-        ticketDescription: state.ticketDescription,
-        ticketPriority: state.ticketPriority,
-        ticketType: state.ticketType,
-        ticketStatus: state.ticketStatus,
-        assignedUsers: state.selectedUsers,
-        userEmails: state.selectedUsersID,
-      });
+          //* these part might be changed.
+          ticketDescription: state.ticketDescription,
+          ticketPriority: state.ticketPriority,
+          ticketType: state.ticketType,
+          ticketStatus: state.ticketStatus,
+          assignedUsers: state.selectedUsers,
+          userEmails: state.selectedUsersID,
+        },
+        setShowSuccessMessage,
+        setIsEditTicketModalOpen
+      );
     }
   };
 
@@ -172,8 +179,8 @@ const EditTicketModal = ({
       header="Edit your ticket"
       isFormValidated={true}
       handleSubmit={editTicket}
-      showSuccessMessage={true}
-      successMessage=""
+      showSuccessMessage={showSuccessMessage}
+      successMessage="Ticket has been updated successfully."
       showTicketOptions={true}
       //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Description"

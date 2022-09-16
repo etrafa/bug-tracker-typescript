@@ -10,7 +10,9 @@ import { db } from "../firebaseConfig";
 
 export const firebaseUpdateTicket = async (
   ticketID: string,
-  updatedTicket: ITicketsRoot
+  updatedTicket: ITicketsRoot,
+  showSuccessMessage: React.Dispatch<React.SetStateAction<boolean>>,
+  isModalOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const colRef = collectionGroup(db, "tickets");
 
@@ -18,9 +20,21 @@ export const firebaseUpdateTicket = async (
 
   const res = await getDocs(q);
 
-  if (res) {
-    res.docs.forEach(async (item) => {
-      await updateDoc(item.ref, { ...updatedTicket });
-    });
+  try {
+    if (res) {
+      res.docs.forEach(async (item) => {
+        await updateDoc(item.ref, { ...updatedTicket });
+      });
+    }
+
+    //if success show message
+    showSuccessMessage(true);
+
+    //3 secs later close the edit ticket modal.
+    setTimeout(() => {
+      isModalOpen(false);
+    }, 3000);
+  } catch (err) {
+    console.log(err);
   }
 };
