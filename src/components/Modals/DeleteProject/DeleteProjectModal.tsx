@@ -10,7 +10,7 @@ const DeleteProjectModal = ({
       <div className="absolute bg-white rounded-lg shadow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
         <div className="py-6 px-6 lg:px-8">
           <button
-            onClick={() => setIsDeleteProjectModalOpen(false)}
+            onClick={() => setIsDeleteProjectModalOpen(false)} //close modal
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
           >
@@ -54,7 +54,7 @@ const DeleteProjectModal = ({
             Yes, I'm sure
           </button>
           <button
-            // onClick={() => setDeleteProjectModal(false)}
+            onClick={() => setIsDeleteProjectModalOpen(false)} //close modal
             type="button"
             className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
           >

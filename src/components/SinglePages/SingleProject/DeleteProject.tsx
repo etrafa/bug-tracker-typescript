@@ -8,7 +8,7 @@ const DeleteProject = ({ setIsDeleteProjectModalOpen }: DeleteProjectProps) => {
       <button
         onClick={() => setIsDeleteProjectModalOpen(true)} //open delete project modal.
         type="button"
-        className="text-white bg-fbFillColor mx-auto hover:bg-blue-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
+        className="text-white bg-red-600 mx-auto hover:bg-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
