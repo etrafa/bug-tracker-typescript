@@ -41,7 +41,7 @@ const PageSkeleton = (props: PageSkeletonProps) => {
 
           {/* //*IF DATA LENGTH IS LARGER THAN 1 SHOW THIS MESSAGE */}
 
-          {props.data && props.data.length > 1 && (
+          {props.data && props.data.length >= 1 && (
             <div>
               <PageSearch
                 searchInputPlaceHolder={props.searchInputPlaceHolder}
