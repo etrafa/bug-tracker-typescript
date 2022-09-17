@@ -51,7 +51,21 @@ const SingleTicketInformations = (props: SingleTicketInformationsProps) => {
                   : "text-center text-gray-900 text-sm"
               }
             >
-              {el?.value}
+              {/* //*IF VALUE IS CLOSED SHOW RED DOT, IF VALUE IS OPEN SHOW GREEN DOT. */}
+              {/* {el.value === "Closed" ? (
+                <p>Closed</p>
+              ) : el.value === "Open" ? (
+                <p>Open</p>
+              ) : (
+                el.value
+              )} */}
+              {el.value === "Closed" && (
+                <p className="w-2 h-2 rounded-full bg-red-600 inline-block mr-2 mb-0.5"></p>
+              )}
+              {el.value === "Open" && (
+                <p className="w-2 h-2 rounded-full bg-green-600 inline-block mr-2 mb-0.5"></p>
+              )}
+              {el.value}
             </p>
           </div>
         ))}
