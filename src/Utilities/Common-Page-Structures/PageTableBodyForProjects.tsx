@@ -23,13 +23,10 @@ const PageTableBodyForProjects = (props: PageTableBodyForProjectsProps) => {
     .slice(pagesVisited, pagesVisited + props.ITEM_PER_PAGE)
     .map((project) => {
       return (
-        <tr
-          key={project?.id}
-          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-        >
+        <tr key={project?.id} className="bg-white border-b hover:bg-gray-50 ">
           <th
             scope="row"
-            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
           >
             {project.projectName}
           </th>

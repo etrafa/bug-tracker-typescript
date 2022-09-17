@@ -22,13 +22,10 @@ const PageTableBodyForUser = (props: PageTableBodyForUserProps) => {
     .slice(pagesVisited, pagesVisited + props.ITEM_PER_PAGE)
     .map((user) => {
       return (
-        <tr
-          key={user.id}
-          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-        >
+        <tr key={user.id} className="bg-white border-b hover:bg-gray-50">
           <th
             scope="row"
-            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
           >
             {user.fullName}
           </th>

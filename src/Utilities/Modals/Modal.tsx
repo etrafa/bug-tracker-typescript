@@ -63,7 +63,7 @@ const Modal = (props: ModalProps) => {
         <div className="absolute bg-white rounded-lg shadow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-xl modal-container">
           <ModalCloseButton clickHandler={props.clickHandler} />
           <div className="py-6 px-6 lg:px-8">
-            <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+            <h3 className="mb-4 text-xl font-medium text-gray-900">
               {props.header}
             </h3>
             <form className="space-y-6">
@@ -113,7 +113,7 @@ const Modal = (props: ModalProps) => {
 
               {props.showTicketOptions && (
                 <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <label className="block mb-2 text-sm font-medium text-gray-900">
                     Ticket Details
                   </label>
                   <div className="bg-gray-50 flex flex-wrap gap-x-1 gap-y-8 justify-between border border-gray-300 text-gray-900 text-md rounded-lg w-full p-2.5">

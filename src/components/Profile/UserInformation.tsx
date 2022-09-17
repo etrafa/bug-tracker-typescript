@@ -14,7 +14,7 @@ const UserInformation = () => {
           <td>Full Name</td>
           <td>
             <input
-              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 p-2.5 lg:ml-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 p-2.5 lg:ml-4"
               value={dbData?.fullName}
               type="text"
               disabled
@@ -25,7 +25,7 @@ const UserInformation = () => {
           <td>Email Address</td>
           <td>
             <input
-              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 p-2.5 lg:ml-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 p-2.5 lg:ml-4"
               value={dbData?.email}
               type="text"
               disabled
@@ -34,7 +34,7 @@ const UserInformation = () => {
         </tr>
         <tr>
           <td>
-            <label className="mb-2 text-base font-medium text-gray-900 dark:text-gray-300">
+            <label className="mb-2 text-base font-medium text-gray-900">
               Role
             </label>
           </td>
@@ -51,7 +51,7 @@ const UserInformation = () => {
           <td>Created At</td>
           <td>
             <input
-              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 p-2.5 lg:ml-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 p-2.5 lg:ml-4"
               value={currentUser?.metadata.creationTime?.slice(5, 16)}
               type="text"
               disabled
@@ -62,7 +62,7 @@ const UserInformation = () => {
           <td>Email Verified</td>
           <td>
             <button
-              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 h-[calc(2.5rem_+_2px)] p-2.5 lg:ml-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border mb-6 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 w-11/12 lg:w-6/12 h-[calc(2.5rem_+_2px)] p-2.5 lg:ml-4"
               disabled
             >
               {currentUser?.emailVerified ? (
