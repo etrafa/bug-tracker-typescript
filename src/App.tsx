@@ -42,6 +42,10 @@ function App() {
   //*toggle add comment modal
   const [isAddCommentModalOpen, setIsAddCommentModalOpen] = useState(false);
 
+  //*toggle delete project modal
+  const [isDeleteProjectModalOpen, setIsDeleteProjectModalOpen] =
+    useState(false);
+
   //* get current ticket ID
   const [currentTicketID, setCurrentTicketID] = useState("");
 
