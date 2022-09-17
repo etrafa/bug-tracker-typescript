@@ -20,11 +20,19 @@ const AssignedUsersForSingleProject = (
   props: AssignedUsersForSingleProjectProps
 ) => {
   const [pageNumber, setPageNumber] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
   //GET ALL THE ASSIGNED USERS FOR SELECTED PROJECTS
   const { dbData } = useGetDocs<IFirebaseUser>(
     `projects/${props.projectID}/users`
   );
+
+  //? FUNCTIONS ----------------------------------------
+  //filter the results for search input.
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+  //? --------------------------------------------------
 
   return (
     <div className="w-full lg:w-4/12 text-center overflow-auto lg:ml-6">
@@ -37,7 +45,7 @@ const AssignedUsersForSingleProject = (
         <>
           <PageSearch
             searchInputPlaceHolder="Search User"
-            searchInputChangeHandler={() => console.log("hey")}
+            searchInputChangeHandler={(e) => changeHandler(e)}
           />
 
           <PageTable
@@ -49,7 +57,7 @@ const AssignedUsersForSingleProject = (
             pageType="user"
             userDataForTable={dbData}
             secondTableHeader="Role"
-            searchTerm=""
+            searchTerm={searchTerm}
           />
 
           {/* //*SHOW PAGINATION ONLY IF THERE IS MORE ITEM THAN ITEM_PER_PAGE */}
