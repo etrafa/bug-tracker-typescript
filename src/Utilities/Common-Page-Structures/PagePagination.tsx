@@ -1,5 +1,6 @@
 import ReactPaginate from "react-paginate";
 import { IComment } from "../../Interfaces/Firebase-Interfaces/CommentInterface";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 import { PageTableBodyForProjectsProps } from "./PageTableBodyForProjects";
 import { PageTableBodyForTicketsProps } from "./PageTableBodyForTickets";
 
@@ -7,6 +8,7 @@ interface PagePaginationProps
   extends PageTableBodyForProjectsProps,
     PageTableBodyForTicketsProps {
   commentData?: IComment[];
+  userPaginationData?: IFirebaseUser[];
 }
 
 const PagePagination = (props: PagePaginationProps) => {
@@ -17,6 +19,10 @@ const PagePagination = (props: PagePaginationProps) => {
     pageCount = Math.ceil(props?.ticketData?.length / props.ITEM_PER_PAGE);
   } else if (props.commentData) {
     pageCount = Math.ceil(props?.commentData?.length / props.ITEM_PER_PAGE);
+  } else if (props.userPaginationData) {
+    pageCount = Math.ceil(
+      props?.userPaginationData?.length / props.ITEM_PER_PAGE
+    );
   }
 
   return (

@@ -59,6 +59,7 @@ const AssignedUsersForSingleProject = (
               pageNumber={pageNumber}
               setPageNumber={setPageNumber}
               searchTerm=""
+              userPaginationData={dbData}
             />
           )}
         </>
