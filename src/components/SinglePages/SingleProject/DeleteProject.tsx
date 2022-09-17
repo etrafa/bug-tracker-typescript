@@ -1,7 +1,12 @@
-const DeleteProject = () => {
+interface DeleteProjectProps {
+  setIsDeleteProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DeleteProject = ({ setIsDeleteProjectModalOpen }: DeleteProjectProps) => {
   return (
     <div className="text-center mt-12 lg:mr-16">
       <button
+        onClick={() => setIsDeleteProjectModalOpen(true)} //open delete project modal.
         type="button"
         className="text-white bg-fbFillColor mx-auto hover:bg-blue-500  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
       >

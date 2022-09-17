@@ -22,10 +22,10 @@ import SingleProject from "./components/SinglePages/SingleProject/SingleProject"
 import AddCommentModal from "./components/Modals/AddComment/AddCommentModal";
 import EditTicketModal from "./components/Modals/EditTicket/EditTicketModal";
 import SignUp from "./components/SignUp/SignUp";
+import DeleteProjectModal from "./components/Modals/DeleteProject/DeleteProjectModal";
 
 //firebase
 import { useAuth } from "./firebase/firebaseConfig";
-import DeleteProjectModal from "./components/Modals/DeleteProject/DeleteProjectModal";
 
 function App() {
   //*toggle project modal
@@ -85,7 +85,11 @@ function App() {
         />
       )}
 
-      {isDeleteProjectModalOpen && <DeleteProjectModal />}
+      {isDeleteProjectModalOpen && (
+        <DeleteProjectModal
+          setIsDeleteProjectModalOpen={setIsDeleteProjectModalOpen}
+        />
+      )}
 
       {/* //* MODALS ENDS // */}
 
@@ -127,7 +131,14 @@ function App() {
             />
           }
         />
-        <Route path="projects/:projectID" element={<SingleProject />} />
+        <Route
+          path="projects/:projectID"
+          element={
+            <SingleProject
+              setIsDeleteProjectModalOpen={setIsDeleteProjectModalOpen}
+            />
+          }
+        />
       </Routes>
     </>
   );

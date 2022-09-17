@@ -1,14 +1,20 @@
-const DeleteProjectModal = () => {
+interface DeleteProjectModalProps {
+  setIsDeleteProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DeleteProjectModal = ({
+  setIsDeleteProjectModalOpen,
+}: DeleteProjectModalProps) => {
   return (
     <div className="w-full ml-auto fixed min-h-screen top-0 bg-black bg-opacity-75 z-50">
       <div className="absolute bg-white rounded-lg shadow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
         <div className="py-6 px-6 lg:px-8">
           <button
+            onClick={() => setIsDeleteProjectModalOpen(false)}
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
           >
             <svg
-              //   onClick={() => setDeleteProjectModal(false)}
               className="w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"

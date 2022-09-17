@@ -8,7 +8,11 @@ import DeleteProject from "./DeleteProject";
 import SingleProjectHeader from "./SingleProjectHeader";
 import TicketForSingleProject from "./TicketForSingleProject";
 
-const SingleProject = () => {
+interface SingleProjectProps {
+  setIsDeleteProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SingleProject = ({ setIsDeleteProjectModalOpen }: SingleProjectProps) => {
   const { projectID } = useParams();
 
   //*GET PROJECT INFORMATION FROM DATABASE
@@ -33,7 +37,9 @@ const SingleProject = () => {
           <div className="hidden lg:block border border-black"></div>
           {projectID && <TicketForSingleProject projectID={projectID} />}
         </div>
-        <DeleteProject />
+        <DeleteProject
+          setIsDeleteProjectModalOpen={setIsDeleteProjectModalOpen}
+        />
       </div>
     </div>
   );
