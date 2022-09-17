@@ -1,4 +1,5 @@
 //react
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useGetSingleDoc } from "../../../customHooks/useGetSingleDoc";
 import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
@@ -9,10 +10,14 @@ import SingleProjectHeader from "./SingleProjectHeader";
 import TicketForSingleProject from "./TicketForSingleProject";
 
 interface SingleProjectProps {
+  setCurrentProjectID: React.Dispatch<React.SetStateAction<string>>;
   setIsDeleteProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SingleProject = ({ setIsDeleteProjectModalOpen }: SingleProjectProps) => {
+const SingleProject = ({
+  setIsDeleteProjectModalOpen,
+  setCurrentProjectID,
+}: SingleProjectProps) => {
   const { projectID } = useParams();
 
   //*GET PROJECT INFORMATION FROM DATABASE
@@ -20,6 +25,11 @@ const SingleProject = ({ setIsDeleteProjectModalOpen }: SingleProjectProps) => {
     "projects",
     projectID || "undefined"
   );
+
+  //* on every load, store currentProjectID to state.
+  useEffect(() => {
+    if (projectID) setCurrentProjectID(projectID);
+  }, [projectID, setCurrentProjectID]);
 
   return (
     <div className="w-full lg:w-[calc(100%_-_16rem)] ml-auto mb-6">

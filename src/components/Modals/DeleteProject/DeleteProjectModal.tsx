@@ -1,8 +1,10 @@
 interface DeleteProjectModalProps {
+  currentProjectID: string;
   setIsDeleteProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DeleteProjectModal = ({
+  currentProjectID,
   setIsDeleteProjectModalOpen,
 }: DeleteProjectModalProps) => {
   return (

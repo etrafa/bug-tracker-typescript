@@ -50,6 +50,9 @@ function App() {
   //* get current ticket ID
   const [currentTicketID, setCurrentTicketID] = useState("");
 
+  //* get current project ID
+  const [currentProjectID, setCurrentProjectID] = useState("");
+
   const currentUser = useAuth(); //get current user
   const navigate = useNavigate();
 
@@ -87,6 +90,7 @@ function App() {
 
       {isDeleteProjectModalOpen && (
         <DeleteProjectModal
+          currentProjectID={currentProjectID}
           setIsDeleteProjectModalOpen={setIsDeleteProjectModalOpen}
         />
       )}
@@ -135,6 +139,7 @@ function App() {
           path="projects/:projectID"
           element={
             <SingleProject
+              setCurrentProjectID={setCurrentProjectID}
               setIsDeleteProjectModalOpen={setIsDeleteProjectModalOpen}
             />
           }
