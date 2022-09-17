@@ -7,6 +7,9 @@ import Modal from "../../../Utilities/Modals/Modal";
 //firebase
 import { useGetDocs } from "../../../customHooks/useGetDocs";
 import { createTicket } from "../../../firebase/FirebaseTicketFunctions/firebaseCreateTicket";
+import { useAuth } from "../../../firebase/firebaseConfig";
+import { useGetDocsWithQuery } from "../../../customHooks/useGetDocsWithQuery";
+import { useGetSingleDoc } from "../../../customHooks/useGetSingleDoc";
 
 //interfaces
 import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
@@ -25,7 +28,6 @@ import {
   ticketTypesLabels,
   SERVER_TIME,
 } from "./ticketModalLabels";
-import { useAuth } from "../../../firebase/firebaseConfig";
 
 interface NewTicketModalProps {
   setIsTicketModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,8 +38,26 @@ const NewTicketModal = (props: NewTicketModalProps) => {
   const [isFormValidated, setIsFormValidated] = useState(false); //form validation state
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const currentUser = useAuth(); //current user information
-  const { dbData } = useGetDocs<IProject>("projects"); //get all project list from db
+  const currentUser = useAuth(); //get current user
+  const { dbData: user } = useGetSingleDoc<IFirebaseUser>(
+    "users",
+    currentUser?.uid || "undefined"
+  ); //get current user's role
+  const { dbData: allProjects } = useGetDocs<IProject>("projects"); //get all project list from db
+
+  //get every user in the database.
+  const { dbData: userProject, loading } = useGetDocsWithQuery<IProject>(
+    "users",
+    "email",
+    currentUser?.email || "undefined"
+  );
+
+  /* after checking the user's role assign the projects to this state.
+    if user's role is ADMIN = show EVERY project in the database.
+    if user's role is USER  = show projects ONLY assigned to current user.
+  */
+  const [projects, setProjects] = useState<IProject[] | null>(null);
+
   const { dbData: allUsers } = useGetDocs<IFirebaseUser>(
     // get all users assigned to selected project
     `projects/${state.selectedProjectID}/users`
@@ -45,6 +65,16 @@ const NewTicketModal = (props: NewTicketModalProps) => {
 
   //*FORM VALIDATION
   useEffect(() => {
+    //CHECK USER'S ROLE AND ASSIGN THE PROJECTS TO STATE.
+
+    if (user) {
+      if (user.role === "admin")
+        setProjects(
+          allProjects
+        ); // if user's role is ADMIN = show EVERY project in the database.
+      else if (user.role === "user") setProjects(userProject); //    if user's role is USER  = show projects ONLY assigned to current user.
+    }
+
     state.selectedProjectID !== "" &&
     state.ticketDescription !== "" &&
     state.selectedUsers.length !== 0
@@ -55,6 +85,9 @@ const NewTicketModal = (props: NewTicketModalProps) => {
     state.selectedProjectID,
     state.selectedUsers.length,
     state.ticketDescription,
+    allProjects,
+    user,
+    userProject,
   ]);
 
   //? FUNCTIONS ----------------------------------------
@@ -136,7 +169,7 @@ const NewTicketModal = (props: NewTicketModalProps) => {
       //*-----SELECT PROJECT SECTION -----//*
       dropDownLabel="Select Project"
       dropDownName="selectProject"
-      dropdownData={dbData} //dropdown data
+      dropdownData={projects} //dropdown data
       dropDownChangeHandler={dropDownHandleChange}
       //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Description"
