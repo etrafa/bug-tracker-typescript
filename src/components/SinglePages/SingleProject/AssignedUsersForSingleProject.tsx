@@ -43,11 +43,12 @@ const AssignedUsersForSingleProject = (
       {/* //*SHOW DATA IF EXIST ELSE SHOW NO FOUND MESSAGE */}
       {dbData && dbData.length >= 1 ? (
         <>
+          {/* //*SEARCH ICON */}
           <PageSearch
             searchInputPlaceHolder="Search User"
             searchInputChangeHandler={(e) => changeHandler(e)}
           />
-
+          {/* //*TABLE FOR LISTED USER INFORMATIONS */}
           <PageTable
             ITEM_PER_PAGE={5}
             pageNumber={pageNumber}
@@ -59,7 +60,6 @@ const AssignedUsersForSingleProject = (
             secondTableHeader="Role"
             searchTerm={searchTerm}
           />
-
           {/* //*SHOW PAGINATION ONLY IF THERE IS MORE ITEM THAN ITEM_PER_PAGE */}
           {dbData && dbData.length > 5 && (
             <PagePagination
