@@ -4,6 +4,7 @@ import { useGetSingleDoc } from "../../../customHooks/useGetSingleDoc";
 import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
 import LoadSpinner from "../../../Utilities/LoadSpinner";
 import AssignedUsersForSingleProject from "./AssignedUsersForSingleProject";
+import DeleteProject from "./DeleteProject";
 import SingleProjectHeader from "./SingleProjectHeader";
 import TicketForSingleProject from "./TicketForSingleProject";
 
@@ -32,6 +33,7 @@ const SingleProject = () => {
           <div className="hidden lg:block border border-black"></div>
           {projectID && <TicketForSingleProject projectID={projectID} />}
         </div>
+        <DeleteProject />
       </div>
     </div>
   );
