@@ -75,7 +75,7 @@ const Login = () => {
         <Link to="/sign-up">
           <p>
             Don't have an account?
-            <span className="underline cursor-pointer pl-1 hover:text-gray-600">
+            <span className="underline cursor-pointer pl-1 text-blue-800 hover:text-blue-400">
               Sign up here
             </span>
             .
@@ -83,7 +83,7 @@ const Login = () => {
         </Link>
         <p
           onClick={() => firebaseSignIn("testdeveloper@gmail.com", "123456789")}
-          className="mt-2 underline cursor-pointer hover:text-gray-600"
+          className="mt-2 underline cursor-pointer text-blue-800 hover:text-blue-400"
         >
           Sign in as a Demo User
         </p>
@@ -91,7 +91,7 @@ const Login = () => {
           onClick={() =>
             firebaseSignIn("kayhankayhan@hotmail.com", "123456789")
           }
-          className="mt-2 underline cursor-pointer hover:text-gray-600"
+          className="mt-2 underline cursor-pointer text-blue-800 hover:text-blue-400"
         >
           Sign in as a Admin
         </p>

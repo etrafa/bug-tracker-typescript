@@ -84,7 +84,7 @@ const SignUp = () => {
             name="confirm_password"
             type="password"
             className="block border border-grey-light w-full p-3 rounded mb-4"
-            placeholder="Password"
+            placeholder="Confirm Password"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.confirm_password}
