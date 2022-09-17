@@ -1,3 +1,7 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { firebaseDeleteProject } from "../../../firebase/FirebaseProjectFunctions/firebaseDeleteProject";
+
 interface DeleteProjectModalProps {
   currentProjectID: string;
   setIsDeleteProjectModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,6 +11,15 @@ const DeleteProjectModal = ({
   currentProjectID,
   setIsDeleteProjectModalOpen,
 }: DeleteProjectModalProps) => {
+  const navigate = useNavigate();
+
+  const deleteProjectHandler = (e: React.MouseEvent) => {
+    e.preventDefault();
+    firebaseDeleteProject(currentProjectID);
+    navigate(-1); //after deleting project go previous page.
+    setIsDeleteProjectModalOpen(false); //close modal.
+  };
+
   return (
     <div className="w-full ml-auto fixed min-h-screen top-0 bg-black bg-opacity-75 z-50">
       <div className="absolute bg-white rounded-lg shadow top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
@@ -49,7 +62,7 @@ const DeleteProjectModal = ({
             Are you sure you want to delete this project?
           </h3>
           <button
-            // onClick={deleteHandler}
+            onClick={deleteProjectHandler} //delete project
             type="button"
             className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
           >

@@ -1,13 +1,19 @@
 //react
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+
+//firebase
 import { useGetSingleDoc } from "../../../customHooks/useGetSingleDoc";
-import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
-import LoadSpinner from "../../../Utilities/LoadSpinner";
-import AssignedUsersForSingleProject from "./AssignedUsersForSingleProject";
+
+//components
 import DeleteProject from "./DeleteProject";
 import SingleProjectHeader from "./SingleProjectHeader";
+import AssignedUsersForSingleProject from "./AssignedUsersForSingleProject";
 import TicketForSingleProject from "./TicketForSingleProject";
+import LoadSpinner from "../../../Utilities/LoadSpinner";
+
+//interfaces
+import { IProject } from "../../../Interfaces/Firebase-Interfaces/ProjectInterface";
 
 interface SingleProjectProps {
   setCurrentProjectID: React.Dispatch<React.SetStateAction<string>>;
