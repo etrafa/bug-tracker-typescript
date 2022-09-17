@@ -9,7 +9,6 @@ import {
 } from "../NewTicket/ticketModalReducer";
 import {
   ticketPriorityLabels,
-  ticketStatusLabels,
   ticketTypesLabels,
 } from "../NewTicket/ticketModalLabels";
 
@@ -53,6 +52,10 @@ const EditTicketModal = ({
     IFirebaseUser[] | null
   >(null);
 
+  //*--------------- */
+
+  //*TICKET STATUS LABELS//*
+  const ticketStatusLabels = ["Open", "In Progress", "Closed"];
   //*--------------- */
 
   useEffect(() => {
