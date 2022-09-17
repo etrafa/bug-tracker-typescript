@@ -1,5 +1,8 @@
 import { IProject } from "../../Interfaces/Firebase-Interfaces/ProjectInterface";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../firebase/firebaseConfig";
+import { useGetSingleDoc } from "../../customHooks/useGetSingleDoc";
+import { IFirebaseUser } from "../../Interfaces/Firebase-Interfaces/UserInterface";
 
 export interface PageTableBodyForProjectsProps {
   projectData?: IProject[] | null;
@@ -10,6 +13,13 @@ export interface PageTableBodyForProjectsProps {
 }
 
 const PageTableBodyForProjects = (props: PageTableBodyForProjectsProps) => {
+  const currentUser = useAuth(); // get current user id
+  //get current user ROLE
+  const { dbData: user } = useGetSingleDoc<IFirebaseUser>(
+    "users",
+    currentUser?.uid || "undefined"
+  );
+
   const pagesVisited = props.pageNumber * props.ITEM_PER_PAGE;
 
   const showProjects = props?.projectData
@@ -33,11 +43,14 @@ const PageTableBodyForProjects = (props: PageTableBodyForProjectsProps) => {
           <td className="px-6 py-4">{project.projectDescription}</td>
           <td className="px-6 py-4">
             <ul className="list-disc">
-              <Link to={`/manage-project-user`}>
-                <li className="text-fbFillColor cursor-pointer underline hover:text-black">
-                  Manage Users
-                </li>
-              </Link>
+              {/* //*IF CURRENT USER'S ROLE IS ADMIN SHOW MANAGE USERS SECTION */}
+              {user?.role === "admin" ? (
+                <Link to={`/manage-project-user`}>
+                  <li className="text-fbFillColor cursor-pointer underline hover:text-black">
+                    Manage Users
+                  </li>
+                </Link>
+              ) : null}
               <Link to={`/projects/${project.id}`}>
                 <li className="text-fbFillColor cursor-pointer underline hover:text-black mt-3">
                   Details
