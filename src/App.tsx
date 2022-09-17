@@ -25,6 +25,7 @@ import SignUp from "./components/SignUp/SignUp";
 
 //firebase
 import { useAuth } from "./firebase/firebaseConfig";
+import DeleteProjectModal from "./components/Modals/DeleteProject/DeleteProjectModal";
 
 function App() {
   //*toggle project modal
@@ -83,6 +84,8 @@ function App() {
           setIsEditTicketModalOpen={setIsEditTicketModalOpen}
         />
       )}
+
+      {isDeleteProjectModalOpen && <DeleteProjectModal />}
 
       {/* //* MODALS ENDS // */}
 
