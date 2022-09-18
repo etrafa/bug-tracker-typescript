@@ -54,6 +54,7 @@ interface ModalProps {
     e: React.ChangeEvent<HTMLSelectElement>
   ) => void;
   thirdTicketOptionsData?: string[];
+  isDeleteButtonActive?: boolean;
 }
 
 const Modal = (props: ModalProps) => {
@@ -163,6 +164,7 @@ const Modal = (props: ModalProps) => {
                 handleSubmit={props.handleSubmit}
                 buttonText={props.buttonText}
                 isFormValidated={props.isFormValidated}
+                isDeleteButtonActive={props.isDeleteButtonActive}
               />
             </form>
           </div>

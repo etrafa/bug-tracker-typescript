@@ -195,6 +195,7 @@ const EditTicketModal = ({
       showSuccessMessage={showSuccessMessage} //if true show success message
       successMessage="Ticket has been updated successfully." //success message
       showTicketOptions={true} //if true show ticket option section on modal.
+      isDeleteButtonActive={true} //active delete button.
       //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Description"
       firstLabelName="ticketDescription"
