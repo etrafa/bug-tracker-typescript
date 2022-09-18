@@ -196,6 +196,10 @@ const EditTicketModal = ({
       successMessage="Ticket has been updated successfully." //success message
       showTicketOptions={true} //if true show ticket option section on modal.
       isDeleteButtonActive={true} //active delete button.
+      secondButtonHandleClick={(e) => {
+        e.preventDefault();
+        console.log("hey");
+      }}
       //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Description"
       firstLabelName="ticketDescription"

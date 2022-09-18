@@ -55,6 +55,9 @@ interface ModalProps {
   ) => void;
   thirdTicketOptionsData?: string[];
   isDeleteButtonActive?: boolean;
+  secondButtonHandleClick?: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
 const Modal = (props: ModalProps) => {
@@ -165,6 +168,7 @@ const Modal = (props: ModalProps) => {
                 buttonText={props.buttonText}
                 isFormValidated={props.isFormValidated}
                 isDeleteButtonActive={props.isDeleteButtonActive}
+                secondButtonHandleClick={props.secondButtonHandleClick}
               />
             </form>
           </div>

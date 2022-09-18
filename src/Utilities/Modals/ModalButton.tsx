@@ -3,6 +3,9 @@ interface ModalButtonProps {
   buttonText: string;
   handleSubmit: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isDeleteButtonActive?: boolean;
+  secondButtonHandleClick?: (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
 }
 
 const ModalButton = (props: ModalButtonProps) => {
@@ -22,6 +25,7 @@ const ModalButton = (props: ModalButtonProps) => {
       {props.isDeleteButtonActive && (
         <button
           type="submit"
+          onClick={props.secondButtonHandleClick}
           className="w-full bg-white text-strongRed font-bold rounded-lg text-sm px-5 py-2.5 mt-4 text-center hover:bg-red-600 hover:text-white hover:uppercase"
         >
           Delete this Ticket
