@@ -1,5 +1,6 @@
 //react
 import { useEffect, useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //reducer
 import {
@@ -23,6 +24,7 @@ import Modal from "../../../Utilities/Modals/Modal";
 //interfaces
 import { IFirebaseUser } from "../../../Interfaces/Firebase-Interfaces/UserInterface";
 import { ITicketsRoot } from "../../../Interfaces/Firebase-Interfaces/TicketsInterface";
+import { firebeaseDeleteTicket } from "../../../firebase/FirebaseTicketFunctions/firebaseDeleteTicket";
 
 interface EditTicketModalProps {
   currentTicketID: string;
@@ -41,6 +43,9 @@ const EditTicketModal = ({
     currentTicketID || "undefined"
   );
   //*--------------- */
+
+  //*navigate
+  const navigate = useNavigate();
 
   //*STATES//*
   const [state, dispatch] = useReducer(ticketModalReducer, initialState); //usereducer
@@ -127,7 +132,7 @@ const EditTicketModal = ({
 
   //? FUNCTIONS ----------------------------------------
 
-  //* add-remove user when creating new project
+  //* add-remove user when updating current ticket
   const handleSelectedUsers = (
     e: React.ChangeEvent<HTMLInputElement>,
     user: IFirebaseUser
@@ -156,7 +161,7 @@ const EditTicketModal = ({
     });
   };
 
-  //ON SUBMIT SEND THE UPDATED TICKET TO DATABASE.
+  //* ON SUBMIT SEND THE UPDATED TICKET TO DATABASE.
   const editTicket = (e: React.MouseEvent) => {
     e.preventDefault();
     if (singleTicket) {
@@ -183,6 +188,15 @@ const EditTicketModal = ({
     }
   };
 
+  //* delete ticket
+  const deleteTicketHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    firebeaseDeleteTicket(currentTicketID, setIsEditTicketModalOpen);
+    navigate(-1);
+  };
+
   //? --------------------------------------------------
 
   return (
@@ -196,10 +210,7 @@ const EditTicketModal = ({
       successMessage="Ticket has been updated successfully." //success message
       showTicketOptions={true} //if true show ticket option section on modal.
       isDeleteButtonActive={true} //active delete button.
-      secondButtonHandleClick={(e) => {
-        e.preventDefault();
-        console.log("hey");
-      }}
+      secondButtonHandleClick={deleteTicketHandler} //this will delete the ticket.
       //*-----TICKET DESCRIPTION SECTION -----//*
       firstLabel="Ticket Description"
       firstLabelName="ticketDescription"
