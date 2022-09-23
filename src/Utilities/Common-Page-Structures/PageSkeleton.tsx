@@ -33,13 +33,13 @@ const PageSkeleton = (props: PageSkeletonProps) => {
             </p>
           )} */}
 
-          {props.loading === false && props.data?.length === 0 && (
+          {!props.loading || !props.data?.length || !props?.data || (
             <p className="mt-36 text-center font-bold">
               {props.NO_DATA_MESSAGE}
             </p>
           )}
 
-          {/* //*IF DATA LENGTH IS LARGER THAN 1 SHOW THIS MESSAGE */}
+          {/* //*IF DATA LENGTH IS LARGER THAN 0 SHOW THIS MESSAGE */}
 
           {props.data && props.data.length >= 1 && (
             <div>

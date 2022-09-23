@@ -21,6 +21,8 @@ const MyProjectsAdmin = () => {
   };
   //? --------------------------------------------------
 
+  console.log(dbData);
+
   return (
     <PageSkeleton
       //*PAGE HEADER

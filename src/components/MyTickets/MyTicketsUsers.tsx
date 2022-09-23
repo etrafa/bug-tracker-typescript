@@ -28,8 +28,6 @@ const MyTicketsUsers = () => {
   };
   //? --------------------------------------------------
 
-  console.log(dbData);
-
   return (
     <PageSkeleton
       //*PAGE HEADER
