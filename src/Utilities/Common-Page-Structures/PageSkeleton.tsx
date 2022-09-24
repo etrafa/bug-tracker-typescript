@@ -25,20 +25,13 @@ const PageSkeleton = (props: PageSkeletonProps) => {
           {/* {//* WHILE LOADING SHOW THIS MESSAGE */}
           {props.loading && <LoadSpinner />}
 
-          {/* //*IF DATA LENGTH IS 0 OR FETCHING DATA FAILS SHOW THIS MESSAGE */}
-
-          {/* {props.data && props.data.length === 0 && (
-            <p className="mt-36 text-center font-bold">
-              {props.NO_DATA_MESSAGE}
-            </p>
-          )} */}
-
-          {!props.loading || !props.data?.length || !props?.data || (
+          {!props.loading && props.data?.length === 0 && (
             <p className="mt-36 text-center font-bold">
               {props.NO_DATA_MESSAGE}
             </p>
           )}
 
+          {/* {!props.loading && !props.data && <p>No Data</p>} */}
           {/* //*IF DATA LENGTH IS LARGER THAN 0 SHOW THIS MESSAGE */}
 
           {props.data && props.data.length >= 1 && (

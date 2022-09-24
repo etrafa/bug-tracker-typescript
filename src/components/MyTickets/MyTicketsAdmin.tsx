@@ -18,6 +18,8 @@ const MyTicketsAdmin = () => {
   };
   //? --------------------------------------------------
 
+  console.log(dbData);
+
   return (
     <PageSkeleton
       //*PAGE HEADER
@@ -35,7 +37,7 @@ const MyTicketsAdmin = () => {
       pageNumber={pageNumber} //change page.
       setPageNumber={setPageNumber} // change page number for pagination.
       //*PAGE ERROR
-      NO_DATA_MESSAGE="No ticket found2222222." //when there is no data OR and error show this message
+      NO_DATA_MESSAGE="No ticket found." //when there is no data OR and error show this message
       //*PAGE DATA
       data={dbData} // data fetched from database.
       ticketData={dbData}
